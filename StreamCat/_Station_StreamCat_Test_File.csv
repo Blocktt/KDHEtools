@@ -1,0 +1,5 @@
+STATIONID,COMID,Notes
+Test_Site1,22106719,Should be normal match
+Test_Site2,22106165,Should be normal match
+Test_Site3,-999999,Should be flagged for not matching table
+Test_Site4,4270952,Should be flagged for missing StreamCat data

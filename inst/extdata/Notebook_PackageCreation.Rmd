@@ -1,0 +1,111 @@
+---
+title: "Notebook, WDEQtools"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+Package creation helper code chunks.
+
+# Package
+
+Package related code.
+
+## Create Package
+Use the code below to create the package.  Assumes you are in the development package directory
+
+```{r, eval=FALSE}
+# NEWS
+# Render then Copy NEWS so picked up in help
+rmarkdown::render("NEWS.rmd", "all")
+file.copy("NEWS.md", "NEWS", overwrite = TRUE)
+file.remove("NEWS.html")
+#file.remove("NEWS.md")
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Library Name
+myPkg <- "WDEQtools"
+# Load Library
+library(devtools)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create Package
+# create(myLibrary)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# files to library folder
+# file.copy("metric.values.R","./Library/MMIcalc/R/metric.values.R",overwrite=TRUE)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Document, Install, and Reload Library
+## Generate Documentation
+#setwd(file.path(".", myPkg))
+devtools::document()
+## Install New Package (locally)
+setwd("..") # return to root directory first
+devtools::install(myPkg, quick=FALSE, reload=TRUE, build_vignettes = TRUE)
+
+# blank row above allows for the code to continue instead of waiting for user response to pkg updates.
+## Reload library
+library(myPkg, character.only = TRUE)
+# change wd back to package
+setwd(paste0("./", myPkg))
+# Help page
+help(package=(myPkg))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+
+After creating the package reload it after restarting R within RStudio (Control+Shift+F10).
+
+```{r, eval=FALSE}
+# Restart R within RStudio:  Ctrl + Shift + F10
+myPkg <- "WDEQtools"
+library(myPkg, character.only = TRUE)
+help(package=(myPkg))
+#?metric.scores 
+citation(myPkg)
+```
+
+## PkgDown website
+Don't always need a github website but when needed use Pkgdown.
+```{r PkgDown, eval=FALSE}
+# Create PkgDown Website
+usethis::use_pkgdown()
+# Update the files
+pkgdown::build_site()
+```
+
+
+## Vignette
+Can build separately or when build the entire package.
+
+devtools::build() more useful and build_vignettes()
+
+```{r, eval=FALSE}
+# generate Vignette
+library(WDEQtools)
+library(devtools)
+devtools::build_vignettes()
+```
+
+## Including Data
+All data should have already been created.
+
+use \data-raw\ to store raw data files and the scripts to create the data files 
+for internal use in the package.
+
+## Error Checking
+Need to use testthat but not to that stage yet.
+```{r, eval=FALSE}
+# Check for errors (or press Cmd + Shift + E in RStudio)
+#http://r-pkgs.had.co.nz/check.html
+devtools::check()
+```
+
+# Testings
+
+https://testthat.r-lib.org/
+
+https://r-pkgs.org/tests.html
+
+Set up folders with `devtools::test()`.  This is also the command to run tests.
+
+Create test file `usethis::use_test("name")`

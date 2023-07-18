@@ -1,0 +1,38 @@
+Package: WDEQtools
+Type: Package
+Title: Used to calculate Wyoming DEQ Diatom IBI metrics and scores, and produce output files 
+Version: 0.1.2.9000
+Authors@R: c(
+  person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
+  person("Diane","Allen", role="aut"),
+  person("Erik W.","Leppo", role="aut"),
+  person("Ben", "Jessup", role= "aut"))
+Maintainer: Ben Block <Ben.Block@tetratech.com>
+Description: Tools to calculate multi-metric index in R and Shiny.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Imports:
+  BioMonTools,
+  shiny,
+  DT,
+  ggplot2,
+  readxl,
+  reshape2,
+  dplyr,
+  maps,
+  tidyr,
+  shinyjs,
+  knitr,
+  kableExtra,
+  rmarkdown,
+  leaflet,
+  mapview,
+  stringr,
+  shinythemes,
+  flextable,
+  capture,
+  randomForest
+VignetteBuilder: knitr
+URL: https://github.com/Blocktt/WDEQtools

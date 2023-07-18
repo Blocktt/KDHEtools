@@ -1,0 +1,62 @@
+---
+title: "WDEQtools"
+author: "Ben.Block@tetratech.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IEPAtools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+`WDEQtools` was created by Tetra Tech, Inc. in 2022 to meet the needs of Wyoming Department of Environmental Quality staff to complete data manipulations in an efficient and reproducible manner. The core purpose of this package is to run a web-based Shiny application that uses the `BioMonTools` package to calculate metric values and scores. Additionally, a second tab within the app produced an interactive map that displays the index score for each input site. Sites are clickable - popup windows appear that provide details such as Sample ID, Index Region, and scores of individual metrics associated with the particular index. 
+
+It is envisioned that this library will be a living program and will add additional functions and routines in the future.
+
+# Installation
+The R library is saved on GitHub (https://github.com/Blocktt/WDEQtools) for ease of updating and distribution.  Issues can be tracked, fixed, and code is available for download.  Current users of `WDEQtools` can update the library using the same code used to install the library (see below).  
+
+Devtools is required to download from GitHub. The `WDEQtools` package uses the `BioMonTools` package to calculate metric values and scores - therefore, the `BioMonTools` package also needs to be downloaded from GitHub (see below).
+
+At this time, there are no plans to submit `WDEQtools` to CRAN (R's library repository).
+
+### `WDEQtools`, Download Instructions
+
+```{r install_WDEQtools, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("Blocktt/WDEQtools", force=TRUE, build_vignettes=TRUE)
+```
+
+To contact the author directly email Ben.Block@tetratech.com.
+
+### `BioMonTools`, Download Instructions
+
+```{r install_BioMonTools, eval=FALSE}
+library(devtools) # assumes you already have devtools installed (see above)
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+To contact the author directly email Erik.Leppo@tetratech.com.
+
+# Packages
+Several packages were used to build the functionality in `WDEQtools`:
+
+`BioMonTools` 
+`dplyr`
+`shiny`
+`leaflet`
+
+To install packages follow the example of the code below for installing `dplyr`.
+
+```{r install_other, eval=FALSE}
+install.package("dplyr")
+```
