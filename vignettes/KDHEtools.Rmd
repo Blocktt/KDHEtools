@@ -1,0 +1,61 @@
+---
+title: "KDHEtools"
+author: "Ben.Block@tetratech.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IEPAtools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+`KDHEtools` was created by Tetra Tech, Inc. in 2023 to meet the needs of Kansas Department of Health and Environment (KDHE) staff to complete data manipulations in an efficient and reproducible manner. The core purpose of this package is to run a web-based Shiny application that uses the `BioMonTools` package to calculate metric values and scores.
+
+It is envisioned that this library will be a living program and will add additional functions and routines in the future.
+
+# Installation
+The R library is saved on GitHub (https://github.com/Blocktt/KDHEtools) for ease of updating and distribution.  Issues can be tracked, fixed, and code is available for download.  Current users of `KDHEtools` can update the library using the same code used to install the library (see below).  
+
+Devtools is required to download from GitHub. The `KDHEtools` package uses the `BioMonTools` package to calculate metric values and scores - therefore, the `BioMonTools` package also needs to be downloaded from GitHub (see below).
+
+At this time, there are no plans to submit `KDHEtools` to CRAN (R's library repository).
+
+### `KDHEtools`, Download Instructions
+
+```{r install_KDHEtools, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("Blocktt/KDHEtools", force=TRUE, build_vignettes=TRUE)
+```
+
+To contact the author directly email Ben.Block@tetratech.com.
+
+### `BioMonTools`, Download Instructions
+
+```{r install_BioMonTools, eval=FALSE}
+library(devtools) # assumes you already have devtools installed (see above)
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+To contact the author directly email Erik.Leppo@tetratech.com.
+
+# Packages
+Several packages were used to build the functionality in `KDHEtools`:
+
+`BioMonTools` 
+`dplyr`
+`shiny`
+
+To install packages follow the example of the code below for installing `dplyr`.
+
+```{r install_other, eval=FALSE}
+install.package("dplyr")
+```

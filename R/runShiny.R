@@ -1,12 +1,12 @@
-#' @title run WDEQtools Shiny Example
+#' @title run KDHEtools Shiny Example
 #'
-#' @description Launches Shiny app for WDEQtools.
+#' @description Launches Shiny app for KDHEtools.
 #'
-#' @details The Shiny app based on the R package WDEQtools is included in the R package.
+#' @details The Shiny app based on the R package KDHEtools is included in the R package.
 #' This function launches that app.
 #'
 #' The Shiny app is online at:
-#' https://tetratech-wtr-wne.shinyapps.io/WDEQtools/
+#' https://tetratech-wtr-wne.shinyapps.io/KDHEtools/
 #'
 #' @examples
 #' \dontrun{
@@ -17,10 +17,10 @@
 #' @export
 runShiny <- function(){##FUNCTION.START
   #
-  appDir <- system.file("shiny-examples", "WDEQtools", package = "WDEQtools")
+  appDir <- system.file("shiny-examples", "KDHEtools", package = "KDHEtools")
   #
   if (appDir == "") {
-    stop("Could not find example directory. Try re-installing `WDEQtools`.", call. = FALSE)
+    stop("Could not find example directory. Try re-installing `KDHEtools`.", call. = FALSE)
   }
   #
   shiny::runApp(appDir, display.mode = "normal")

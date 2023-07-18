@@ -1,5 +1,5 @@
 ---
-title: "NEWS-WDEQtools"
+title: "NEWS-KDHEtools"
 output: github_document
 ---
 
@@ -17,17 +17,7 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
-WDEQtools v0.0.1.9150 (2022-07-01)
-================
-
-* Updated according to WDEQ review comments and suggestions.
-
-WDEQtools v0.0.1.9142 (2022-06-03)
-================
-
-* Completion of first draft
-
-WDEQtools v0.0.1.9000 (2022-05-13)
+KDHEtools v0.0.1.9001 (2023-07-18)
 ================
 
 * Creation date

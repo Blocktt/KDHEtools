@@ -1,0 +1,280 @@
+
+
+
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>This R Shiny application calculates numeric Index of Biotic Integrity
+(IBI) scores based on diatom samples collected by the Wyoming Department
+of Environmental Quality (<a href="https://deq.wyoming.gov/">WDEQ</a>).</p>
+<p>WDEQ monitors the conditions of streams and rivers in Wyoming to
+inform management decisions regarding protection, mitigation, and
+restoration of aquatic life and other designated uses. WDEQ has diatom
+assemblage data from nearly 700 river and stream samples collected since
+2007. WDEQ’s data provide an opportunity to test diatom metrics with
+independently established disturbance gradients and classification based
+on natural variability within Wyoming. The IBI consolidates measures of
+the aquatic community (metrics) that, when combined, indicate the
+similarity of a biological sample to expected conditions of a
+well-balanced community. The process by which the metrics are selected
+and combined in an index follows established and innovative analytical
+methods of the reference condition approach (<a href="https://link.springer.com/article/10.1007/BF01866767">Hughes et
+al. 1986</a>, <a href="https://link.springer.com/book/10.1007/978-1-4419-8885-0">Bailey
+et al. 2004</a>). In this approach, biological conditions that are
+sampled from relatively undisturbed sites and that account for natural
+variability are set as a standard (or reference) to which other samples
+are compared (<a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1890/1051-0761%282006%29016%5B1267%3ASEFTEC%5D2.0.CO%3B2">Stoddard
+et al. 2006</a>). Using metrics to establish the numeric index scale,
+IBI values that resemble those found in reference sites are determined
+to meet the expectations for a well-balanced aquatic community. IBI
+values that are unlike the reference values indicate departure from the
+acceptable biological conditions and probable impairment of aquatic life
+uses.</p>
+<p>The Wyoming Diatom IBI calibration project resulted in an index
+applicable statewide. Four metrics are adjusted by eight different
+factors (see Metric Adjustment Download Tab) that represent natural
+stream types. Reports detailing the development of the Wyoming Diatom
+IBI can be found <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">here</a>.</p>
+</div>
+<div id="intended-application" class="section level2">
+<h2>Intended application</h2>
+<p>The purpose of the index is to describe the diatom community of
+Wyoming freshwater streams and rivers for the purpose of biological
+condition assessment. A diatom IBI enhances the state of Wyoming’s
+monitoring and assessment strategy by adding a numeric indicator of
+diatom community structure that could be used to:</p>
+<ul>
+<li>Evaluate attainment of Wyoming’s narrative surface water quality
+criteria protective of aquatic life for perennial streams and
+rivers</li>
+<li>Assist in identification of chemical and physical stressors to
+aquatic life of perennial streams and rivers in Wyoming</li>
+<li>Identify improvements in aquatic life of perennial streams and
+rivers in Wyoming following restoration efforts.</li>
+</ul>
+<p>The Wyoming Diatom IBI in combination with the Wyoming Stream
+Integrity Index (WSII) and Wyoming River InVertebrate Prediction And
+Classification System (RIVPACS) provides an accurate assessment of
+ecological effects on two aquatic assemblages (diatoms and benthic
+macroinvertebrates) in Wyoming. The diatom IBI might respond to
+different stressors compared to those indicated by the existing
+macroinvertebrate assemblages, and so, improves WDEQ’s diagnostic
+ability to identify pollutants that may contribute to water quality
+degradation.</p>
+<p>Sampled streams and rivers were wadeable and perennial. All diatom
+samples used to develop the Wyoming Diatom IBI were collected by WDEQ in
+accordance with the WDEQ Manual of Standard Operating Procedures (<a href="https://deq.wyoming.gov/water-quality/watershed-protection/water-quality-assessment/">WDEQ
+2021</a>). The Wyoming Diatom IBI should only be used to evaluate
+biological conditions on wadeable perennial streams and rivers in
+Wyoming. Moreover, diatom samples need to be collected during low flow
+conditions from July 15 through October. If the user applies the indices
+to samples that do not meet these criteria, results should be
+interpreted with caution. For more information on sampling methodologies
+and application limits, see the Wyoming Diatom IBI development reports
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">here</a>.</p>
+</div>
+<div id="input-metrics-and-scoring-formulae" class="section level2">
+<h2>Input metrics and scoring formulae</h2>
+<p>The Wyoming Diatom IBI was calibrated for applicability statewide;
+however, four of the seven metrics are adjusted by metric adjustment
+factors. The metric adjustment factors represent natural stream types.
+Table 1 shows the input metrics and scoring formulae for the IBI
+(metrics in need of adjustment have the “_RFadj” suffix). See the
+<strong>“Metric Adjustment Download”</strong> tab for more information
+on factors and how to assign factor values to each site.</p>
+<div id="table-1.-metrics-and-scoring-formulae-for-the-wyoming-diatom-ibi.-de-discrimination-efficiency-trend-metric-response-to-stress-5th-5th-percentile-of-metric-values-and-95th-95th-percentile-of-metric-values." class="section level4">
+<h4>Table 1. Metrics and scoring formulae for the Wyoming Diatom IBI. DE
+= discrimination efficiency, Trend = metric response to stress, 5th =
+5th percentile of metric values, and 95th = 95th percentile of metric
+values.</h4>
+<table class="table" style="font-size: 14px; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Metric Name
+</th>
+<th style="text-align:left;">
+Metric Abbreviation
+</th>
+<th style="text-align:left;">
+Metric DE (Trend)
+</th>
+<th style="text-align:left;">
+Scoring Formula
+</th>
+<th style="text-align:right;">
+5th
+</th>
+<th style="text-align:right;">
+95th
+</th>
+<th style="text-align:left;">
+Metric Category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+% abundance of sensitive biological condition taxa
+</td>
+<td style="text-align:left;">
+BC_12.pa
+</td>
+<td style="text-align:left;">
+70 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric - 0.03) / 0.6
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:left;">
+Biological Condition
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+% taxa of salinity tolerant taxa
+</td>
+<td style="text-align:left;">
+pt_H_WDEQ_34_RFadj
+</td>
+<td style="text-align:left;">
+80 (INC)
+</td>
+<td style="text-align:left;">
+100*(15.9 - metric) / 20.7
+</td>
+<td style="text-align:right;">
+-4.75
+</td>
+<td style="text-align:right;">
+15.91
+</td>
+<td style="text-align:left;">
+Salinity
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Weighted average of salinity tolerance by abundance
+</td>
+<td style="text-align:left;">
+WA_Salinity_USGS
+</td>
+<td style="text-align:left;">
+62 (INC)
+</td>
+<td style="text-align:left;">
+100*(2.2 - metric) / 1.1
+</td>
+<td style="text-align:right;">
+1.11
+</td>
+<td style="text-align:right;">
+2.20
+</td>
+<td style="text-align:left;">
+Salinity
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+# taxa of nitrogen sensitive taxa
+</td>
+<td style="text-align:left;">
+nt_Diatas_TN_2_RFadj
+</td>
+<td style="text-align:left;">
+64 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric + 3.91) / 6.3
+</td>
+<td style="text-align:right;">
+-3.91
+</td>
+<td style="text-align:right;">
+2.41
+</td>
+<td style="text-align:left;">
+Nutrients
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+% taxa of oligotrophic taxa
+</td>
+<td style="text-align:left;">
+pt_T_WDEQ_12_RFadj
+</td>
+<td style="text-align:left;">
+78 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric + 7.0) / 11.6
+</td>
+<td style="text-align:right;">
+-7.02
+</td>
+<td style="text-align:right;">
+4.54
+</td>
+<td style="text-align:left;">
+Trophic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+% taxa of eutrophic taxa
+</td>
+<td style="text-align:left;">
+pt_T_WDEQ_56_RFadj
+</td>
+<td style="text-align:left;">
+74 (INC)
+</td>
+<td style="text-align:left;">
+100*(18.0 - metric) / 27.0
+</td>
+<td style="text-align:right;">
+-9.02
+</td>
+<td style="text-align:right;">
+18.01
+</td>
+<td style="text-align:left;">
+Trophic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+% taxa with affinity for relatively low oxygen
+</td>
+<td style="text-align:left;">
+pt_O_WDEQ_4
+</td>
+<td style="text-align:left;">
+78 (INC)
+</td>
+<td style="text-align:left;">
+100*(15.7 - metric) / 15.7
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+15.73
+</td>
+<td style="text-align:left;">
+Oxygen
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>

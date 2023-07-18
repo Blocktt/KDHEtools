@@ -1,5 +1,5 @@
 ---
-title: "Notebook, WDEQtools"
+title: "Notebook, KDHEtools"
 output: html_notebook
 editor_options: 
   chunk_output_type: inline
@@ -23,7 +23,7 @@ file.remove("NEWS.html")
 #file.remove("NEWS.md")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Library Name
-myPkg <- "WDEQtools"
+myPkg <- "KDHEtools"
 # Load Library
 library(devtools)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,7 +57,7 @@ After creating the package reload it after restarting R within RStudio (Control+
 
 ```{r, eval=FALSE}
 # Restart R within RStudio:  Ctrl + Shift + F10
-myPkg <- "WDEQtools"
+myPkg <- "KDHEtools"
 library(myPkg, character.only = TRUE)
 help(package=(myPkg))
 #?metric.scores 
@@ -81,7 +81,7 @@ devtools::build() more useful and build_vignettes()
 
 ```{r, eval=FALSE}
 # generate Vignette
-library(WDEQtools)
+library(KDHEtools)
 library(devtools)
 devtools::build_vignettes()
 ```
