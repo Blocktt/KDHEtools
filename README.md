@@ -18,7 +18,6 @@ releases](https://img.shields.io/github/downloads/Blocktt/KDHEtools/total)](http
 
 ``` r
 library(devtools)  #install if needed
-Sys.setenv("TAR" = "internal")  # needed for R v3.6.0
 install_github("Blocktt/KDHEtools", force=TRUE, build_vignettes=TRUE)
 ```
 
