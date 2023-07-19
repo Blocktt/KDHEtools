@@ -49,13 +49,13 @@ decreasers<-c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
 
 increasers<-c("x_HBI_RFadj")
 
-standardizeIncreasers <- function(x) {
-  standardizedIncreasers<-100*(std_Parameters["ninetififth",i] - x)/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
-}
-
-standardizeDecreasers <- function(x) {
-  standardizedDecreasers<-100*(x - std_Parameters["fifth",i])/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
-}
+# standardizeIncreasers <- function(x) {
+#   standardizedIncreasers<-100*(std_Parameters["ninetififth",i] - x)/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
+# }
+#
+# standardizeDecreasers <- function(x) {
+#   standardizedDecreasers<-100*(x - std_Parameters["fifth",i])/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
+# }
 
 # rf models for adjusted metrics
 # habit_model<-load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")

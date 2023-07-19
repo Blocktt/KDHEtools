@@ -249,6 +249,7 @@ shinyServer(function(input, output, session) {
                      , WtDepWs = WTDEPWS)
 
             df_metval2$SAMPLEID <- as.character(df_metval2$SAMPLEID)
+            df_metval2$L3Eco <- as.factor(df_metval2$L3Eco)
 
             ## adjust metrics ####
 
@@ -257,26 +258,31 @@ shinyServer(function(input, output, session) {
             habit_model<-load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
             nt_habit_climbcling_pred<-predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict nt_habit_climbcling
             nt_habit_climbcling_RFadj<-df_metval2[,"nt_habit_climbcling"] - nt_habit_climbcling_pred		##### calculate residual
-            df_metval2$nt_habit_climbcling_RFadj<-nt_habit_climbcling_RFadj
+            nt_habit_climbcling_RFadj <- unname(unlist(nt_habit_climbcling_RFadj))
+            df_metval2$nt_habit_climbcling_RFadj <- nt_habit_climbcling_RFadj
 
             HBI_model<-load("./data/x_HBI_RFmod_final0517.Rdata")
             x_HBI_pred<-predict(rf.mod,df_metval2[,c(predictors)])			##### use forest to predict
             x_HBI_RFadj<-df_metval2[,"x_HBI"] - x_HBI_pred				##### calculate residual
+            x_HBI_RFadj <- unname(unlist(x_HBI_RFadj))
             df_metval2$x_HBI_RFadj<-x_HBI_RFadj
 
             BCG_model<-load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
             pt_BCG_att1i234b_pred<-predict(rf.mod,df_metval2[,c(predictors)])					##### use forest to predict
             pt_BCG_att1i234b_RFadj<-df_metval2[,"pt_BCG_att1i234b"] - pt_BCG_att1i234b_pred		##### calculate residual
+            pt_BCG_att1i234b_RFadj <- unname(unlist(pt_BCG_att1i234b_RFadj))
             df_metval2$pt_BCG_att1i234b_RFadj<-pt_BCG_att1i234b_RFadj
 
             semiv_model<-load("./data/nt_volt_semi_RFmod_final0517.Rdata")
             nt_volt_semi_pred<-predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict pt_H_WDEQ_34
             nt_volt_semi_RFadj<-df_metval2[,"nt_volt_semi"] - nt_volt_semi_pred				##### calculate residual
+            nt_volt_semi_RFadj <- unname(unlist(nt_volt_semi_RFadj))
             df_metval2$nt_volt_semi_RFadj<-nt_volt_semi_RFadj
 
             EPT_model<-load("./data/nt_EPT_RFmod_final0517.Rdata")
             nt_EPT_pred<-predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict pt_H_WDEQ_34
             nt_EPT_RFadj<-df_metval2[,"nt_EPT"] - nt_EPT_pred				##### calculate residual
+            nt_EPT_RFadj <- unname(unlist(nt_EPT_RFadj))
             df_metval2$nt_EPT_RFadj<-nt_EPT_RFadj
 
             # Increment the progress bar, and update the detail text.
@@ -303,7 +309,7 @@ shinyServer(function(input, output, session) {
             colnames(metricsIncreasers2) <- c("SAMPLEID",paste0(increasers,"_std"))
 
             metricsIncreasers2[,1]<-metricsIncreasers$SAMPLEID
-            metricsIncreasers2[,2]<-100*(std_Parameters["ninetififth","x_HBI_RFadj"] - metricsIncreasers$x_HBI_RFadj)/(std_Parameters["ninetififth","x_HBI_RFadj"] - std_Parameters["fifth","x_HBI_RFadj"])
+            metricsIncreasers2[,2]<-100*(std_Parameters["ninetyfifths","x_HBI_RFadj"] - metricsIncreasers$x_HBI_RFadj)/(std_Parameters["ninetyfifths","x_HBI_RFadj"] - std_Parameters["fifths","x_HBI_RFadj"])
 
             # Decreasers
             metricsDecreasers<-df_metval2[,c("SAMPLEID", decreasers)]
@@ -312,10 +318,10 @@ shinyServer(function(input, output, session) {
             colnames(metricsDecreasers2) <- c("SAMPLEID",paste0(decreasers,"_std"))
 
             metricsDecreasers2[,1]<-metricsDecreasers$SAMPLEID
-            metricsDecreasers2[,2]<-100*(metricsDecreasers$nt_habit_climbcling_RFadj - std_Parameters["fifth",names(metricsDecreasers)[2]])/(std_Parameters["ninetififth",names(metricsDecreasers)[2]] - std_Parameters["fifth",names(metricsDecreasers)[2]])
-            metricsDecreasers2[,3]<-100*(metricsDecreasers$nt_volt_semi_RFadj - std_Parameters["fifth",names(metricsDecreasers)[3]])/(std_Parameters["ninetififth",names(metricsDecreasers)[3]] - std_Parameters["fifth",names(metricsDecreasers)[3]])
-            metricsDecreasers2[,4]<-100*(metricsDecreasers$nt_EPT_RFadj - std_Parameters["fifth",names(metricsDecreasers)[4]])/(std_Parameters["ninetififth",names(metricsDecreasers)[4]] - std_Parameters["fifth",names(metricsDecreasers)[4]])
-            metricsDecreasers2[,5]<-100*(metricsDecreasers$pt_BCG_att1i234b_RFadj - std_Parameters["fifth",names(metricsDecreasers)[5]])/(std_Parameters["ninetififth",names(metricsDecreasers)[5]] - std_Parameters["fifth",names(metricsDecreasers)[5]])
+            metricsDecreasers2[,2]<-100*(metricsDecreasers$nt_habit_climbcling_RFadj - std_Parameters["fifths",names(metricsDecreasers)[2]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[2]] - std_Parameters["fifths",names(metricsDecreasers)[2]])
+            metricsDecreasers2[,3]<-100*(metricsDecreasers$nt_volt_semi_RFadj - std_Parameters["fifths",names(metricsDecreasers)[3]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[3]] - std_Parameters["fifths",names(metricsDecreasers)[3]])
+            metricsDecreasers2[,4]<-100*(metricsDecreasers$nt_EPT_RFadj - std_Parameters["fifths",names(metricsDecreasers)[4]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[4]] - std_Parameters["fifths",names(metricsDecreasers)[4]])
+            metricsDecreasers2[,5]<-100*(metricsDecreasers$pt_BCG_att1i234b_RFadj - std_Parameters["fifths",names(metricsDecreasers)[5]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[5]] - std_Parameters["fifths",names(metricsDecreasers)[5]])
 
             # combine and truncate at 0 and 100
             metrics_std <- suppressWarnings(left_join(metricsDecreasers2, metricsIncreasers2
