@@ -31,17 +31,16 @@ options(shiny.maxRequestSize = 25*1024^2)
 
 # define which metrics to keep in indices
 
-DiatomMetrics <- c("pi_BC_12"
-                   ,"pt_SALINITY_34"
-                   ,"wa_POLL_TOL"
-                   ,"nt_DIATAS_TN_2"
-                   ,"pt_TROPHIC_12"
-                   ,"pt_TROPHIC_56"
-                   ,"pt_O_4")# END DiatomMetrics
+BugMetrics <- c("nt_EPT"
+                , "nt_habit_climbcling"
+                , "nt_volt_semi"
+                , "pt_BCG_att1i234b"
+                , "x_HBI")# END BugMetrics
 
 # info for randomForest ####
-predictors<-c("BFIWs","Elevation","KffactWs","PrecipWs"
-              ,"RckDepWs","SWs","TmaxWs","TmeanWs")
+predictors<-c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco"
+              , "MgOCat", "NWs", "PermWs", "PrecipCat", "PrecipWs", "SandWs"
+              , "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm", "WtDepWs")
 
 # std_Parameters<-read.csv("./data/standardization.parameters.csv",row.names=1)
 

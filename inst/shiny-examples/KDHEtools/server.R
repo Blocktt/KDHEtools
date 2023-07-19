@@ -54,33 +54,15 @@ shinyServer(function(input, output, session) {
                              sep = input$sep,
                              quote = input$quote, stringsAsFactors = FALSE)
 
-        required_columns <- c("INDEX_NAME"
-                              ,"INDEX_REGION"
-                              ,"STATIONID"
-                              ,"SAMPLEID"
-                              ,"COLLDATE"
-                              ,"N_TAXA"
-                              ,"EXCLUDE"
-                              ,"NONTARGET"
-                              ,"TAXAID"
-                              ,"ORDER"
-                              ,"FAMILY"
-                              ,"H_WDEQ"
-                              ,"O_WDEQ"
-                              ,"T_WDEQ"
-                              ,"DIATAS_TN"
-                              ,"BC_USGS"
-                              ,"SALINITY_USGS_NUM"
-                              ,"LAT"
-                              ,"LONG"
-                              ,"Elevation"
-                              ,"BFIWs"
-                              ,"SWs"
-                              ,"KffactWs"
-                              ,"PrecipWs"
-                              ,"TmaxWs"
-                              ,"TmeanWs"
-                              ,"RckDepWs")
+        required_columns <- c("Index_Name", "SampleID", "CollDate", "CollMeth"
+                              , "StationID", "Lat", "Long", "DistCat", "TaxaID"
+                              , "N_Taxa", "Exclude", "Nontarget", "BCG_Attr"
+                              , "Habit", "Life_Cycle", "TolVal", "Phylum"
+                              , "Order", "Genus", "Al2O3Ws", "CFS", "ClayWs"
+                              , "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco", "MgOCat"
+                              , "NWs", "PermWs", "PrecipCat", "PrecipWs", "SandWs"
+                              , "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm"
+                              , "WtDepWs")
 
         column_names <- colnames(df_input)
 
@@ -94,21 +76,6 @@ shinyServer(function(input, output, session) {
                           , paste("Required columns missing from the data:\n")
                           , paste("* ", col_missing, collapse = "\n")))
         )##END ~ validate() code
-
-        ########################### MAP and PLOT Observer
-        observe({
-          inFile<- input$fn_input
-          if(is.null(inFile))
-            return(NULL)
-
-          df_input
-
-          updateSelectInput(session, "siteid.select"
-                            , choices = as.character(
-                              sort(unique(df_input[, "SAMPLEID"]))))
-        }) ## observe~END
-
-
 
         # Add "Results" folder if missing
         boo_Results <- dir.exists(file.path(".", "Results"))
@@ -152,7 +119,7 @@ shinyServer(function(input, output, session) {
             sink(file_sink, type = "message", append = TRUE)
 
             # Log
-            message("Results Log from WDEQtools Shiny App")
+            message("Results Log from KDHEtools Shiny App")
             message(Sys.time())
             inFile <- input$fn_input
             message(paste0("file = ", inFile$name))
@@ -178,17 +145,30 @@ shinyServer(function(input, output, session) {
             }
 
             # QC, predictors = NA
-            Elevation_NA <- sum(is.na(df_data$Elevation))
-            BFIWs_NA <- sum(is.na(df_data$BFIWs))
-            SWs_NA <- sum(is.na(df_data$SWs))
-            KffactWs_NA <- sum(is.na(df_data$KffactWs))
+            Al2O3Ws_NA <- sum(is.na(df_data$Al2O3Ws))
+            CFS_NA <- sum(is.na(df_data$CFS))
+            ClayWs_NA <- sum(is.na(df_data$ClayWs))
+            ElevCat_NA <- sum(is.na(df_data$ElevCat))
+            Fe2O3Cat_NA <- sum(is.na(df_data$Fe2O3Cat))
+            K2OWs_NA <- sum(is.na(df_data$K2OWs))
+            L3Eco_NA <- sum(is.na(df_data$L3Eco))
+            MgOCat_NA <- sum(is.na(df_data$MgOCat))
+            NWs_NA <- sum(is.na(df_data$NWs))
+            PermWs_NA <- sum(is.na(df_data$PermWs))
+            PrecipCat_NA <- sum(is.na(df_data$PrecipCat))
             PrecipWs_NA <- sum(is.na(df_data$PrecipWs))
-            TmaxWs_NA <- sum(is.na(df_data$TmaxWs))
-            TmeanWs_NA <- sum(is.na(df_data$TmeanWs))
-            RckDepWs_NA <- sum(is.na(df_data$RckDepWs))
+            SandWs_NA <- sum(is.na(df_data$SandWs))
+            SWs_NA <- sum(is.na(df_data$SWs))
+            TmeanCat_NA <- sum(is.na(df_data$TmeanCat))
+            WetIndexWs_NA <- sum(is.na(df_data$WetIndexWs))
+            WsAreaSqKm_NA <- sum(is.na(df_data$WsAreaSqKm))
+            WtDepWs_NA <- sum(is.na(df_data$WtDepWs))
 
-            Predictor_NA <- sum(Elevation_NA, BFIWs_NA, SWs_NA, KffactWs_NA
-                                , PrecipWs_NA, TmaxWs_NA, TmeanWs_NA, RckDepWs_NA)
+            Predictor_NA <- sum(Al2O3Ws_NA, CFS_NA, ClayWs_NA, ElevCat_NA
+                                , Fe2O3Cat_NA, K2OWs_NA, L3Eco_NA, MgOCat_NA
+                                , NWs_NA, PermWs_NA, PrecipCat_NA, PrecipWs_NA
+                                , SandWs_NA, SWs_NA, TmeanCat_NA, WetIndexWs_NA
+                                , WsAreaSqKm_NA, WtDepWs_NA)
             if(Predictor_NA>0){
               message("Some sites in your dataset have missing predictor values. Index scores will be incorrect without COMPLETE predictor values.")
             }
@@ -213,42 +193,20 @@ shinyServer(function(input, output, session) {
             # convert Field Names to UPPER CASE
             names(df_data) <- toupper(names(df_data))
 
-            # Reformat dataset ####
-            df_reformat <- df_data %>%
-              mutate(SALINITY_USGS = case_when((H_WDEQ == 1) ~ "SALINITY_1"
-                                               , (H_WDEQ == 2) ~ "SALINITY_2"
-                                               , (H_WDEQ == 3) ~ "SALINITY_3"
-                                               , (H_WDEQ == 4) ~ "SALINITY_4")) %>%
-              select(-c(H_WDEQ)) %>%
-              mutate(TROPHIC_USGS = case_when((T_WDEQ == 1) ~ "TROPHIC_1"
-                                              , (T_WDEQ == 2) ~ "TROPHIC_2"
-                                              , (T_WDEQ == 3) ~ "TROPHIC_3"
-                                              , (T_WDEQ == 4) ~ "TROPHIC_4"
-                                              , (T_WDEQ == 5) ~ "TROPHIC_5"
-                                              , (T_WDEQ == 6) ~ "TROPHIC_6"
-                                              , (T_WDEQ == 7) ~ "TROPHIC_7")) %>%
-              select(-c(T_WDEQ)) %>%
-              mutate(O_USGS = case_when((O_WDEQ == 1) ~ "O_1"
-                                        , (O_WDEQ == 2) ~ "O_2"
-                                        , (O_WDEQ == 3) ~ "O_3"
-                                        , (O_WDEQ == 4) ~ "O_4"
-                                        , (O_WDEQ == 5) ~ "O_5")) %>%
-              select(-c(O_WDEQ)) %>%
-              rename(POLL_TOL = SALINITY_USGS_NUM)
-
             # QC, Required Fields
-            col.req <- c("INDEX_REGION","SAMPLEID","TAXAID","EXCLUDE","NONTARGET"
-                         ,"N_TAXA","PHYLUM","ORDER","FAMILY","GENUS","BC_USGS"
-                         ,"TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS","SALINITY_USGS"
-                         ,"BAHLS_USGS","P_USGS","N_USGS","HABITAT_USGS","N_FIXER_USGS"
-                         ,"MOTILITY_USGS","SIZE_USGS","HABIT_USGS","MOTILE2_USGS"
-                         ,"TOLVAL","DIATOM_ISA","DIAT_CL","POLL_TOL","BEN_SES"
-                         ,"DIATAS_TP","DIATAS_TN","DIAT_COND","DIAT_CA","MOTILITY"
-                         ,"NF")
-            col.req.missing <- col.req[!(col.req %in% toupper(names(df_reformat)))]
+            col.req <- c("INDEX_NAME", "SAMPLEID", "COLLDATE", "COLLMETH"
+                         , "STATIONID", "LAT", "LONG", "DISTCAT", "TAXAID"
+                         , "N_TAXA", "EXCLUDE", "NONTARGET", "BCG_ATTR", "HABIT"
+                         , "LIFE_CYCLE", "TOLVAL", "PHYLUM", "ORDER", "GENUS"
+                         , "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT", "FE2O3CAT"
+                         , "K2OWS", "L3ECO", "MGOCAT", "NWS", "PERMWS"
+                         , "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS", "TMEANCAT"
+                         , "WETINDEXWS", "WSAREASQKM", "WTDEPWS")
+
+            col.req.missing <- col.req[!(col.req %in% names(df_data))]
 
             # Add missing fields
-            df_reformat[,col.req.missing] <- NA
+            df_data[,col.req.missing] <- NA
             warning(paste("Metrics related to the following fields are invalid:"
                           , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
 
@@ -256,36 +214,40 @@ shinyServer(function(input, output, session) {
             # save each file separately
 
            # columns to keep
-            keep_cols <- c("STATIONID", "COLLDATE", "LAT", "LONG","Elevation"
-                           , "BFIWs", "SWs", "KffactWs", "PrecipWs", "TmaxWs", "TmeanWs"
-                           , "RckDepWs")
+            keep_cols <- c("COLLDATE", "COLLMETH", "STATIONID", "LAT", "LONG"
+                           , "DISTCAT", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
+                           , "FE2O3CAT", "K2OWS", "L3ECO", "MGOCAT", "NWS"
+                           , "PERMWS", "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS"
+                           , "TMEANCAT", "WETINDEXWS", "WSAREASQKM", "WTDEPWS")
 
             # metric calculation ####
 
             df_metval <- suppressWarnings(
-              BioMonTools::metric.values(fun.DF = df_reformat
-                            , fun.Community = "algae"
-                            , fun.MetricNames = DiatomMetrics
+              BioMonTools::metric.values(fun.DF = df_data
+                            , fun.Community = "bugs"
+                            , fun.MetricNames = BugMetrics
                             , fun.cols2keep= keep_cols
                             , boo.Shiny = TRUE))
 
             df_metval2 <- df_metval %>%
-              rename(pt_H_WDEQ_34 = pt_SALINITY_34
-                     , WA_Salinity_USGS = wa_POLL_TOL
-                     , nt_Diatas_TN_2 = nt_DIATAS_TN_2
-                     , pt_T_WDEQ_12 = pt_TROPHIC_12
-                     , pt_T_WDEQ_56 = pt_TROPHIC_56
-                     , pt_O_WDEQ_4 = pt_O_4
-                     , BFIWs = BFIWS
-                     , Elevation = ELEVATION
-                     , SWs = SWS
-                     , KffactWs = KFFACTWS
+              rename(Al2O3Ws = AL2O3WS
+                     , CFS = CFS
+                     , ClayWs = CLAYWS
+                     , ElevCat = ELEVCAT
+                     , Fe2O3Cat = FE2O3CAT
+                     , K2OWs = K2OWS
+                     , L3Eco = L3ECO
+                     , MgOCat = MGOCAT
+                     , NWs = NWS
+                     , PermWs = PERMWS
+                     , PrecipCat = PRECIPCAT
                      , PrecipWs = PRECIPWS
-                     , TmaxWs = TMAXWS
-                     , TmeanWs = TMEANWS
-                     , RckDepWs = RCKDEPWS) %>%
-              mutate(BC_12.pa = pi_BC_12/100) %>% # return to proportion values
-              select(-c(pi_BC_12))
+                     , SandWs = SANDWS
+                     , SWs = SWS
+                     , TmeanCat = TMEANCAT
+                     , WetIndexWs = WETINDEXWS
+                     , WsAreaSqKm = WSAREASQKM
+                     , WtDepWs = WTDEPWS)
 
             df_metval2$SAMPLEID <- as.character(df_metval2$SAMPLEID)
 
@@ -414,7 +376,7 @@ shinyServer(function(input, output, session) {
         # use index and date time as file name
 
         filename = function() {
-            paste("WY_Diatom_IBI_Results_"
+            paste("KS_Bug_IBI_Results_"
                   , format(Sys.time(), "%Y%m%d_%H%M%S"), ".zip", sep = "")
         },
         content = function(fname) {##content~START
