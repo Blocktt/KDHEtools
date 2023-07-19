@@ -3,23 +3,23 @@
 # Packages
 library(shiny)
 library(DT)
-library(ggplot2)
+library(ggplot2) # possible delete
 library(readxl)
 library(reshape2)
 library(dplyr)
 library(utils)
 library(BioMonTools)
 library(knitr)
-library(maps)
+library(maps) # possible delete
 library(rmarkdown)
 library(markdown)
 library(tidyr)
-library(leaflet)
-library(shinyjs) # used for download button enable
-library(mapview) # used to download leaflet map
+library(leaflet) # possible delete
+library(shinyjs)
+library(mapview) # possible delete
 library(stringr)
 library(shinythemes)
-library(capture)
+library(capture) # possible delete
 library(randomForest)
 library(magrittr)
 
@@ -39,14 +39,15 @@ BugMetrics <- c("nt_EPT"
 
 # info for randomForest ####
 predictors<-c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco"
-              , "MgOCat", "NWs", "PermWs", "PrecipCat", "PrecipWs", "SandWs"
-              , "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm", "WtDepWs")
+              , "LONG", "MgOCat", "NWs", "PermWs", "PrecipCat", "PrecipWs"
+              , "SandWs", "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm", "WtDepWs")
 
 # std_Parameters<-read.csv("./data/standardization.parameters.csv",row.names=1)
 
-decreasers<-c("pt_T_WDEQ_12_RFadj","nt_Diatas_TN_2_RFadj","BC_12.pa")
+decreasers<-c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
+              ,"pt_BCG_att1i234b_RFadj")
 
-increasers<-c("WA_Salinity_USGS","pt_O_WDEQ_4","pt_H_WDEQ_34_RFadj","pt_T_WDEQ_56_RFadj")
+increasers<-c("x_HBI_RFadj")
 
 standardizeIncreasers <- function(x) {
   standardizedIncreasers<-100*(std_Parameters["ninetififth",i] - x)/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
@@ -56,14 +57,9 @@ standardizeDecreasers <- function(x) {
   standardizedDecreasers<-100*(x - std_Parameters["fifth",i])/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
 }
 
-# metric names to use in raw format (will be standardized though)
-raw<-c("WA_Salinity_USGS","pt_O_WDEQ_4","BC_12.pa")
-
-# metric names to use in adjusted format (will be adjusted and standardized)
-toAdjust<-c("pt_H_WDEQ_34","pt_T_WDEQ_56","nt_Diatas_TN_2","pt_T_WDEQ_12")
-
-# # rf models for adjusted metrics
-# H34_model<-load("./data/pt_H_WDEQ_34_RFmod02162022.Rdata")
-# T56_model<-load("./data/pt_T_WDEQ_56_RFmod02162022.Rdata")
-# DiatasTN2_model<-load("./data/nt_Diatas_TN_2_RFmod02162022.Rdata")
-# T12_model<-load("./data/pt_T_WDEQ_12_RFmod02162022.Rdata")
+# rf models for adjusted metrics
+# habit_model<-load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
+# HBI_model<-load("./data/x_HBI_RFmod_final0517.Rdata")
+# BCG_model<-load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
+# semiv_model<-load("./data/nt_volt_semi_RFmod_final0517.Rdata")
+# EPT_model<-load("./data/nt_EPT_RFmod_final0517.Rdata")
