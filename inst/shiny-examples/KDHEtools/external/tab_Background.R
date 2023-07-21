@@ -2,7 +2,7 @@ function(){
   tabPanel("Background",
            sidebarLayout(
              sidebarPanel(
-               img(src = "WDEQ_logo.png", height = 200)
+               img(src = "KDHE_logo.png", height = 200)
                , width = 3
              )# sidebarPanel~END
              , mainPanel(

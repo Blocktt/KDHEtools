@@ -12,13 +12,15 @@ shinyServer(function(input, output, session) {
   # modal dialog ####
   myModal <- modalDialog(
     title = "Greetings!"
-    ,paste("Welcome to the Kansas Macroinvertebrate IBI Calculator!")
+    ,paste("Welcome to the Macroinvertebrate Multi-Metric Index (MMI) Calculator for Wadeable Streams in Kansas!")
     ,br()
     ,paste("KDHEtools was developed to calculate the benthic macroinvertebrate"
            ,"Index of Biotic Integrity (IBI) for streams in Kansas."
            ,"This app was developed by Ben Block (Ben.Block@tetratech.com),"
            ,"with underlying R code written by Ben Block, Diane Allen (Diane.Allen@tetratech.com),"
-           ,"and Erik W. Leppo (Erik.Leppo@tetratech.com).")
+           ,"and Erik W. Leppo (Erik.Leppo@tetratech.com)."
+           ,"Please contact Tony Stahl (Anthony.Stahl@ks.gov) and Elizabeth"
+           , "Smith (Elizabeth.Smith@ks.gov) should any issues or questions arise.")
     ,br()
     ,HTML('<center><img src="KDHE_logo.png" height="100"></center>')
     ,easyClose = T)
@@ -55,7 +57,7 @@ shinyServer(function(input, output, session) {
                              quote = input$quote, stringsAsFactors = FALSE)
 
         required_columns <- c("Index_Name", "SampleID", "CollDate", "CollMeth"
-                              , "StationID", "Lat", "Long", "DistCat", "TaxaID"
+                              , "StationID", "Lat", "Long", "TaxaID"
                               , "N_Taxa", "Exclude", "Nontarget", "BCG_Attr"
                               , "Habit", "Life_Cycle", "TolVal", "Phylum"
                               , "Order", "Genus", "Al2O3Ws", "CFS", "ClayWs"
@@ -195,7 +197,7 @@ shinyServer(function(input, output, session) {
 
             # QC, Required Fields
             col.req <- c("INDEX_NAME", "SAMPLEID", "COLLDATE", "COLLMETH"
-                         , "STATIONID", "LAT", "LONG", "DISTCAT", "TAXAID"
+                         , "STATIONID", "LAT", "LONG", "TAXAID"
                          , "N_TAXA", "EXCLUDE", "NONTARGET", "BCG_ATTR", "HABIT"
                          , "LIFE_CYCLE", "TOLVAL", "PHYLUM", "ORDER", "GENUS"
                          , "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT", "FE2O3CAT"
@@ -215,7 +217,7 @@ shinyServer(function(input, output, session) {
 
            # columns to keep
             keep_cols <- c("COLLDATE", "COLLMETH", "STATIONID", "LAT", "LONG"
-                           , "DISTCAT", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
+                           , "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
                            , "FE2O3CAT", "K2OWS", "L3ECO", "MGOCAT", "NWS"
                            , "PERMWS", "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS"
                            , "TMEANCAT", "WETINDEXWS", "WSAREASQKM", "WTDEPWS")

@@ -5,6 +5,9 @@ always_allow_html: true
 output:
   html_fragment:
     toc: yes
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -13,29 +16,81 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 ## Background
 
-This R Shiny application calculates numeric Index of Biotic Integrity (IBI) scores based on diatom samples collected by the Wyoming Department of Environmental Quality ([WDEQ](https://deq.wyoming.gov/)).
+This R Shiny application (KDHEtools) calculates numeric Multi-Metric
+Index (MMI) scores based on samples collected from wadeable streams in
+Kansas (statewide). Five metrics are adjusted by 12-16 different factors
+that represent natural stream types (see the **"Metric Adjustment
+Download"** tab). A report detailing the development of the Kansas
+Macroinvertebrate MMI can be found
+[here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports).
 
-WDEQ monitors the conditions of streams and rivers in Wyoming to inform management decisions regarding protection, mitigation, and restoration of aquatic life and other designated uses. WDEQ has diatom assemblage data from nearly 700 river and stream samples collected since 2007. WDEQ's data provide an opportunity to test diatom metrics with independently established disturbance gradients and classification based on natural variability within Wyoming. The IBI consolidates measures of the aquatic community (metrics) that, when combined, indicate the similarity of a biological sample to expected conditions of a well-balanced community. The process by which the metrics are selected and combined in an index follows established and innovative analytical methods of the reference condition approach ([Hughes et al. 1986](https://link.springer.com/article/10.1007/BF01866767), [Bailey et al. 2004](https://link.springer.com/book/10.1007/978-1-4419-8885-0)). In this approach, biological conditions that are sampled from relatively undisturbed sites and that account for natural variability are set as a standard (or reference) to which other samples are compared ([Stoddard et al. 2006](https://esajournals.onlinelibrary.wiley.com/doi/10.1890/1051-0761%282006%29016%5B1267%3ASEFTEC%5D2.0.CO%3B2)). Using metrics to establish the numeric index scale, IBI values that resemble those found in reference sites are determined to meet the expectations for a well-balanced aquatic community. IBI values that are unlike the reference values indicate departure from the acceptable biological conditions and probable impairment of aquatic life uses.
+## Funding
 
-The Wyoming Diatom IBI calibration project resulted in an index applicable statewide. Four metrics are adjusted by eight different factors (see Metric Adjustment Download Tab) that represent natural stream types. Reports detailing the development of the Wyoming Diatom IBI can be found [here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports).
+Development of KDHEtools and the underlying MMI was funded by the Kansas
+Department of Health and Environment (KDHE).
 
 ## Intended application
 
-The purpose of the index is to describe the diatom community of Wyoming freshwater streams and rivers for the purpose of biological condition assessment. A diatom IBI enhances the state of Wyoming's monitoring and assessment strategy by adding a numeric indicator of diatom community structure that could be used to:
+The purpose of the index is to describe the macroinvertebrate community
+of Kansas freshwater streams and rivers for the purpose of biological
+condition assessment. A macroinvertebrate IBI enhances the state of
+Kansas's monitoring and assessment strategy by adding a numeric
+indicator of macroinvertebrate community structure that could be used
+to:
 
--   Evaluate attainment of Wyoming's narrative surface water quality criteria protective of aquatic life for perennial streams and rivers
--   Assist in identification of chemical and physical stressors to aquatic life of perennial streams and rivers in Wyoming
--   Identify improvements in aquatic life of perennial streams and rivers in Wyoming following restoration efforts.
+-   Evaluate attainment of Kansas's narrative surface water quality
+    criteria protective of aquatic life for wadeable streams and rivers
+-   Assist in identification of chemical and physical stressors to
+    aquatic life of wadeable streams and rivers in Kansas
+-   Identify improvements in aquatic life of wadeable streams and rivers
+    in Kansas following restoration efforts.
 
-The Wyoming Diatom IBI in combination with the Wyoming Stream Integrity Index (WSII) and Wyoming River InVertebrate Prediction And Classification System (RIVPACS) provides an accurate assessment of ecological effects on two aquatic assemblages (diatoms and benthic macroinvertebrates) in Wyoming. The diatom IBI might respond to different stressors compared to those indicated by the existing macroinvertebrate assemblages, and so, improves WDEQ's diagnostic ability to identify pollutants that may contribute to water quality degradation.
+The Kansas Macroinvertebrate MMI is intended to be applied to samples
+that meet the following criteria:
 
-Sampled streams and rivers were wadeable and perennial. All diatom samples used to develop the Wyoming Diatom IBI were collected by WDEQ in accordance with the WDEQ Manual of Standard Operating Procedures ([WDEQ 2021](https://deq.wyoming.gov/water-quality/watershed-protection/water-quality-assessment/)). The Wyoming Diatom IBI should only be used to evaluate biological conditions on wadeable perennial streams and rivers in Wyoming. Moreover, diatom samples need to be collected during low flow conditions from July 15 through October. If the user applies the indices to samples that do not meet these criteria, results should be interpreted with caution. For more information on sampling methodologies and application limits, see the Wyoming Diatom IBI development reports [here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports).
+-   Geographic area: Kansas
+
+-   Stream type: freshwater, wadeable
+
+-   Subsample size: 200-count samples are recommended for best
+    performance; once you get below 100, interpret with caution
+
+-   Taxonomic resolution: genus or species-level as allowed by available
+    keys, specimen condition, and specimen maturity
+
+-   Collection gear: 500-µm mesh D-frame net and fine point forceps •
+    Collection period: April 15--October 15
+
+-   Collection method: KDHE Stream Probabilistic
+    ([SP](https://www.kdhe.ks.gov/1230/Stream-Probabilistic)) program or
+    Stream Biological
+    ([SB](https://www.kdhe.ks.gov/1233/Stream-Biological-Monitoring-Program))
+    Monitoring Program protocols. Organisms are composited from multiple
+    habitats. Field staff try to maximize the diversity of organisms
+    being captured, targeting macrohabitats (riffles, leafpacks,
+    undercut banks and rootmats, fine substrate, aquatic vegetation, and
+    large woody debris). One or two-person field crews collect organisms
+    with 500-µm mesh D-frame nets, using sweeps or kicks, or by hand
+    picking organisms off large hard substrates. Organisms are picked in
+    the field and identified in the lab, going to genus or species-level
+    as allowed by available keys, specimen condition, and specimen
+    maturity.
+
+For more information on sampling methodologies and application limits,
+see the Kansas Macroinvertebrate MMI development report
+[here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports).
 
 ## Input metrics and scoring formulae
 
-The Wyoming Diatom IBI was calibrated for applicability statewide; however, four of the seven metrics are adjusted by metric adjustment factors. The metric adjustment factors represent natural stream types. Table 1 shows the input metrics and scoring formulae for the IBI (metrics in need of adjustment have the "\_RFadj" suffix). See the **"Metric Adjustment Download"** tab for more information on factors and how to assign factor values to each site.
+The Kansas Macroinvertebrate MMI was calibrated for applicability
+statewide; however, all five metrics are adjusted by metric adjustment
+factors. The metric adjustment factors represent natural stream types.
+Table 1 shows the input metrics and scoring formulae for the MMI
+(metrics in need of adjustment have the "\_RFadj" suffix). See the
+**"Metric Adjustment Download"** tab for more information on factors and
+how to assign factor values to each site.
 
-#### Table 1. Metrics and scoring formulae for the Wyoming Diatom IBI. DE = discrimination efficiency, Trend = metric response to stress, 5th = 5th percentile of metric values, and 95th = 95th percentile of metric values.
+#### Table 1. Metrics and scoring formulae for the Kansas Macroinvertebrate MMI. DE = discrimination efficiency, Trend = metric response to stress, 5th = 5th percentile of metric values, and 95th = 95th percentile of metric values. All metrics were adjusted by randomForest models (RF adj).
 
 ```{r table_1}
 library(readxl)
@@ -44,7 +99,7 @@ library(kableExtra)
 # state directories
 table.dir <- "tables"
 table.file <- "Instruction_Tables.xlsx"
-tab1.dir <- "DiatomMetrics"
+tab1.dir <- "BugMetrics"
 
 table1 <- read_excel(file.path(table.dir, table.file), sheet = tab1.dir
                      , na = c("NA", ""), trim_ws = TRUE, skip = 0
@@ -55,3 +110,10 @@ table1 %>%
   kable() %>%
   kable_styling(full_width = F, position = "left", font_size = 14)
 ```
+
+## Contact Information
+
+If you encounter problems with the KDHEtools app and/or have suggestions
+on ways to further improve it, please contact Ben Block from Tetra Tech
+via email (Ben.Block\@tetratech.com). For more information on this
+project, please contact Tony Stahl (Anthony.Stahl\@ks.gov).

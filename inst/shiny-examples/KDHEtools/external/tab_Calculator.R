@@ -30,8 +30,6 @@ function(){
                )##fileInput~END
                #, tags$hr()
                , h4("2. Calculate IBI")
-               # , selectInput("MMI", "Select an IBI to calculate:",
-               #               choices=MMIs)
                , actionButton("b_Calc", "Calculate Metric Values and Scores")
                , tags$hr()
                , h4("3. Download Results")

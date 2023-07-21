@@ -3,13 +3,14 @@
 
 <div id="index-calculator-instructions" class="section level1">
 <h1>Index Calculator Instructions</h1>
-<p>WDEQtools was developed to calculate diatom metrics and Indices of
-Biotic Integrity (IBI) for perennial, wadeable streams in Wyoming.
-Detailed documentation of the Wyoming Diatom IBI development can be
-downloaded <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">here</a>.
+<p>KDHEtools was developed to calculate macroinvertebrate metrics and a
+Multi-Metric Index (MMI) for wadeable streams in Kansas. Detailed
+documentation of the Kansas Macroinvertebrate MMI development can be
+found <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports">here</a>.
 Users can run any data through the Index calculator and get a result.
-However, if samples do not meet the criteria listed on the Background
-page, results should be interpreted with caution.</p>
+However, if samples do not meet the criteria listed on the
+<strong>Background</strong> page, results should be interpreted with
+caution.</p>
 <p>The Instructions are divided into three sections: 1) preparing the
 input file, 2) Index Calculator operation, and 3) frequently asked
 questions (FAQ). Links to an example input file and a document
@@ -17,23 +18,20 @@ containing more detailed information on preparing the input file are
 also provided.</p>
 <div id="preparing-the-input-file" class="section level2">
 <h2>Preparing the input file</h2>
-<p>WDEQtools requires input files to be in a tabular format, saved as
+<p>KDHEtools requires input files to be in a tabular format, saved as
 either comma-separated values (CSV) (most commonly used) or
 tab-separated (.txt or .tsv) files. Table 1 contains a list of required
-fields. Column names must be capitalized and match the spelling and
-symbology exactly as shown (some column headings have underscores).
-Note, diatom traits are not required for each record (i.e., trait fields
-allow null values). Users can obtain the standard diatom nomenclature as
-well as all required traits (a combination of the Wyoming Diatom Master
-Taxa Table and USGS traits database) from Attachment 1 of the Wyoming
-Diatom IBI development report found <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">here</a>.</p>
-<p>Click here to view an <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Example_Files">EXAMPLE
+fields. Column names must match the spelling and symbology exactly as
+shown (some column headings have underscores). Note, macroinvertebrate
+traits are not required for each record (i.e., trait fields allow null
+values).</p>
+<p>Click here to view an <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files">EXAMPLE
 INPUT FILE</a>. If the user is unsure how to download a data file from
 GitHub, <a href="https://www.youtube.com/watch?v=GIJdfuAoqFI">watch this
-short video</a> or contact Eric Hargett (<a href="mailto:eric.hargett@wyo.gov" class="email">eric.hargett@wyo.gov</a>) or Jeremy Zumberge (<a href="mailto:jeremy.zumberge@wyo.gov" class="email">jeremy.zumberge@wyo.gov</a>).</p>
-<div id="table-1.-list-of-required-fields.-column-names-must-be-capitalized-and-match-the-spelling-and-symbology-exactly-as-shown." class="section level4">
-<h4>Table 1. List of required fields. Column names must be capitalized
-and match the spelling and symbology exactly as shown.</h4>
+short video</a> or contact Ben Block (Ben.Block@tetratech.com).</p>
+<div id="table-1.-list-of-required-fields.-column-names-must-match-the-spelling-and-symbology-exactly-as-shown." class="section level4">
+<h4>Table 1. List of required fields. Column names must match the
+spelling and symbology exactly as shown.</h4>
 <table class="table" style="font-size: 14px; width: auto !important; ">
 <thead>
 <tr>
@@ -57,13 +55,13 @@ Comment
 <tbody>
 <tr>
 <td style="text-align:left;">
-INDEX_NAME
+Index_Name
 </td>
 <td style="text-align:left;">
 text
 </td>
 <td style="text-align:left;">
-WY_DiatomIBI_2022
+KS_BugMMI_2023
 </td>
 <td style="text-align:left;">
 No
@@ -74,41 +72,7 @@ Only one allowable entry (WY_DiatomIBI_2022).
 </tr>
 <tr>
 <td style="text-align:left;">
-INDEX_REGION
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-Statewide
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Only one allowable entry (Statewide).
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-STATIONID
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Unique site identifier.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SAMPLEID
+SampleID
 </td>
 <td style="text-align:left;">
 text
@@ -126,7 +90,7 @@ date, and replicate number).
 </tr>
 <tr>
 <td style="text-align:left;">
-COLLDATE
+CollDate
 </td>
 <td style="text-align:left;">
 date
@@ -143,75 +107,7 @@ Date on which the sample was collected.
 </tr>
 <tr>
 <td style="text-align:left;">
-N_TAXA
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-non-negative real number
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Number of individual valves (not number of taxa).
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TAXAID
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Taxonomic identification of organisms in each sample.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-EXCLUDE
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-TRUE, FALSE
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Redundant (non-distinct) taxa should marked “TRUE”.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NONTARGET
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-TRUE, FALSE
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Non-target taxa should be marked “TRUE”.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ORDER
+CollMeth
 </td>
 <td style="text-align:left;">
 text
@@ -223,12 +119,12 @@ NA
 Yes
 </td>
 <td style="text-align:left;">
-Taxonomic order of taxon.
+Method used to collect the sample.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-FAMILY
+StationID
 </td>
 <td style="text-align:left;">
 text
@@ -237,131 +133,15 @@ text
 NA
 </td>
 <td style="text-align:left;">
-Yes
+No
 </td>
 <td style="text-align:left;">
-Taxonomic family of taxon.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H_WDEQ
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-Numeric value 1, 2, 3, or 4
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-WDEQ Diatom trait - Tolerance to salinity is represented by the
-categories of fresh to brackish waters (Van Dam et al. 1994) as
-interpreted by WDEQ. See the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">report
-appendix</a> for metric descriptions.
+Unique site identifier.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-O_WDEQ
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-Numeric value 1, 2, 3, 4, or 5
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-WDEQ Diatom trait - Classification of “oxygen requirements” as
-summarized in Van Dam et al. (1994) and interpreted by WDEQ. See the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">report
-appendix</a> for metric descriptions.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-T_WDEQ
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-Numeric value 1, 2, 3, 4, 5, 6, or 7
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-WDEQ Diatom trait - The trophic categories of Van Dam et al. (1994) as
-interpreted by WDEQ. See the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">report
-appendix</a> for metric descriptions.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DIATAS_TN
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-Numeric value 1 or 2
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-USGS Diatom trait -Nitrogen tolerant diatoms 1, Nitrogen sensitive
-diatoms, 2. See the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">report
-appendix</a> for metric descriptions.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BC_USGS
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-BC_1, BC_2, BC_3, BC_4, BC_5 (can select multiple)
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-USGS Diatom trait - The Biological Condition rating. See the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">report
-appendix</a> for metric descriptions.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SALINITY_USGS_NUM
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-Numeric value 1, 2, 3, or 4
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-Numeric values that corresponding to USGS traits: SALINITY_1,
-SALINITY_2, SALINITY_3, SALINITY_4. USGS Diatom trait - Tolerance to
-salinity is represented by the categories of fresh to brackish waters
-(Van Dam et al. 1994). See the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">report
-appendix</a> for metric descriptions.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LAT
+Lat
 </td>
 <td style="text-align:left;">
 numeric
@@ -378,7 +158,7 @@ NAD83 datum.
 </tr>
 <tr>
 <td style="text-align:left;">
-LONG
+Long
 </td>
 <td style="text-align:left;">
 numeric
@@ -396,10 +176,10 @@ meridian) should be negative.
 </tr>
 <tr>
 <td style="text-align:left;">
-Elevation
+TaxaID
 </td>
 <td style="text-align:left;">
-numeric
+text
 </td>
 <td style="text-align:left;">
 NA
@@ -408,48 +188,190 @@ NA
 No
 </td>
 <td style="text-align:left;">
-Site position above sea level in feet.
+Taxonomic identification of organisms in each sample.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-BFIWs
+N_Taxa
 </td>
 <td style="text-align:left;">
 numeric
 </td>
 <td style="text-align:left;">
-NA
+non-negative real number
 </td>
 <td style="text-align:left;">
 No
 </td>
 <td style="text-align:left;">
-Baseflow Index (BFI) is the ratio of baseflow to total flow, expressed
-as a percentage, within watershed.
+Number of individual valves (not number of taxa).
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-SWs
+Exclude
 </td>
 <td style="text-align:left;">
-numeric
+text
 </td>
 <td style="text-align:left;">
-NA
+TRUE, FALSE
 </td>
 <td style="text-align:left;">
 No
 </td>
 <td style="text-align:left;">
-Mean % of lithological sulfur (S) content in surface or near surface
-geology within watershed.
+Redundant (non-distinct) taxa should marked “TRUE”.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-KffactWs
+Nontarget
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+TRUE, FALSE
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Non-target taxa should be marked “TRUE”.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_Attr
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Biological Condition Gradient (BCG) attribute of a macroinvertebrate
+taxon (relates to TaxaID).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Habit
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+BU, CB, CN, SP, SW (select multiple)
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Categorization of macroinvertebrate habits (i.e., mode of existence:
+Burrowers (BU), Climbers (CB), Clingers (CN), Sprawlers (SP), and
+Swimmers (SW).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Life_Cycle
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+UNI, SEMI, MULTI (select one)
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Number of broods or generations of an organism in a year (also referred
+to as ‘voltinism’): univoltine (UNI), semivoltine (SEMI), or
+multivoltine (MULTI).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TolVal
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+number ranging from 0-10
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Taxa with tolerance values ranging from 0 to 3 are considered
+‘intolerant’ to anthropogenic disturbance and are included in the
+‘intolerant’ metric calculations. Those with values ranging from 7 to 10
+are included in the ‘tolerant’ metrics.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phylum
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Order
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Genus
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Al2O3Ws
 </td>
 <td style="text-align:left;">
 numeric
@@ -461,10 +383,190 @@ NA
 No
 </td>
 <td style="text-align:left;">
-Mean soil erodibility (Kf) factor (unitless) of soils within watershed.
-The Kf factor is used in the Universal Soil Loss Equation (USLE) and
-represents a relative index of susceptibility of bare, cultivated soil
-to particle detachment and transport by rainfall.
+StreamCat variable (Watershed scale): Mean % of lithological aluminum
+oxide (Al2O3) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CFS
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Stream flow estimated by Perry et al. 2001 (cubic feet per second).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ClayWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % clay content of soils
+(STATSGO).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ElevCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean elevation (m).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fe2O3Cat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean % of lithological ferric
+oxide (Fe2O3) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+K2OWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological potassium
+oxide (K2O) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+L3Eco
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+eco3_25, eco3_26, eco3_27, eco3_28, eco3_29, eco3_39, eco3_40, eco3_47
+(select one)
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Level III Ecoregion (Omernik): Western High Plains (eco3_25),
+Southwestern Tablelands (eco3_26), Central Great Plains (eco3_27), Flint
+Hills (eco3_28), Central Oklahoma/Texas Plains (eco3_29), Ozark
+Highlands (eco3_39), Central Irregular Plains (eco3_40), Western Corn
+Belt Plains (eco3_47).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MgOCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean % of lithological magnesium
+oxide (MgO) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological nitrogen
+(N) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PermWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean permeability (cm/hour) of
+soils (STATSGO).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PrecipCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): PRISM climate data - 30-year
+normal mean precipitation (mm): Annual period: 1981-2010.
 </td>
 </tr>
 <tr>
@@ -481,13 +583,13 @@ NA
 No
 </td>
 <td style="text-align:left;">
-PRISM climate data - 30-year normal mean precipitation (mm): Annual
-period: 1981-2010 within the watershed.
+StreamCat variable (Watershed scale): PRISM climate data - 30-year
+normal mean precipitation (mm): Annual period: 1981-2010.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-TmaxWs
+SandWs
 </td>
 <td style="text-align:left;">
 numeric
@@ -499,13 +601,13 @@ NA
 No
 </td>
 <td style="text-align:left;">
-PRISM climate data - 30-year normal maximum temperature (°C): Annual
-period: 1981-2010 within the watershed.
+StreamCat variable (Watershed scale): Mean % sand content of soils
+(STATSGO)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-TmeanWs
+SWs
 </td>
 <td style="text-align:left;">
 numeric
@@ -517,13 +619,13 @@ NA
 No
 </td>
 <td style="text-align:left;">
-PRISM climate data - 30-year normal mean temperature (°C): Annual
-period: 1981-2010 within the watershed.
+StreamCat variable (Watershed scale): Mean % of lithological sulfur (S)
+content in surface or near surface geology.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-RckDepWs
+TmeanCat
 </td>
 <td style="text-align:left;">
 numeric
@@ -535,7 +637,61 @@ NA
 No
 </td>
 <td style="text-align:left;">
-Mean depth (cm) to bedrock of soils (STATSGO) within watershed.
+StreamCat variable (Catchment scale): PRISM climate data - 30-year
+normal mean temperature (°C): Annual period: 1981-2010.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WetIndexWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean Composite Topographic Index
+(CTI) [Wetness Index].
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WsAreaSqKm
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable: Watershed area (square kilometers).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WtDepWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean seasonal water table depth
+(cm) of soils (STATSGO).
 </td>
 </tr>
 </tbody>
@@ -543,25 +699,25 @@ Mean depth (cm) to bedrock of soils (STATSGO) within watershed.
 </div>
 <div id="metric-adjustment-factors" class="section level3">
 <h3>Metric Adjustment Factors</h3>
-<p>The Wyoming Diatom IBI contains four metrics that are adjusted based
-on site-specific StreamCat estimates <a href="https://www.epa.gov/national-aquatic-resource-surveys/streamcat-dataset">(StreamCat)</a>.
-To retrieve StreamCat data for a site, the user must first obtain the
-appropriate COMID by conducting a spatial join between the site location
-(i.e., latitude/longitude) and the NHDPlus V2 flowline layer (outside of
-the app). Once each input site has been assigned a COMID, the user can
-use the <strong>“Metric Adjustment Download”</strong> tab to obtain
-COMID-specific StreamCat data. Metric adjustment factor data are
-required for the Index Calculator input file. See Table 2 for additional
-information on the StreamCat variables. See Table 3 for necessary input
-fields. For more information on the derivation of these metric
-adjustment factors, please read the <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Reports">Wyoming
-Diatom IBI report</a>. Note, only COMIDs from the state of Wyoming can
-be used. If the user would like COMIDs from other, nearby states, please
-contact Eric Hargett (<a href="mailto:eric.hargett@wyo.gov" class="email">eric.hargett@wyo.gov</a>) or Jeremy Zumberge (<a href="mailto:jeremy.zumberge@wyo.gov" class="email">jeremy.zumberge@wyo.gov</a>) and they can update the
-available list. <strong>Site elevation (ft)</strong> is also a metric
-adjustment factor, but must be provided by the user.</p>
-<div id="table-2.-background-information-on-streamcat-variables" class="section level4">
-<h4>Table 2. Background information on StreamCat variables</h4>
+<p>The Kansas Macroinvertebrate MMI contains five metrics that are
+adjusted based on site-specific natural factors including flow estimates
+from Perry et al. 2001, StreamCat estimates <a href="https://www.epa.gov/national-aquatic-resource-surveys/streamcat-dataset">(StreamCat)</a>,
+and Level III Ecoregion. To retrieve data for a site, the user must
+first obtain the appropriate COMID by conducting a spatial join between
+the site location (i.e., latitude/longitude) and the NHDPlus V2 flowline
+layer (outside of the app). Once each input site has been assigned a
+COMID, the user can use the <strong>Metric Adjustment Download</strong>
+tab to obtain COMID-specific data. Metric adjustment factor data are
+required for the <strong>Index Calculator</strong> input file. See Table
+2 for additional information on the natural variables. See Table 3 for
+necessary input fields. For more information on the derivation of these
+metric adjustment factors, please read the Kansas Macroinvertebrate MMI
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports">report</a>.
+Note, only COMIDs from the state of Kansas can be used. If the user
+would like COMIDs from other, nearby states, please contact Ben Block
+(Ben.Block@tetratech.com) and he can update the available list.</p>
+<div id="table-2.-background-information-on-natural-variables." class="section level4">
+<h4>Table 2. Background information on natural variables.</h4>
 <table class="table" style="font-size: 14px; width: auto !important; ">
 <thead>
 <tr>
@@ -582,62 +738,165 @@ Data Source
 <tbody>
 <tr>
 <td style="text-align:left;">
+Lithological aluminum oxide
+</td>
+<td style="text-align:left;">
+Al2O3Ws
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological aluminum
+oxide (Al2O3) content in surface or near surface geology.
+</td>
+<td style="text-align:left;">
+GeoChemPhys1.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Stream flow
+</td>
+<td style="text-align:left;">
+CFS
+</td>
+<td style="text-align:left;">
+Stream flow estimated by Perry et al. 2001 (cubic feet per second).
+</td>
+<td style="text-align:left;">
+Perry et al. 2001 summarized by KDHE CUSEGA. Crosswalked to COMID.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil clay content
+</td>
+<td style="text-align:left;">
+ClayWs
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % clay content of soils
+(STATSGO).
+</td>
+<td style="text-align:left;">
+STATSGO_Set1.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Elevation
 </td>
 <td style="text-align:left;">
-Elevation
+ElevCat
 </td>
 <td style="text-align:left;">
-Position above sea level in feet
+StreamCat variable (Catchment scale): Mean elevation (m).
 </td>
 <td style="text-align:left;">
-WY DEQ
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rock depth
-</td>
-<td style="text-align:left;">
-RckDepWs
-</td>
-<td style="text-align:left;">
-Mean depth (cm) to bedrock of soils (STATSGO) within watershed
-</td>
-<td style="text-align:left;">
-StreamCat: STATSGO_Set2_WY.csv
+Elevation.csv
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Base Flow Index
+Lithological ferric oxide
 </td>
 <td style="text-align:left;">
-BFIWs
+Fe2O3Cat
 </td>
 <td style="text-align:left;">
-Baseflow Index (BFI) is the ratio of baseflow to total flow, expressed
-as a percentage, within watershed.
+StreamCat variable (Catchment scale): Mean % of lithological ferric
+oxide (Fe2O3) content in surface or near surface geology.
 </td>
 <td style="text-align:left;">
-StreamCat: BFI_WY.csv
+GeoChemPhys1.csv
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Kf factor
+Lithological potassium oxide
 </td>
 <td style="text-align:left;">
-KffactWs
+K2OWs
 </td>
 <td style="text-align:left;">
-Mean soil erodibility (Kf) factor (unitless) of soils within watershed.
-The Kf factor is used in the Universal Soil Loss Equation (USLE) and
-represents a relative index of susceptibility of bare, cultivated soil
-to particle detachment and transport by rainfall.
+StreamCat variable (Watershed scale): Mean % of lithological potassium
+oxide (K2O) content in surface or near surface geology.
 </td>
 <td style="text-align:left;">
-StreamCat: Kffact_WY.csv
+GeoChemPhys1.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Level III Ecoregion
+</td>
+<td style="text-align:left;">
+L3Eco
+</td>
+<td style="text-align:left;">
+Level III Ecoregion (Omernik)
+</td>
+<td style="text-align:left;">
+Tetra Tech. Level III Ecoregion designation assigned at centroid of
+NHDCatchment.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lithological magnesium oxide
+</td>
+<td style="text-align:left;">
+MgOCat
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean % of lithological magnesium
+oxide (MgO) content in surface or near surface geology.
+</td>
+<td style="text-align:left;">
+GeoChemPhys1.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lithological nitrogen
+</td>
+<td style="text-align:left;">
+NWs
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological nitrogen
+(N) content in surface or near surface geology.
+</td>
+<td style="text-align:left;">
+GeoChemPhys2.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soil permeability
+</td>
+<td style="text-align:left;">
+PermWs
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean permeability (cm/hour) of
+soils (STATSGO).
+</td>
+<td style="text-align:left;">
+STATSGO_Set2.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean precipitation
+</td>
+<td style="text-align:left;">
+PrecipCat
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): PRISM climate data - 30-year
+normal mean precipitation (mm): Annual period: 1981-2010.
+</td>
+<td style="text-align:left;">
+PRISM_1981_2010.csv
 </td>
 </tr>
 <tr>
@@ -648,41 +907,26 @@ Mean precipitation
 PrecipWs
 </td>
 <td style="text-align:left;">
-PRISM climate data - 30-year normal mean precipitation (mm): Annual
-period: 1981-2010 within the watershed
+StreamCat variable (Watershed scale): PRISM climate data - 30-year
+normal mean precipitation (mm): Annual period: 1981-2010.
 </td>
 <td style="text-align:left;">
-StreamCat: PRISM_1981_2010_WY.csv
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mean temperature
-</td>
-<td style="text-align:left;">
-TmeanWs
-</td>
-<td style="text-align:left;">
-PRISM climate data - 30-year normal mean temperature (°C): Annual
-period: 1981-2010 within the watershed
-</td>
-<td style="text-align:left;">
-StreamCat: PRISM_1981_2010_WY.csv
+PRISM_1981_2010.csv
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Maximum temperature
+Soil sand content
 </td>
 <td style="text-align:left;">
-TmaxWs
+SandWs
 </td>
 <td style="text-align:left;">
-PRISM climate data - 30-year normal maximum temperature (°C): Annual
-period: 1981-2010 within the watershed
+StreamCat variable (Watershed scale): Mean % sand content of soils
+(STATSGO)
 </td>
 <td style="text-align:left;">
-StreamCat: PRISM_1981_2010_WY.csv
+STATSGO_Set1.csv
 </td>
 </tr>
 <tr>
@@ -693,19 +937,78 @@ Lithological sulfur
 SWs
 </td>
 <td style="text-align:left;">
-Mean % of lithological sulfur (S) content in surface or near surface
-geology within watershed
+StreamCat variable (Watershed scale): Mean % of lithological sulfur (S)
+content in surface or near surface geology.
 </td>
 <td style="text-align:left;">
-StreamCat: GeoChemPhys1_WY.csv
+GeoChemPhys1.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean temperature
+</td>
+<td style="text-align:left;">
+TmeanCat
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): PRISM climate data - 30-year
+normal mean temperature (°C): Annual period: 1981-2010.
+</td>
+<td style="text-align:left;">
+PRISM_1981_2010.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wetness index
+</td>
+<td style="text-align:left;">
+WetIndexWs
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean Composite Topographic Index
+(CTI) [Wetness Index].
+</td>
+<td style="text-align:left;">
+WetIndex.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Watershed area
+</td>
+<td style="text-align:left;">
+WsAreaSqKm
+</td>
+<td style="text-align:left;">
+StreamCat variable: Watershed area (square kilometers).
+</td>
+<td style="text-align:left;">
+Available from any of the StreamCat tables.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Water table depth
+</td>
+<td style="text-align:left;">
+WtDepWs
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean seasonal water table depth
+(cm) of soils (STATSGO).
+</td>
+<td style="text-align:left;">
+STATSGO_Set2.csv
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="table-3.-list-of-required-fields.-column-names-must-be-capitalized-and-match-the-spelling-and-symbology-exactly-as-shown." class="section level4">
-<h4>Table 3. List of required fields. Column names must be capitalized
-and match the spelling and symbology exactly as shown.</h4>
+<div id="table-3.-list-of-required-fields.-column-names-must-match-the-spelling-and-symbology-exactly-as-shown." class="section level4">
+<h4>Table 3. List of required fields. Column names must match the
+spelling and symbology exactly as shown.</h4>
 <table class="table" style="font-size: 14px; width: auto !important; ">
 <thead>
 <tr>
@@ -751,8 +1054,7 @@ No
 <td style="text-align:left;">
 A single COMID per stationID. To obtain COMIDs, use GIS tools to
 associate stationID with <a href="https://nhdplus.com/NHDPlus/">NHDPlus
-v2 flowline layers</a>. Contact Eric Hargett (<a href="mailto:eric.hargett@wyo.gov" class="email">eric.hargett@wyo.gov</a>) or Jeremy Zumberge (<a href="mailto:jeremy.zumberge@wyo.gov" class="email">jeremy.zumberge@wyo.gov</a>) for help on how to properly
-associate sites with flowlines.
+v2 flowline layers</a>.
 </td>
 </tr>
 </tbody>
@@ -760,71 +1062,21 @@ associate sites with flowlines.
 </div>
 <div id="metric-adjustment-download-instructions" class="section level4">
 <h4>Metric Adjustment Download Instructions</h4>
-<p>Once opened, the user will see the metric adjustment download
-interface. The user should follow the onscreen instructions as
-follows:</p>
-<ol style="list-style-type: decimal">
-<li>Load file
-<ul>
-<li><strong>Default settings work well</strong>. If the user is unsure
-of how to format the data, simply store as a .csv and use the default
-load settings.</li>
-<li>An example input file can be downloaded from Github <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Example_Files">EXAMPLE
-LINK</a></li>
-<li>Choose Separator. The separator indicates how the data is stored.
-Comma indicates the input file is a comma-separated file (.csv). Tab
-indicates the input file is a tab-separated file (.txt or .tsv).
-Finally, Semicolon indicates the input file is a semicolon-separated
-file which is uncommon in the United States but common in
-Western-European countries. Be certain that the designated separator is
-not used in any of the text fields.</li>
-<li>Choose Quote. The quote indicates how the data is stored. Double
-quote is the most common.</li>
-<li>Choose file to upload. Hit the browse button and search for the
-input file.</li>
-<li>Once uploaded, make sure data is correct in the viewer. If the
-incorrect Separator or Quote is chosen, the user may receive an error or
-the data may look incorrect in the viewer.</li>
-</ul></li>
-<li>Obtain factors
-<ul>
-<li>Click ‘Obtain factors’ button.</li>
-<li>A progress bar will appear in the bottom, right corner of the
-screen. Results cannot be downloaded (step 3) until the progress bar is
-completed and disappears.</li>
-</ul></li>
-<li>Download results
-<ul>
-<li>Select the button to download a zip file with inputs and
-results.</li>
-<li>Check ‘results_log_maf.txt’ for any warnings or messages. Note, some
-warnings are automatically generated by R. Feel free to reach out to
-Eric Hargett (<a href="mailto:eric.hargett@wyo.gov" class="email">eric.hargett@wyo.gov</a>) or Jeremy Zumberge (<a href="mailto:jeremy.zumberge@wyo.gov" class="email">jeremy.zumberge@wyo.gov</a>) for any questions related to
-warnings.</li>
-</ul></li>
-<li>Combine metric adjustment factor data with taxonomic data for
-reupload into <strong>Index Calculator</strong>.
-<ul>
-<li>The downloaded metric adjustment factor data will need to be merged
-with taxonomic data (outside of the app) to properly calculate the IBI.
-For reference, see the structure of the example files <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Example_Files">HERE</a>.</li>
-</ul></li>
-</ol>
 </div>
 </div>
 </div>
 <div id="index-calculator-operation-instructions" class="section level2">
 <h2>Index Calculator Operation Instructions</h2>
-<p>Once the ‘Index Calculator’ tab is opened, the user will see the
-Index Calculator interface. The user should follow the onscreen
-instructions as follows:</p>
+<p>Once the <strong>Index Calculator</strong> tab is opened, the user
+will see the Index Calculator interface. The user should follow the
+onscreen instructions as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Load file
 <ul>
 <li><strong>Default settings work well</strong>. If the user is unsure
 of how to format the data, simply store as a .csv and use the default
 load settings.</li>
-<li>An example input file can be downloaded from Github <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/WDEQtools/Example_Files">EXAMPLE
+<li>An example input file can be downloaded from Github <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files">EXAMPLE
 LINK</a></li>
 <li>Choose Separator. The separator indicates how the data is stored.
 Comma indicates the input file is a comma-separated file (.csv). Tab
@@ -832,8 +1084,7 @@ indicates the input file is a tab-separated file (.txt or .tsv).
 Finally, Semicolon indicates the input file is a semicolon-separated
 file which is uncommon in the United States but common in western
 European countries. Be certain that the designated separator is not used
-in any of the text fields (e.g., for multiple BC_USGS values, separate
-with a semicolon).</li>
+in any of the text fields.</li>
 <li>Choose Quote. The quote indicates how the data is stored. Double
 quote is the most common.</li>
 <li>Choose file to upload. Hit the browse button and search for the
@@ -854,8 +1105,8 @@ completed and disappears.</li>
 <li>Select the button to download a zip file with inputs and
 results.</li>
 <li>Check ‘results_log.txt’ for any warnings or messages. Note, some
-warnings are automatically generated by R. Feel free to reach out to
-Eric Hargett (<a href="mailto:eric.hargett@wyo.gov" class="email">eric.hargett@wyo.gov</a>) or Jeremy Zumberge (<a href="mailto:jeremy.zumberge@wyo.gov" class="email">jeremy.zumberge@wyo.gov</a>) for any questions related to
+warnings are automatically generated by R. Feel free to reach out to Ben
+Block (Ben.Block@tetratech.com) for any questions related to
 warnings.</li>
 </ul></li>
 </ol>
@@ -866,9 +1117,8 @@ warnings.</li>
 <li>Why am I getting an error saying that I am missing columns even when
 I am not?
 <ul>
-<li>You may have incorrectly spelled a given column. Try writing the
-column in all capital letters. Also, some columns (e.g., INDEX_REGION)
-require an underscore to separate the two words.</li>
+<li>You may have incorrectly spelled a given column. Also, some columns
+(e.g., Index_Name) require an underscore to separate the two words.</li>
 </ul></li>
 <li>Why does my data look strange in the data viewer?
 <ul>
