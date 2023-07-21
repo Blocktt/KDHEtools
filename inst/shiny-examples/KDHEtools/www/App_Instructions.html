@@ -401,7 +401,7 @@ NA
 No
 </td>
 <td style="text-align:left;">
-Stream flow estimated by Perry et al. 2001 (cubic feet per second).
+Stream flow estimated by Perry et al. 2002 (cubic feet per second).
 </td>
 </tr>
 <tr>
@@ -701,7 +701,7 @@ StreamCat variable (Watershed scale): Mean seasonal water table depth
 <h3>Metric Adjustment Factors</h3>
 <p>The Kansas Macroinvertebrate MMI contains five metrics that are
 adjusted based on site-specific natural factors including flow estimates
-from Perry et al. 2001, StreamCat estimates <a href="https://www.epa.gov/national-aquatic-resource-surveys/streamcat-dataset">(StreamCat)</a>,
+from Perry et al. 2002, StreamCat estimates <a href="https://www.epa.gov/national-aquatic-resource-surveys/streamcat-dataset">(StreamCat)</a>,
 and Level III Ecoregion. To retrieve data for a site, the user must
 first obtain the appropriate COMID by conducting a spatial join between
 the site location (i.e., latitude/longitude) and the NHDPlus V2 flowline
@@ -716,19 +716,35 @@ metric adjustment factors, please read the Kansas Macroinvertebrate MMI
 Note, only COMIDs from the state of Kansas can be used. If the user
 would like COMIDs from other, nearby states, please contact Ben Block
 (Ben.Block@tetratech.com) and he can update the available list.</p>
-<div id="table-2.-background-information-on-natural-variables." class="section level4">
-<h4>Table 2. Background information on natural variables.</h4>
+<div id="table-2.-background-information-on-natural-variables-and-which-macroinvertebrate-metrics-each-adjusted." class="section level4">
+<h4>Table 2. Background information on natural variables and which
+macroinvertebrate metrics each adjusted.</h4>
 <table class="table" style="font-size: 14px; width: auto !important; ">
 <thead>
 <tr>
 <th style="text-align:left;">
-Variable Name
-</th>
-<th style="text-align:left;">
 Variable Abbreviation
 </th>
 <th style="text-align:left;">
-Variable Description
+Number of EPT taxa
+</th>
+<th style="text-align:left;">
+Percent sensitive taxa (BCG attribute III+IV better)
+</th>
+<th style="text-align:left;">
+HBI
+</th>
+<th style="text-align:left;">
+Number of climber + clinger taxa
+</th>
+<th style="text-align:left;">
+Number of semivoltine taxa
+</th>
+<th style="text-align:right;">
+# MMI metrics
+</th>
+<th style="text-align:left;">
+Variable Name
 </th>
 <th style="text-align:left;">
 Data Source
@@ -738,269 +754,522 @@ Data Source
 <tbody>
 <tr>
 <td style="text-align:left;">
-Lithological aluminum oxide
-</td>
-<td style="text-align:left;">
 Al2O3Ws
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean % of lithological aluminum
-oxide (Al2O3) content in surface or near surface geology.
 </td>
 <td style="text-align:left;">
-GeoChemPhys1.csv
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Lithological aluminum oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Stream flow
-</td>
 <td style="text-align:left;">
 CFS
 </td>
 <td style="text-align:left;">
-Stream flow estimated by Perry et al. 2001 (cubic feet per second).
+X
 </td>
 <td style="text-align:left;">
-Perry et al. 2001 summarized by KDHE CUSEGA. Crosswalked to COMID.
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Stream flow
+</td>
+<td style="text-align:left;">
+Perry et al. 2002 summarized by KDHE CUSEGA. Crosswalked to COMID.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Soil clay content
-</td>
 <td style="text-align:left;">
 ClayWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean % clay content of soils
-(STATSGO).
 </td>
 <td style="text-align:left;">
-STATSGO_Set1.csv
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Soil clay content
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set1_(RegionID).csv, STATSGO_Set1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Elevation
-</td>
 <td style="text-align:left;">
 ElevCat
 </td>
 <td style="text-align:left;">
-StreamCat variable (Catchment scale): Mean elevation (m).
+X
 </td>
 <td style="text-align:left;">
-Elevation.csv
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Elevation
+</td>
+<td style="text-align:left;">
+StreamCat: Elevation_(RegionID).csv, Elevation_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Lithological ferric oxide
-</td>
 <td style="text-align:left;">
 Fe2O3Cat
 </td>
 <td style="text-align:left;">
-StreamCat variable (Catchment scale): Mean % of lithological ferric
-oxide (Fe2O3) content in surface or near surface geology.
+X
 </td>
 <td style="text-align:left;">
-GeoChemPhys1.csv
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Lithological ferric oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Lithological potassium oxide
-</td>
 <td style="text-align:left;">
 K2OWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean % of lithological potassium
-oxide (K2O) content in surface or near surface geology.
+X
 </td>
 <td style="text-align:left;">
-GeoChemPhys1.csv
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Lithological potassium oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Level III Ecoregion
-</td>
 <td style="text-align:left;">
 L3Eco
 </td>
 <td style="text-align:left;">
-Level III Ecoregion (Omernik)
+X
 </td>
 <td style="text-align:left;">
-Tetra Tech. Level III Ecoregion designation assigned at centroid of
-NHDCatchment.
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Level III Ecoregion
+</td>
+<td style="text-align:left;">
+Level III Ecoregion designation assigned at centroid of NHDCatchment. <a href="https://www.epa.gov/eco-research/level-iii-and-iv-ecoregions-continental-united-states" class="uri">https://www.epa.gov/eco-research/level-iii-and-iv-ecoregions-continental-united-states</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Lithological magnesium oxide
+Long
 </td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Longitude
+</td>
+<td style="text-align:left;">
+Provided by user in input file.
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 MgOCat
 </td>
 <td style="text-align:left;">
-StreamCat variable (Catchment scale): Mean % of lithological magnesium
-oxide (MgO) content in surface or near surface geology.
+X
 </td>
 <td style="text-align:left;">
-GeoChemPhys1.csv
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Lithological magnesium oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Lithological nitrogen
-</td>
 <td style="text-align:left;">
 NWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean % of lithological nitrogen
-(N) content in surface or near surface geology.
 </td>
 <td style="text-align:left;">
-GeoChemPhys2.csv
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Lithological nitrogen
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys2_(RegionID).csv, GeoChemPhys2_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Soil permeability
-</td>
 <td style="text-align:left;">
 PermWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean permeability (cm/hour) of
-soils (STATSGO).
 </td>
 <td style="text-align:left;">
-STATSGO_Set2.csv
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Soil permeability
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set2_(RegionID).csv, STATSGO_Set2_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Mean precipitation
-</td>
 <td style="text-align:left;">
 PrecipCat
 </td>
 <td style="text-align:left;">
-StreamCat variable (Catchment scale): PRISM climate data - 30-year
-normal mean precipitation (mm): Annual period: 1981-2010.
+X
 </td>
 <td style="text-align:left;">
-PRISM_1981_2010.csv
+X
 </td>
-</tr>
-<tr>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
 <td style="text-align:left;">
 Mean precipitation
 </td>
 <td style="text-align:left;">
-PrecipWs
-</td>
-<td style="text-align:left;">
-StreamCat variable (Watershed scale): PRISM climate data - 30-year
-normal mean precipitation (mm): Annual period: 1981-2010.
-</td>
-<td style="text-align:left;">
-PRISM_1981_2010.csv
+StreamCat: PRISM_1981_2010_(RegionID).csv, PRISM_1981_2010_(StateID).csv
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Soil sand content
+PrecipWs
 </td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Mean precipitation
+</td>
+<td style="text-align:left;">
+StreamCat: PRISM_1981_2010_(RegionID).csv, PRISM_1981_2010_(StateID).csv
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 SandWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean % sand content of soils
-(STATSGO)
+X
 </td>
 <td style="text-align:left;">
-STATSGO_Set1.csv
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Soil sand content
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set1_(RegionID).csv, STATSGO_Set1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Lithological sulfur
-</td>
 <td style="text-align:left;">
 SWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean % of lithological sulfur (S)
-content in surface or near surface geology.
 </td>
 <td style="text-align:left;">
-GeoChemPhys1.csv
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Lithological sulfur
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Mean temperature
-</td>
 <td style="text-align:left;">
 TmeanCat
 </td>
 <td style="text-align:left;">
-StreamCat variable (Catchment scale): PRISM climate data - 30-year
-normal mean temperature (°C): Annual period: 1981-2010.
 </td>
 <td style="text-align:left;">
-PRISM_1981_2010.csv
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Mean temperature
+</td>
+<td style="text-align:left;">
+StreamCat: PRISM_1981_2010_(RegionID).csv, PRISM_1981_2010_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Wetness index
-</td>
 <td style="text-align:left;">
 WetIndexWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean Composite Topographic Index
-(CTI) [Wetness Index].
+X
 </td>
 <td style="text-align:left;">
-WetIndex.csv
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Wetness index
+</td>
+<td style="text-align:left;">
+StreamCat: WetIndx_(RegionID).csv, WetIndx_(StateID).csv
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-Watershed area
-</td>
 <td style="text-align:left;">
 WsAreaSqKm
 </td>
 <td style="text-align:left;">
-StreamCat variable: Watershed area (square kilometers).
+X
 </td>
 <td style="text-align:left;">
-Available from any of the StreamCat tables.
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Watershed area
+</td>
+<td style="text-align:left;">
+StreamCat: Available from any of the StreamCat tables.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Water table depth
-</td>
-<td style="text-align:left;">
 WtDepWs
 </td>
 <td style="text-align:left;">
-StreamCat variable (Watershed scale): Mean seasonal water table depth
-(cm) of soils (STATSGO).
+X
 </td>
 <td style="text-align:left;">
-STATSGO_Set2.csv
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Water table depth
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set2_(RegionID).csv, STATSGO_Set2_(StateID).csv
 </td>
 </tr>
 </tbody>
