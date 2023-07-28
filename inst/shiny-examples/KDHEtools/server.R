@@ -56,11 +56,11 @@ shinyServer(function(input, output, session) {
                              sep = input$sep,
                              quote = input$quote, stringsAsFactors = FALSE)
 
-        required_columns <- c("Index_Name", "SampleID", "CollDate", "CollMeth"
+        required_columns <- c("SampleID", "CollDate", "CollMeth"
                               , "StationID", "Lat", "Long", "TaxaID"
-                              , "N_Taxa", "Exclude", "Nontarget", "BCG_Attr"
-                              , "Habit", "Life_Cycle", "TolVal", "Phylum"
-                              , "Order", "Genus", "Al2O3Ws", "CFS", "ClayWs"
+                              , "N_Taxa", "Exclude", "Nontarget","Airbreather"
+                              , "BCG_Attr", "Habit", "Life_Cycle", "TolVal", "Phylum"
+                              , "Order", "Family", "Genus", "Al2O3Ws", "CFS", "ClayWs"
                               , "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco", "MgOCat"
                               , "NWs", "PermWs", "PrecipCat", "PrecipWs", "SandWs"
                               , "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm"
@@ -208,12 +208,12 @@ shinyServer(function(input, output, session) {
             names(df_data) <- toupper(names(df_data))
 
             # QC, Required Fields
-            col.req <- c("INDEX_NAME", "SAMPLEID", "COLLDATE", "COLLMETH"
+            col.req <- c("SAMPLEID", "COLLDATE", "COLLMETH"
                          , "STATIONID", "LAT", "LONG", "TAXAID"
-                         , "N_TAXA", "EXCLUDE", "NONTARGET", "BCG_ATTR", "HABIT"
-                         , "LIFE_CYCLE", "TOLVAL", "PHYLUM", "ORDER", "GENUS"
-                         , "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT", "FE2O3CAT"
-                         , "K2OWS", "L3ECO", "MGOCAT", "NWS", "PERMWS"
+                         , "N_TAXA", "EXCLUDE", "NONTARGET", "AIRBREATHER", "BCG_ATTR"
+                         , "HABIT", "LIFE_CYCLE", "TOLVAL", "PHYLUM", "ORDER"
+                         , "FAMILY", "GENUS", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
+                         , "FE2O3CAT", "K2OWS", "L3ECO", "MGOCAT", "NWS", "PERMWS"
                          , "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS", "TMEANCAT"
                          , "WETINDEXWS", "WSAREASQKM", "WTDEPWS")
 
