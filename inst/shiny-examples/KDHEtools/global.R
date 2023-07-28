@@ -22,6 +22,7 @@ library(shinythemes)
 library(capture) # possible delete
 library(randomForest)
 library(magrittr)
+library(shinyBS)
 
 
 # File Size
