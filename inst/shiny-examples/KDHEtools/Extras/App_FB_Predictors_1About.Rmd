@@ -1,0 +1,116 @@
+---
+title: "Assign Index Class, About"
+date: "2023-07-28"
+output: html_fragment
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE
+                      , results = 'asis'
+                      , warning = FALSE
+                      , message = FALSE)
+```
+
+# Purpose
+
+Each KS MMI input metric has its own random forest model and set of
+predictor variables that account for natural gradient effects. There are
+12-16 predictor variables per metric (Table 1). Most came from the USEPA
+StreamCat dataset (Hill et al. 2016), which includes measures of
+geology, soils, hydrology and climate. Other predictor variables include
+Omernik Level 3 ecoregion, longitude and modeled median flow (CFS; Perry
+et al. 2004). Some of the predictor variables are difficult for some
+users to access. We added this function to make that step easier. It
+utilizes R tools from
+[StreamCat](https://github.com/USEPA/StreamCatTools) and
+[NHDPlus](https://doi-usgs.github.io/nhdplusTools/) to add in the
+predictor variables based on the latitude and longitude coordinates in
+the input file.
+
+```{r table_1}
+library(readxl)
+library(knitr)
+library(kableExtra)
+# state directories
+table.dir <- "tables"
+table.file <- "Instruction_Tables.xlsx"
+tab1.dir <- "MetAdjFactors"
+
+table1 <- read_excel(file.path(table.dir, table.file), sheet = tab1.dir
+                     , na = c("NA", ""), trim_ws = TRUE, skip = 0
+                     , col_names = TRUE)  
+
+# kable(table2)
+options(knitr.kable.NA = '')
+
+table1 %>% 
+  kbl() %>% 
+  kable_styling(full_width = F, position = "left", font_size = 14)
+```
+
+![Assign predictors
+workflow](images%5CFileBuilder_Predictors_Fig1.png){width="80%"}
+
+# Input file
+
+The following fields are required:
+
+-   SampleID or SiteID -- unique identifier
+
+    -   Tip: pick an identifier that can be linked to other files (such
+        as the file coming out of the File Builder -- Taxa
+        Translator/Attribute function)
+
+-   Latitude
+
+    -   Decimal degrees
+
+-   Longitude
+
+    -   Decimal degrees
+
+-   CFS
+
+    -   Modeled median flow based on Perry et al. 2004
+
+-   EPSG\*
+
+    -   Datum for coordinates.
+
+    -   \*If not provided, this function will create this column for you
+        anD auto-populate it with the value 4269 (NAD83, North America)
+        <https://epsg.io/4269>
+
+If you named the required fields differently in your input file, it's
+ok. Click on the drop-down menus. The list of fields in your input file
+will appear. Select the correct column headings.
+
+All columns in the input file are carried over into the output file.
+
+# Disclaimers
+
+The StreamCat R tools that are used to match your sites with the
+NHDPlusV2 stream segment identifiers (COMIDs) do not have QC measures.
+At a minimum, we recommend the following check:
+
+-   Include waterbody name in your input file and check against
+    \'gnis_name\' in the output file (which is derived from the
+    NHDPlusV2 dataset); if they don\'t match, investigate.
+
+Depending on the size of your input file, this function may several
+minutes to run (e.g., 5-10 minutes). Be patient. There is a lot going on
+behind the scenes. If you streamline your input file and only include
+station information (vs. station + macroinvertebrate data), it will run
+faster. You can then use the \'Merge Files\' function to join the
+macroinvertebrate + stations data.
+
+# Test file
+
+Click [here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files) to download an example file, R scripts, and data (all functions).
+
+------------------------------------------------------------------------
+
+*Last updated 2023-07-28*

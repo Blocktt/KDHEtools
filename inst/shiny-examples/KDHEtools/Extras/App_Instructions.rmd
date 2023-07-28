@@ -92,8 +92,6 @@ table3 %>%
   kable_styling(full_width = F, position = "left", font_size = 14)
 ```
 
-#### Metric Adjustment Download Instructions
-
 ## Index Calculator Operation Instructions
 
 Once the **Index Calculator** tab is opened, the user will see the Index Calculator interface. The user should follow the onscreen instructions as follows:

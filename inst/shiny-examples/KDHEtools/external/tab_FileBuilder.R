@@ -46,10 +46,10 @@ function(){
                         , mainPanel(
                           tabsetPanel(type = "tabs"
                                       , tabPanel(title = "About (Taxa Translator)"
-                                                 ,includeHTML("www/ShinyHTML_FB_TaxaTrans_1About.html")
+                                                 ,includeHTML("www/App_FB_TaxaTrans_1About.html")
                                       )## tabPanel ~ END
                                       , tabPanel(title = "Output Explanation (Taxa Translator)"
-                                                 ,includeHTML("www/ShinyHTML_FB_TaxaTrans_2Output.html")
+                                                 ,includeHTML("www/App_FB_TaxaTrans_2Output.html")
                                       )## tabPanel ~ END
                           )## tabsetPanel ~ END
                         )##mainPanel~END
@@ -91,10 +91,10 @@ function(){
                         , mainPanel(
                           tabsetPanel(type = "tabs"
                                       , tabPanel(title = "About (Predictors)"
-                                                 ,includeHTML("www/ShinyHTML_FB_IndexClass_1About.html")
+                                                 ,includeHTML("www/App_FB_Predictors_1About.html")
                                       )## tabPanel ~ END
                                       , tabPanel(title = "Output Explanation (Predictors)"
-                                                 ,includeHTML("www/ShinyHTML_FB_IndexClass_2Output.html")
+                                                 ,includeHTML("www/App_FB_Predictors_2Output.html")
                                       )## tabPanel ~ END
                           )## tabsetPanel ~ END
                         )## mainPanel ~ END
@@ -149,10 +149,10 @@ function(){
                             tabsetPanel(type = "tabs"
                                         , id = "MF_mp_tsp"
                                         , tabPanel(title = "About (Merge Files)"
-                                                   ,includeHTML("www/ShinyHTML_FB_MergeFiles_1About.html")
+                                                   ,includeHTML("www/App_FB_MergeFiles_1About.html")
                                                    )
                                         , tabPanel(title = "Output (Merge Files)"
-                                                   ,includeHTML("www/ShinyHTML_FB_MergeFiles_2Output.html"))
+                                                   ,includeHTML("www/App_FB_MergeFiles_2Output.html"))
                             )## tabsetPanel ~ END
                           )## mainPanel ~ END
                         )##sidebarLayout~END
