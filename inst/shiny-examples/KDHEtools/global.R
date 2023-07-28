@@ -35,7 +35,20 @@ BugMetrics <- c("nt_EPT"
                 , "nt_habit_climbcling"
                 , "nt_volt_semi"
                 , "pt_BCG_att1i234b"
-                , "x_HBI")# END BugMetrics
+                , "x_HBI"
+                , "ni_total"
+                , "nt_Coleo"
+                , "nt_Ephem"
+                , "nt_Odon"
+                , "nt_Trich"
+                , "pi_airbreath"
+                , "pi_Cheumato"
+                , "pi_CorixPhys"
+                , "pi_dom01"
+                , "pi_dom02"
+                , "pt_Chiro"
+                , "pt_oneind"
+                , "x_Shan_2")# END BugMetrics
 
 # info for randomForest ####
 predictors<-c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco"

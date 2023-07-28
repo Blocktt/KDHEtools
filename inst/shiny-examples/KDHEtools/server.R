@@ -146,6 +146,18 @@ shinyServer(function(input, output, session) {
                 message("Some taxa in your dataset have a count (N_TAXA) of zero. Values for TAXAID with N_TAXA = 0 will be removed before calculations.")
             }
 
+            # QC, Index Period
+            QC_CollMonth <- df_data %>%
+              mutate(CollMonth = lubridate::month(CollDate)) %>%
+              pull(CollMonth)
+
+            N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth >10
+                                    , na.rm = TRUE)
+
+            if(N_OutIndexPeriod>0){
+              message("Some samples in your dataset were collected outside of the index period (April through October).")
+            }
+
             # QC, predictors = NA
             Al2O3Ws_NA <- sum(is.na(df_data$Al2O3Ws))
             CFS_NA <- sum(is.na(df_data$CFS))
