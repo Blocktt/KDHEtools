@@ -26,9 +26,9 @@ library(shinyBS)
 
 
 # File Size
-# By default, the file size limit is 5MB. It can be changed by
-# setting this option. Here we'll raise limit to 10MB.
-options(shiny.maxRequestSize = 25*1024^2)
+# By default, the file size limit is 5MB.
+# It can be changed by setting this option.
+options(shiny.maxRequestSize = 25 * 1024^2)
 
 # define which metrics to keep in indices
 
@@ -52,16 +52,16 @@ BugMetrics <- c("nt_EPT"
                 , "x_Shan_2")# END BugMetrics
 
 # info for randomForest ####
-predictors<-c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco"
+predictors < -c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco"
               , "LONG", "MgOCat", "NWs", "PermWs", "PrecipCat", "PrecipWs"
               , "SandWs", "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm", "WtDepWs")
 
 # std_Parameters<-read.csv("./data/standardization.parameters.csv",row.names=1)
 
-decreasers<-c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
+decreasers < -c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
               ,"pt_BCG_att1i234b_RFadj")
 
-increasers<-c("x_HBI_RFadj")
+increasers <- c("x_HBI_RFadj")
 
 # standardizeIncreasers <- function(x) {
 #   standardizedIncreasers<-100*(std_Parameters["ninetififth",i] - x)/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])

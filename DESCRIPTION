@@ -1,7 +1,7 @@
 Package: WDEQtools
 Type: Package
 Title: Used to calculate Wyoming DEQ Diatom IBI metrics and scores, and produce output files 
-Version: 0.1.2.9000
+Version: 0.1.2.9001
 Authors@R: c(
   person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
   person("Diane","Allen", role="aut"),
@@ -12,7 +12,7 @@ Description: Tools to calculate multi-metric index in R and Shiny.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Imports:
   BioMonTools,
   shiny,

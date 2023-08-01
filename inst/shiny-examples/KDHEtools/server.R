@@ -33,7 +33,7 @@ shinyServer(function(input, output, session) {
 
 
     # df_import ####
-    output$df_import_DT <- renderDT({
+    output$df_import_DT <- DT::renderDT({
         # input$df_import will be NULL initially. After the user selects
         # and uploads a file, it will be a data frame with 'name',
         # 'size', 'type', and 'datapath' columns. The 'datapath'
@@ -47,7 +47,7 @@ shinyServer(function(input, output, session) {
             need(inFile != "", "Please upload a data set") # used to inform the user that a data set is required
         )
 
-        if (is.null(inFile)){
+        if (is.null(inFile)) {
             return(NULL)
         }##IF~is.null~END
 
@@ -81,18 +81,18 @@ shinyServer(function(input, output, session) {
 
         # Add "Results" folder if missing
         boo_Results <- dir.exists(file.path(".", "Results"))
-        if(boo_Results==FALSE){
+        if (boo_Results == FALSE) {
             dir.create(file.path(".", "Results"))
         }
 
         # Remove all files in "Results" folder
-        fn_results <- list.files(file.path(".", "Results"), full.names=TRUE)
+        fn_results <- list.files(file.path(".", "Results"), full.names = TRUE)
         file.remove(fn_results)
 
         # Write to "Results" folder - Import as TSV
         fn_input <- file.path(".", "Results", "data_import.tsv")
-        write.table(df_input, fn_input, row.names=FALSE
-                    , col.names=TRUE, sep="\t")
+        write.table(df_input, fn_input, row.names = FALSE
+                    , col.names = TRUE, sep = "\t")
 
         # Copy to "Results" folder - Import "as is"
         file.copy(input$fn_input$datapath
@@ -101,7 +101,7 @@ shinyServer(function(input, output, session) {
         return(df_input)
 
     }##expression~END
-    , filter="top", options=list(scrollX=TRUE)
+    , filter = "top", options = list(scrollX = TRUE)
 
     )##output$df_import_DT~END
 
@@ -133,16 +133,16 @@ shinyServer(function(input, output, session) {
             # Read in saved file (known format)
             df_data <- NULL  # set as null for IF QC check prior to import
             fn_input <- file.path(".", "Results", "data_import.tsv")
-            df_data <- read.delim(fn_input, stringsAsFactors = FALSE, sep="\t")
+            df_data <- read.delim(fn_input, stringsAsFactors = FALSE, sep = "\t")
 
             # QC, FAIL if TRUE
-            if (is.null(df_data)){
+            if (is.null(df_data)) {
                 return(NULL)
             }
 
             # QC, N_TAXA = 0
             N_Taxa_zeros <- sum(df_data$N_TAXA == 0, na.rm = TRUE)
-            if(N_Taxa_zeros>0){
+            if (N_Taxa_zeros > 0) {
                 message("Some taxa in your dataset have a count (N_TAXA) of zero. Values for TAXAID with N_TAXA = 0 will be removed before calculations.")
             }
 
@@ -151,10 +151,10 @@ shinyServer(function(input, output, session) {
               mutate(CollMonth = lubridate::month(CollDate)) %>%
               pull(CollMonth)
 
-            N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth >10
+            N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth > 10
                                     , na.rm = TRUE)
 
-            if(N_OutIndexPeriod>0){
+            if (N_OutIndexPeriod > 0) {
               message("Some samples in your dataset were collected outside of the index period (April through October).")
             }
 
@@ -183,19 +183,19 @@ shinyServer(function(input, output, session) {
                                 , NWs_NA, PermWs_NA, PrecipCat_NA, PrecipWs_NA
                                 , SandWs_NA, SWs_NA, TmeanCat_NA, WetIndexWs_NA
                                 , WsAreaSqKm_NA, WtDepWs_NA)
-            if(Predictor_NA>0){
+            if (Predictor_NA > 0) {
               message("Some sites in your dataset have missing predictor values. Index scores will be incorrect without COMPLETE predictor values.")
             }
 
             # QC, Exclude as TRUE/FALSE
-            Exclude.T <- sum(df_data$EXCLUDE==TRUE, na.rm=TRUE)
-            if(Exclude.T==0){##IF.Exclude.T.START
+            Exclude.T <- sum(df_data$EXCLUDE == TRUE, na.rm = TRUE)
+            if (Exclude.T == 0) {##IF.Exclude.T.START
                 message("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
             }##IF.Exclude.T.END
 
             # QC, NonTarget as TRUE/FALSE
-            NonTarget.F <- sum(df_data$NONTARGET==FALSE, na.rm=TRUE)
-            if(NonTarget.F==0){##IF.Exclude.T.START
+            NonTarget.F <- sum(df_data$NONTARGET == FALSE, na.rm = TRUE)
+            if (NonTarget.F == 0) {##IF.Exclude.T.START
                 message("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
             }##IF.Exclude.T.END
 
@@ -222,7 +222,7 @@ shinyServer(function(input, output, session) {
             # Add missing fields
             df_data[,col.req.missing] <- NA
             warning(paste("Metrics related to the following fields are invalid:"
-                          , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+                          , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
 
             # calculate values and scores in two steps using BioMonTools
             # save each file separately
@@ -240,7 +240,7 @@ shinyServer(function(input, output, session) {
               BioMonTools::metric.values(fun.DF = df_data
                             , fun.Community = "bugs"
                             , fun.MetricNames = BugMetrics
-                            , fun.cols2keep= keep_cols
+                            , fun.cols2keep = keep_cols
                             , boo.Shiny = TRUE))
 
             df_metval2 <- df_metval %>%
@@ -267,37 +267,37 @@ shinyServer(function(input, output, session) {
 
             ## adjust metrics ####
 
-            std_Parameters<-read.csv("./data/StandardizationParameters0517.csv",row.names=1)
+            std_Parameters <- read.csv("./data/StandardizationParameters0517.csv", row.names = 1)
 
-            habit_model<-load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
-            nt_habit_climbcling_pred<-predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict nt_habit_climbcling
-            nt_habit_climbcling_RFadj<-df_metval2[,"nt_habit_climbcling"] - nt_habit_climbcling_pred		##### calculate residual
+            habit_model <- load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
+            nt_habit_climbcling_pred <- predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict nt_habit_climbcling
+            nt_habit_climbcling_RFadj <- df_metval2[,"nt_habit_climbcling"] - nt_habit_climbcling_pred		##### calculate residual
             nt_habit_climbcling_RFadj <- unname(unlist(nt_habit_climbcling_RFadj))
             df_metval2$nt_habit_climbcling_RFadj <- nt_habit_climbcling_RFadj
 
-            HBI_model<-load("./data/x_HBI_RFmod_final0517.Rdata")
-            x_HBI_pred<-predict(rf.mod,df_metval2[,c(predictors)])			##### use forest to predict
-            x_HBI_RFadj<-df_metval2[,"x_HBI"] - x_HBI_pred				##### calculate residual
+            HBI_model <- load("./data/x_HBI_RFmod_final0517.Rdata")
+            x_HBI_pred <- predict(rf.mod,df_metval2[,c(predictors)])			##### use forest to predict
+            x_HBI_RFadj <- df_metval2[,"x_HBI"] - x_HBI_pred				##### calculate residual
             x_HBI_RFadj <- unname(unlist(x_HBI_RFadj))
-            df_metval2$x_HBI_RFadj<-x_HBI_RFadj
+            df_metval2$x_HBI_RFadj <- x_HBI_RFadj
 
-            BCG_model<-load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
-            pt_BCG_att1i234b_pred<-predict(rf.mod,df_metval2[,c(predictors)])					##### use forest to predict
-            pt_BCG_att1i234b_RFadj<-df_metval2[,"pt_BCG_att1i234b"] - pt_BCG_att1i234b_pred		##### calculate residual
+            BCG_model <- load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
+            pt_BCG_att1i234b_pred <- predict(rf.mod,df_metval2[, c(predictors)])					##### use forest to predict
+            pt_BCG_att1i234b_RFadj <- df_metval2[,"pt_BCG_att1i234b"] - pt_BCG_att1i234b_pred		##### calculate residual
             pt_BCG_att1i234b_RFadj <- unname(unlist(pt_BCG_att1i234b_RFadj))
-            df_metval2$pt_BCG_att1i234b_RFadj<-pt_BCG_att1i234b_RFadj
+            df_metval2$pt_BCG_att1i234b_RFadj <- pt_BCG_att1i234b_RFadj
 
-            semiv_model<-load("./data/nt_volt_semi_RFmod_final0517.Rdata")
-            nt_volt_semi_pred<-predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict pt_H_WDEQ_34
-            nt_volt_semi_RFadj<-df_metval2[,"nt_volt_semi"] - nt_volt_semi_pred				##### calculate residual
+            semiv_model <- load("./data/nt_volt_semi_RFmod_final0517.Rdata")
+            nt_volt_semi_pred <- predict(rf.mod,df_metval2[, c(predictors)])	##### use forest to predict pt_H_WDEQ_34
+            nt_volt_semi_RFadj <- df_metval2[,"nt_volt_semi"] - nt_volt_semi_pred				##### calculate residual
             nt_volt_semi_RFadj <- unname(unlist(nt_volt_semi_RFadj))
-            df_metval2$nt_volt_semi_RFadj<-nt_volt_semi_RFadj
+            df_metval2$nt_volt_semi_RFadj <- nt_volt_semi_RFadj
 
-            EPT_model<-load("./data/nt_EPT_RFmod_final0517.Rdata")
-            nt_EPT_pred<-predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict pt_H_WDEQ_34
-            nt_EPT_RFadj<-df_metval2[,"nt_EPT"] - nt_EPT_pred				##### calculate residual
+            EPT_model <- load("./data/nt_EPT_RFmod_final0517.Rdata")
+            nt_EPT_pred <- predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict pt_H_WDEQ_34
+            nt_EPT_RFadj <- df_metval2[,"nt_EPT"] - nt_EPT_pred				##### calculate residual
             nt_EPT_RFadj <- unname(unlist(nt_EPT_RFadj))
-            df_metval2$nt_EPT_RFadj<-nt_EPT_RFadj
+            df_metval2$nt_EPT_RFadj < -nt_EPT_RFadj
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Metrics have been calculated!")
@@ -317,31 +317,31 @@ shinyServer(function(input, output, session) {
 
             # metric scoring ####
             # Increasers
-            metricsIncreasers<-df_metval2[,c("SAMPLEID", increasers)]
+            metricsIncreasers <- df_metval2[,c("SAMPLEID", increasers)]
 
-            metricsIncreasers2<-data.frame(matrix(ncol = 2, nrow = dim(df_metval2)[1]))
-            colnames(metricsIncreasers2) <- c("SAMPLEID",paste0(increasers,"_std"))
+            metricsIncreasers2 <- data.frame(matrix(ncol = 2, nrow = dim(df_metval2)[1]))
+            colnames(metricsIncreasers2) <- c("SAMPLEID", paste0(increasers, "_std"))
 
-            metricsIncreasers2[,1]<-metricsIncreasers$SAMPLEID
-            metricsIncreasers2[,2]<-100*(std_Parameters["ninetyfifths","x_HBI_RFadj"] - metricsIncreasers$x_HBI_RFadj)/(std_Parameters["ninetyfifths","x_HBI_RFadj"] - std_Parameters["fifths","x_HBI_RFadj"])
+            metricsIncreasers2[,1] <- metricsIncreasers$SAMPLEID
+            metricsIncreasers2[,2] <- 100 * (std_Parameters["ninetyfifths","x_HBI_RFadj"] - metricsIncreasers$x_HBI_RFadj)/(std_Parameters["ninetyfifths","x_HBI_RFadj"] - std_Parameters["fifths","x_HBI_RFadj"])
 
             # Decreasers
-            metricsDecreasers<-df_metval2[,c("SAMPLEID", decreasers)]
+            metricsDecreasers <- df_metval2[, c("SAMPLEID", decreasers)]
 
-            metricsDecreasers2<-data.frame(matrix(ncol = 5, nrow = dim(df_metval2)[1]))
-            colnames(metricsDecreasers2) <- c("SAMPLEID",paste0(decreasers,"_std"))
+            metricsDecreasers2 <- data.frame(matrix(ncol = 5, nrow = dim(df_metval2)[1]))
+            colnames(metricsDecreasers2) <- c("SAMPLEID", paste0(decreasers, "_std"))
 
-            metricsDecreasers2[,1]<-metricsDecreasers$SAMPLEID
-            metricsDecreasers2[,2]<-100*(metricsDecreasers$nt_habit_climbcling_RFadj - std_Parameters["fifths",names(metricsDecreasers)[2]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[2]] - std_Parameters["fifths",names(metricsDecreasers)[2]])
-            metricsDecreasers2[,3]<-100*(metricsDecreasers$nt_volt_semi_RFadj - std_Parameters["fifths",names(metricsDecreasers)[3]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[3]] - std_Parameters["fifths",names(metricsDecreasers)[3]])
-            metricsDecreasers2[,4]<-100*(metricsDecreasers$nt_EPT_RFadj - std_Parameters["fifths",names(metricsDecreasers)[4]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[4]] - std_Parameters["fifths",names(metricsDecreasers)[4]])
-            metricsDecreasers2[,5]<-100*(metricsDecreasers$pt_BCG_att1i234b_RFadj - std_Parameters["fifths",names(metricsDecreasers)[5]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[5]] - std_Parameters["fifths",names(metricsDecreasers)[5]])
+            metricsDecreasers2[,1] <- metricsDecreasers$SAMPLEID
+            metricsDecreasers2[,2] <- 100 * (metricsDecreasers$nt_habit_climbcling_RFadj - std_Parameters["fifths",names(metricsDecreasers)[2]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[2]] - std_Parameters["fifths",names(metricsDecreasers)[2]])
+            metricsDecreasers2[,3] <- 100 * (metricsDecreasers$nt_volt_semi_RFadj - std_Parameters["fifths",names(metricsDecreasers)[3]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[3]] - std_Parameters["fifths",names(metricsDecreasers)[3]])
+            metricsDecreasers2[,4] <- 100 * (metricsDecreasers$nt_EPT_RFadj - std_Parameters["fifths",names(metricsDecreasers)[4]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[4]] - std_Parameters["fifths",names(metricsDecreasers)[4]])
+            metricsDecreasers2[,5] <- 100 * (metricsDecreasers$pt_BCG_att1i234b_RFadj - std_Parameters["fifths",names(metricsDecreasers)[5]])/(std_Parameters["ninetyfifths",names(metricsDecreasers)[5]] - std_Parameters["fifths",names(metricsDecreasers)[5]])
 
             # combine and truncate at 0 and 100
             metrics_std <- suppressWarnings(left_join(metricsDecreasers2, metricsIncreasers2
                                      , by = "SAMPLEID") %>%
-              mutate_if(is.numeric, funs(ifelse(.>100,100,.))) %>%
-              mutate_if(is.numeric, funs(ifelse(.<0,0,.))))
+              mutate_if(is.numeric, funs(ifelse(. > 100, 100, .))) %>%
+              mutate_if(is.numeric, funs(ifelse(. < 0, 0, .))))
 
             ## calculate index
             metrics_std <- metrics_std %>%
