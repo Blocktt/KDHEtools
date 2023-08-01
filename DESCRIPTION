@@ -1,7 +1,7 @@
-Package: WDEQtools
+Package: KDHEtools
 Type: Package
 Title: Used to calculate Wyoming DEQ Diatom IBI metrics and scores, and produce output files 
-Version: 0.1.2.9001
+Version: 0.1.2.9002
 Authors@R: c(
   person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
   person("Diane","Allen", role="aut"),
@@ -32,7 +32,10 @@ Imports:
   stringr,
   shinythemes,
   flextable,
-  capture,
-  randomForest
+  randomForest,
+  utils,
+  markdown,
+  magrittr,
+  shinyBS
 VignetteBuilder: knitr
 URL: https://github.com/Blocktt/WDEQtools

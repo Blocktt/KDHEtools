@@ -3,7 +3,15 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-01 09:57:44.538624
+    #> Last Update: 2023-08-01 17:28:57.376125
+
+# KDHEtools v0.1.2.9002 (2023-08-01)
+
+- docs: Ensure global.R and DESCRIPTION agree on packages
+
+- refactor: Add package version to global and make variable for UI
+
+- docs: Update DESCRIPTION title to KDHEtools
 
 # KDHEtools v0.1.2.9001 (2023-08-01)
 

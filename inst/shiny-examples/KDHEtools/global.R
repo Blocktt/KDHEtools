@@ -1,29 +1,41 @@
 # Shiny Global File
 
-# Packages
+# Version ----
+pkg_ver <- "0.1.2.9002"
+
+# Packages----
 library(shiny)
 library(DT)
-library(ggplot2) # possible delete
 library(readxl)
 library(reshape2)
 library(dplyr)
-library(utils)
 library(BioMonTools)
 library(knitr)
-library(maps) # possible delete
 library(rmarkdown)
-library(markdown)
 library(tidyr)
-library(leaflet) # possible delete
 library(shinyjs)
-library(mapview) # possible delete
 library(stringr)
 library(shinythemes)
-library(capture) # possible delete
 library(randomForest)
+
+# Possible delete
+library(ggplot2) # possible delete
+library(maps) # possible delete
+library(leaflet) # possible delete
+library(mapview) # possible delete
+
+# Remove from global.R and DESCRIPTION
+# library(capture) # possible delete
+
+# Add to DESCRIPTION
+library(utils)
+library(markdown)
 library(magrittr)
 library(shinyBS)
 
+# Add from DESCRIPTION
+library(flextable)
+library(kableExtra)
 
 # File Size
 # By default, the file size limit is 5MB.
