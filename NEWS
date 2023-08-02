@@ -3,7 +3,22 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-01 17:28:57.376125
+    #> Last Update: 2023-08-02 08:52:07.719689
+
+# KDHEtools v0.1.2.9003 (2023-08-02)
+
+- docs: Update DESCRIPTION
+
+  - Change WY to KS
+
+  - Update URL
+
+  - Add BugReports
+
+  - Move non referenced Imports Suggests
+
+- refactor: Add comments to packages in global.R for those with no
+  references
 
 # KDHEtools v0.1.2.9002 (2023-08-01)
 

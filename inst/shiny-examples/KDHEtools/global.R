@@ -1,41 +1,41 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9002"
+pkg_ver <- "0.1.2.9003"
 
 # Packages----
 library(shiny)
 library(DT)
-library(readxl)
-library(reshape2)
-library(dplyr)
+library(readxl)       # no references
+library(reshape2)     # no references
+library(dplyr)        # no references
 library(BioMonTools)
 library(knitr)
 library(rmarkdown)
-library(tidyr)
+library(tidyr)        # no references
 library(shinyjs)
-library(stringr)
-library(shinythemes)
-library(randomForest)
-
-# Possible delete
-library(ggplot2) # possible delete
-library(maps) # possible delete
-library(leaflet) # possible delete
-library(mapview) # possible delete
-
-# Remove from global.R and DESCRIPTION
-# library(capture) # possible delete
+library(stringr)      # no references
+library(shinythemes)  # no references
+library(randomForest) # no references
 
 # Add to DESCRIPTION
-library(utils)
-library(markdown)
-library(magrittr)
+library(utils)        # no references
+library(markdown)     # no references
+library(magrittr)     # no references
 library(shinyBS)
 
 # Add from DESCRIPTION
-library(flextable)
-library(kableExtra)
+library(flextable)    # no references
+library(kableExtra)   # no references
+
+# Possible delete
+library(ggplot2) # possible delete  # no references
+library(maps)    # possible delete  # no references
+library(leaflet) # possible delete  # no references
+library(mapview) # possible delete  # no references
+
+# Remove from global.R and DESCRIPTION
+# library(capture) # possible delete
 
 # File Size
 # By default, the file size limit is 5MB.
@@ -64,9 +64,10 @@ BugMetrics <- c("nt_EPT"
                 , "x_Shan_2")# END BugMetrics
 
 # info for randomForest ####
-predictors < -c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco"
-              , "LONG", "MgOCat", "NWs", "PermWs", "PrecipCat", "PrecipWs"
-              , "SandWs", "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm", "WtDepWs")
+predictors < -c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs"
+                , "L3Eco", "LONG", "MgOCat", "NWs", "PermWs", "PrecipCat"
+                , "PrecipWs", "SandWs", "SWs", "TmeanCat", "WetIndexWs"
+                , "WsAreaSqKm", "WtDepWs")
 
 # std_Parameters<-read.csv("./data/standardization.parameters.csv",row.names=1)
 
@@ -84,8 +85,8 @@ increasers <- c("x_HBI_RFadj")
 # }
 
 # rf models for adjusted metrics
-# habit_model<-load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
-# HBI_model<-load("./data/x_HBI_RFmod_final0517.Rdata")
-# BCG_model<-load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
-# semiv_model<-load("./data/nt_volt_semi_RFmod_final0517.Rdata")
-# EPT_model<-load("./data/nt_EPT_RFmod_final0517.Rdata")
+# habit_model <- load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
+# HBI_model <- load("./data/x_HBI_RFmod_final0517.Rdata")
+# BCG_model < -load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
+# semiv_model <- load("./data/nt_volt_semi_RFmod_final0517.Rdata")
+# EPT_model <- load("./data/nt_EPT_RFmod_final0517.Rdata")
