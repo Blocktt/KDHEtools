@@ -1,28 +1,28 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9003"
+pkg_ver <- "0.1.2.9004"
 
 # Packages----
 library(shiny)
 library(DT)
-library(readxl)       # no references
-library(reshape2)     # no references
-library(dplyr)        # no references
+library(shinyjs)
 library(BioMonTools)
 library(knitr)
 library(rmarkdown)
+library(readxl)       # no references
+library(reshape2)     # no references
+library(dplyr)        # no references
 library(tidyr)        # no references
-library(shinyjs)
 library(stringr)      # no references
 library(shinythemes)  # no references
 library(randomForest) # no references
 
 # Add to DESCRIPTION
+library(shinyBS)
 library(utils)        # no references
 library(markdown)     # no references
 library(magrittr)     # no references
-library(shinyBS)
 
 # Add from DESCRIPTION
 library(flextable)    # no references
@@ -41,6 +41,17 @@ library(mapview) # possible delete  # no references
 # By default, the file size limit is 5MB.
 # It can be changed by setting this option.
 options(shiny.maxRequestSize = 25 * 1024^2)
+
+# Folders----
+path_data <- file.path("data")
+path_results <- file.path("results")
+
+# ensure results folder exists
+if (dir.exists(path_results) == FALSE) {
+  dir.create(path_results)
+} else {
+  message(paste0("Directory already exists; ", path_data))
+}## IF ~ dir.exists
 
 # define which metrics to keep in indices
 
@@ -63,16 +74,16 @@ BugMetrics <- c("nt_EPT"
                 , "pt_oneind"
                 , "x_Shan_2")# END BugMetrics
 
-# info for randomForest ####
-predictors < -c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs"
+# Random Forest Info----
+predictors <- c("Al2O3Ws", "CFS", "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs"
                 , "L3Eco", "LONG", "MgOCat", "NWs", "PermWs", "PrecipCat"
                 , "PrecipWs", "SandWs", "SWs", "TmeanCat", "WetIndexWs"
                 , "WsAreaSqKm", "WtDepWs")
 
-# std_Parameters<-read.csv("./data/standardization.parameters.csv",row.names=1)
+# std_Parameters <- read.csv("data/standardization.parameters.csv", row.names = 1)
 
-decreasers < -c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
-              ,"pt_BCG_att1i234b_RFadj")
+decreasers <- c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
+                ,"pt_BCG_att1i234b_RFadj")
 
 increasers <- c("x_HBI_RFadj")
 

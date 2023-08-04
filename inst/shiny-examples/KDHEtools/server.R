@@ -9,7 +9,7 @@
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
-  # modal dialog ####
+  # modal dialog----
   myModal <- modalDialog(
     title = "Greetings!"
     ,paste("Welcome to the Macroinvertebrate Multi-Metric Index (MMI) Calculator for Wadeable Streams in Kansas!")
@@ -28,11 +28,11 @@ shinyServer(function(input, output, session) {
   # Show the model on start up
   showModal(myModal)
 
-    # Misc Names ####
+    # Misc Names----
     output$fn_input_display <- renderText({input$fn_input}) ## renderText~END
 
 
-    # df_import ####
+    # df_import----
     output$df_import_DT <- DT::renderDT({
         # input$df_import will be NULL initially. After the user selects
         # and uploads a file, it will be a data frame with 'name',
@@ -105,7 +105,7 @@ shinyServer(function(input, output, session) {
 
     )##output$df_import_DT~END
 
-    # b_Calc ####
+    # b_Calc----
     # Calculate IBI (metrics and scores) from df_import
     # add "sleep" so progress bar is readable
     observeEvent(input$b_Calc, {
@@ -234,7 +234,7 @@ shinyServer(function(input, output, session) {
                            , "PERMWS", "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS"
                            , "TMEANCAT", "WETINDEXWS", "WSAREASQKM", "WTDEPWS")
 
-            # metric calculation ####
+            ## metric calculation----
 
             df_metval <- suppressWarnings(
               BioMonTools::metric.values(fun.DF = df_data
@@ -265,7 +265,7 @@ shinyServer(function(input, output, session) {
             df_metval2$SAMPLEID <- as.character(df_metval2$SAMPLEID)
             df_metval2$L3Eco <- as.factor(df_metval2$L3Eco)
 
-            ## adjust metrics ####
+            # adjust metrics----
 
             std_Parameters <- read.csv("./data/StandardizationParameters0517.csv", row.names = 1)
 
@@ -315,7 +315,7 @@ shinyServer(function(input, output, session) {
             incProgress(1/n_inc, detail = "Calculate, Scores")
             Sys.sleep(0.50)
 
-            # metric scoring ####
+            # metric scoring----
             # Increasers
             metricsIncreasers <- df_metval2[,c("SAMPLEID", increasers)]
 
@@ -410,7 +410,386 @@ shinyServer(function(input, output, session) {
         #, contentType = "application/zip"
     )##downloadData~END
 
-    # File Builder ####
+    # File Builder----
+
+    ## FB, Taxa Translator ----
+
+    # Input File, Display Name
+    output$fn_input_display_taxatrans <- renderText({
+      inFile <- input$fn_input
+
+      if (is.null(inFile)) {
+        return("..No file uploaded yet...")
+      }##IF~is.null~END
+
+      return(paste0("'", inFile$name, "'"))
+
+    })## fn_input_display_taxatrans
+
+
+
+
+
+
+    ## FB, Predictors----
+
+    # Input File, Display Name
+    output$fn_input_display_predictors <- renderText({
+      inFile <- input$fn_input
+
+      if (is.null(inFile)) {
+        return("..No file uploaded yet...")
+      }##IF~is.null~END
+
+      return(paste0("'", inFile$name, "'"))
+
+    })## fn_input_display_predictors
+
+
+
+
+    ## FB, Merge Files ----
+
+    ### Merge, Import, FileWatch ----
+    file_watch_mf1 <- reactive({
+      # trigger for df_import()
+      input$fn_input_mf1
+    })## file_watch
+
+    file_watch_mf2 <- reactive({
+      # trigger for df_import()
+      input$fn_input_mf2
+    })## file_watch
+
+    ### Merge, Import, df_import_mf1 ----
+    df_import_mf1 <- eventReactive(file_watch_mf1(), {
+      # use a multi-item reactive so keep on a single line (if needed later)
+
+      # input$df_import_mf1 will be NULL initially. After the user selects
+      # and uploads a file, it will be a data frame with 'name',
+      # 'size', 'type', and 'datapath' columns. The 'datapath'
+      # column will contain the local filenames where the data can
+      # be found.
+
+      inFile <- input$fn_input_mf1
+
+      if (is.null(inFile)) {
+        return(NULL)
+      }##IF~is.null~END
+
+      sep_user <- input$sep
+
+      # Define file
+      fn_inFile <- inFile$datapath
+
+      #message(getwd())
+      # message(paste0("Import, separator: '", input$sep,"'"))
+      message(paste0("Import, file name: ", inFile$name))
+
+      # Move Results folder clean up to calc button
+
+      df_input <- read.delim(fn_inFile
+                             , header = TRUE
+                             , sep = sep_user
+                             , stringsAsFactors = FALSE
+                             , na.strings = c("", "NA"))
+
+      # Copy to "Results" folder - Import "as is"
+      file.copy(inFile$datapath
+                , file.path(path_results, inFile$name))
+
+      # button, enable, calc
+      shinyjs::enable("b_calc_mergefiles")
+
+      # activate tab Panel with table of imported data
+      updateTabsetPanel(session = getDefaultReactiveDomain()
+                        , "MF_mp_tsp"
+                        , selected = "tab_MF_1")
+
+      # Return Value
+      return(df_input)
+
+    })##output$df_import_mf1 ~ END
+
+
+    ### Merge, Import, df_import_mf2----
+    df_import_mf2 <- eventReactive(file_watch_mf2(), {
+      # use a multi-item reactive so keep on a single line (if needed later)
+
+      # input$df_import_mf1 will be NULL initially. After the user selects
+      # and uploads a file, it will be a data frame with 'name',
+      # 'size', 'type', and 'datapath' columns. The 'datapath'
+      # column will contain the local filenames where the data can
+      # be found.
+
+      inFile <- input$fn_input_mf2
+
+      if (is.null(inFile)) {
+        return(NULL)
+      }##IF~is.null~END
+
+      # Define file
+      fn_inFile <- inFile$datapath
+
+      sep_user <- input$sep
+
+      #message(getwd())
+      #message(paste0("Import, separator: '", input$sep,"'"))
+      message(paste0("Import, file name: ", inFile$name))
+
+      # Move Results folder clean up to calc button
+
+      df_input <- read.delim(fn_inFile
+                             , header = TRUE
+                             , sep = sep_user
+                             , stringsAsFactors = FALSE
+                             , na.strings = c("", "NA"))
+
+      # Copy to "Results" folder - Import "as is"
+      file.copy(inFile$datapath
+                , file.path(path_results, inFile$name))
+
+      # button, enable, calc
+      shinyjs::enable("b_calc_mergefiles")
+
+      # activate tab Panel with table of imported data
+      updateTabsetPanel(session = getDefaultReactiveDomain()
+                        , "MF_mp_tsp"
+                        , selected = "tab_MF_2")
+
+      # Return Value
+      return(df_input)
+
+    })##output$df_import_mf2 ~ END
+
+    ### Merge, Import, df_import_mf1_DT ----
+    output$df_import_mf1_DT <- DT::renderDT({
+      df_data <- df_import_mf1()
+    }##expression~END
+    , filter = "top"
+    , caption = "Table. MergeFile 1 (Samples)."
+    , options = list(scrollX = TRUE
+                     , pageLength = 5
+                     , lengthMenu = c(5, 10, 25, 50, 100, 1000)
+                     , autoWidth = TRUE)
+    )##df_import_mf1_DT ~ END
+
+    ### Merge, Import, df_import_mf2_DT ----
+    output$df_import_mf2_DT <- DT::renderDT({
+      df_data <- df_import_mf2()
+    }##expression~END
+    , filter = "top"
+    , caption = "Table. MergeFile 2 (Sites)."
+    , options = list(scrollX = TRUE
+                     , pageLength = 5
+                     , lengthMenu = c(5, 10, 25, 50, 100, 1000)
+                     , autoWidth = TRUE)
+    )##df_import_mf1_DT ~ END
+
+    ### Merge, UI----
+
+    output$UI_mergefiles_f1_col_merge <- renderUI({
+      str_col <- "Merge Identifier, Primary File, Column Name"
+      selectInput("mergefiles_f1_col_merge"
+                  , label = str_col
+                  # , choices = c("SiteID", "feature", "in progress")
+                  , choices = c("", names(df_import_mf1()))
+                  , selected = "SiteID"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+    output$UI_mergefiles_f2_col_merge <- renderUI({
+      str_col <- "Merge Identifier, Secondary File, Column Name"
+      selectInput("mergefiles_f2_col_merge"
+                  , label = str_col
+                  #, choices = c("SiteID", "feature", "in progress")
+                  , choices = c("", names(df_import_mf2()))
+                  , selected = "SiteID"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+
+    ### b_Calc_MergeFiles ----
+    observeEvent(input$b_calc_mergefiles, {
+      shiny::withProgress({
+
+        #### Calc, 00, Set Up Shiny Code ----
+
+        prog_detail <- "Calculation, Merge Files..."
+        message(paste0("\n", prog_detail))
+
+        # Number of increments
+        prog_n <- 6
+        prog_sleep <- 0.25
+
+        ### Calc, 01, Initialize ----
+        prog_detail <- "Initialize Data"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # button, disable, download
+        shinyjs::disable("b_download_mergefiles")
+
+        ### Calc, 02, Gather and Test Inputs  ----
+        prog_detail <- "QC Inputs"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # inputs
+        ## file names
+        fn_mf1 <- input$fn_input_mf1$name
+        fn_mf2 <- input$fn_input_mf2$name
+        ## column names
+        col_siteid_mf1 <- input$mergefiles_f1_col_merge
+        col_siteid_mf2 <- input$mergefiles_f2_col_merge
+        ## file name base (file 1)
+        fn_input_base <- tools::file_path_sans_ext(fn_mf1)
+
+        # Stop if don't have both MF1 and MF2
+        if (is.null(fn_mf1)) {
+          msg <- "Merge File 1 filename is missing!"
+          shinyalert::shinyalert(title = "Merge File Calculation Error"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ is.null (mf1)
+
+        if (is.null(fn_mf2)) {
+          msg <- "Merge File 2 filename is missing!"
+          shinyalert::shinyalert(title = "Merge File Calculation Error"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ is.null (mf1)
+
+        # Stop if colname for merge is NA
+        if (col_siteid_mf1 == "") {
+          msg <- "Merge File 1 merge column is missing!"
+          shinyalert::shinyalert(title = "Merge File Calculation Error"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ is.null (mf1)
+
+        if (col_siteid_mf2 == "") {
+          msg <- "Merge File 2 merge column is missing!"
+          shinyalert::shinyalert(title = "Merge File Calculation Error"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ is.null (mf1)
+
+
+
+        # Remove non-MergeFiles files
+        # Remove all files in "Results" folder
+        # 2 file imports so moved Results folder clean up here from import section
+        fn_results <- list.files(path_results
+                                 , full.names = TRUE
+                                 , include.dirs = FALSE
+                                 , recursive = TRUE)
+        message(paste0("Files in 'results' folder (before removal) = "
+                       , length(fn_results)))
+
+        # Exclude MF1 and MF2
+        fn_mf_keep <- file.path(path_results
+                                , c(fn_mf1, fn_mf2))
+        fn_results <- fn_results[!fn_results %in% fn_mf_keep]
+        # Remove non MF files
+        file.remove(fn_results) # ok if no files
+        # QC, repeat
+        fn_results2 <- list.files(path_results
+                                  , full.names = TRUE
+                                  , include.dirs = FALSE
+                                  , recursive = TRUE)
+        message(paste0("Files in 'results' folder (after removal [should be 2]) = "
+                       , length(fn_results2)))
+
+
+        ### Calc, 03, Run Function----
+        suff_1x <- ".x"
+        suff_2y <- ".y"
+        df_merge <- merge(df_import_mf1()
+                          , df_import_mf2()
+                          , by.x = col_siteid_mf1
+                          , by.y = col_siteid_mf2
+                          , suffixes = c(suff_1x, suff_2y)
+                          , all.x = TRUE
+                          , sort = FALSE
+        )
+        # ***REPEAT*** same merge statement in DT statement for display on tab
+
+        # move MF2 columns to the start (at end after merge)
+        ## use index numbers
+        ncol_1x <- ncol(df_import_mf1())
+        ncol_merge <- ncol(df_merge)
+        df_merge <- df_merge[, c(1, seq(ncol_1x + 1, ncol_merge), 2:ncol_1x)]
+
+        ### Calc, 04, Save Results ----
+        fn_merge <- paste0(fn_input_base, "_MergeFiles_RESULTS.csv")
+        pn_merge <- file.path(path_results, fn_merge)
+        write.csv(df_merge, pn_merge, row.names = FALSE)
+
+
+        ### Calc, 05, Clean Up----
+        prog_detail <- "Calculate, Clean Up"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(2 * prog_sleep)
+
+        # # activate tab Panel with table of imported data
+        # updateTabsetPanel(session = getDefaultReactiveDomain()
+        #                   , "MF_mp_tsp"
+        #                   , selected = "tab_MF_merge")
+
+
+        ### Calc, 06, Zip Results ----
+        fn_4zip <- list.files(path = path_results
+                              , full.names = TRUE)
+        zip::zip(file.path(path_results, "results.zip"), fn_4zip)
+
+        # button, enable, download
+        shinyjs::enable("b_download_mergefiles")
+
+      }## expr ~ withProgress ~ END
+      , message = "Merging Files"
+      )## withProgress ~ END
+    }##expr ~ ObserveEvent ~ END
+    )##observeEvent ~ b_calc_met_therm ~ END
+
+
+    ### b_download_mergefiles ----
+    output$b_download_mergefiles <- downloadHandler(
+
+      filename = function() {
+        inFile <- input$fn_input_mf2
+        fn_input_base <- tools::file_path_sans_ext(inFile$name)
+        paste0(fn_input_base
+               , "_MergeFiles_"
+               , format(Sys.time(), "%Y%m%d_%H%M%S")
+               , ".zip")
+      } ,
+      content = function(fname) {
+
+        file.copy(file.path(path_results, "results.zip"), fname)
+
+      }##content~END
+      #, contentType = "application/zip"
+    )##download ~ MergeFiles
+
 
 
 })##shinyServer~END

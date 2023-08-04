@@ -3,7 +3,17 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-02 08:52:07.719689
+    #> Last Update: 2023-08-04 16:35:04.696845
+
+# KDHEtools v0.1.2.9005 (2023-08-04)
+
+- feature: Add file builder merge files to Shiny, Issue \#1
+  - Blocktt/KDHEtools#1
+
+# KDHEtools v0.1.2.9004 (2023-08-02)
+
+- refactor: Rearrange packages in global.R to group those with no
+  reference
 
 # KDHEtools v0.1.2.9003 (2023-08-02)
 

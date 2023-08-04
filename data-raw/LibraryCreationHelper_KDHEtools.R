@@ -13,20 +13,20 @@ library(devtools)
 # Global ----
 myPkg <- "KDHEtools"
 
-# # Remove all files in "Results" folder ----
-# # Triggered here so can run different files
-# path_results <- file.path("inst", "shiny-examples", "KDHEtools", "results")
-# fn_results <- list.files(path_results
-#                          , full.names = TRUE
-#                          , include.dirs = FALSE
-#                          , recursive = TRUE)
-# file.remove(fn_results) # ok if no files
-# # Copy file to ensure directory not empty
-# path_shiny <- file.path("inst", "shiny-examples", "BCGcalc")
-# fn_copy    <- "remove.txt"
-# path_from  <- file.path(path_shiny, "data", fn_copy)
-# path_to    <- file.path(path_shiny, "results", fn_copy)
-# file.copy(path_from, path_to)
+# Remove all files in "Results" folder ----
+# Triggered here so can run different files
+path_results <- file.path("inst", "shiny-examples", "KDHEtools", "results")
+fn_results <- list.files(path_results
+                         , full.names = TRUE
+                         , include.dirs = FALSE
+                         , recursive = TRUE)
+file.remove(fn_results) # ok if no files
+# Copy file to ensure directory not empty
+path_shiny <- file.path("inst", "shiny-examples", "BCGcalc")
+fn_copy    <- "remove.txt"
+path_from  <- file.path(path_shiny, "data", fn_copy)
+path_to    <- file.path(path_shiny, "results", fn_copy)
+file.copy(path_from, path_to)
 
 
 # NEWS----
