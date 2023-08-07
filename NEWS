@@ -3,7 +3,12 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-04 16:35:04.696845
+    #> Last Update: 2023-08-07 08:50:17.976098
+
+# KDHEtools v0.1.2.9006 (2023-08-07)
+
+- feature: Add taxa translator files to Shiny, Issue \#1
+  - Blocktt/KDHEtools#1
 
 # KDHEtools v0.1.2.9005 (2023-08-04)
 
