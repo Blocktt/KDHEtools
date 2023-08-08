@@ -3,7 +3,7 @@ Type: Package
 Title: Used to calculate Kansas DHE IBI metrics, scores, and produce output files 
 Description: Tools to calculate multi-metric index in R and Shiny.  
     Designed to work with Kansas DHE data.
-Version: 0.1.2.9007
+Version: 0.1.2.9008
 Authors@R: c(
   person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
   person("Diane","Allen", role="aut"),

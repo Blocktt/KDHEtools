@@ -3,15 +3,20 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-08 07:59:32.24582
+    #> Last Update: 2023-08-08 08:13:15.33725
+
+# KDHEtools v0.1.2.9008 (2023-08-08)
+
+- docs: Referenced wrong issue
+  - Blocktt/KDHEtools#3
 
 # KDHEtools v0.1.2.9007 (2023-08-08)
 
 - docs: Remove NAMESPACE_Ben
 
-- feature: Add predictors code to server.R, Issue \#4
+- feature: Add predictors code to server.R, Issue \#3
 
-  - Blocktt/KDHEtools#4
+  - Blocktt/KDHEtools#3
 
 # KDHEtools v0.1.2.9006 (2023-08-07)
 
