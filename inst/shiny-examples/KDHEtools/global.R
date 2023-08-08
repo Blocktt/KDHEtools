@@ -10,6 +10,11 @@ library(shinyjs)
 library(BioMonTools)
 library(knitr)
 library(rmarkdown)
+
+## Pkg, New
+library(StreamCatTools)
+
+## Pkg, No Reference
 library(readxl)       # no references
 library(reshape2)     # no references
 library(dplyr)        # no references
@@ -18,17 +23,17 @@ library(stringr)      # no references
 library(shinythemes)  # no references
 library(randomForest) # no references
 
-# Add to DESCRIPTION
+## Pkg, Add to DESCRIPTION
 library(shinyBS)
 library(utils)        # no references
 library(markdown)     # no references
 library(magrittr)     # no references
 
-# Add from DESCRIPTION
+## Pkg, Add from DESCRIPTION
 library(flextable)    # no references
 library(kableExtra)   # no references
 
-# Possible delete
+## Pkg, Possible delete
 library(ggplot2) # possible delete  # no references
 library(maps)    # possible delete  # no references
 library(leaflet) # possible delete  # no references
@@ -101,3 +106,9 @@ increasers <- c("x_HBI_RFadj")
 # BCG_model < -load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
 # semiv_model <- load("./data/nt_volt_semi_RFmod_final0517.Rdata")
 # EPT_model <- load("./data/nt_EPT_RFmod_final0517.Rdata")
+
+
+# EPSG ----
+epsg_wgs84    <- 4326
+epsg_nad83_na <- 4269
+epsg_default  <- epsg_nad83_na

@@ -22,7 +22,7 @@ fn_results <- list.files(path_results
                          , recursive = TRUE)
 file.remove(fn_results) # ok if no files
 # Copy file to ensure directory not empty
-path_shiny <- file.path("inst", "shiny-examples", "BCGcalc")
+path_shiny <- file.path("inst", "shiny-examples", "KDHEtools")
 fn_copy    <- "remove.txt"
 path_from  <- file.path(path_shiny, "data", fn_copy)
 path_to    <- file.path(path_shiny, "results", fn_copy)

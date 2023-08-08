@@ -3,12 +3,20 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-07 08:50:17.976098
+    #> Last Update: 2023-08-08 07:59:32.24582
+
+# KDHEtools v0.1.2.9007 (2023-08-08)
+
+- docs: Remove NAMESPACE_Ben
+
+- feature: Add predictors code to server.R, Issue \#4
+
+  - Blocktt/KDHEtools#4
 
 # KDHEtools v0.1.2.9006 (2023-08-07)
 
-- feature: Add taxa translator files to Shiny, Issue \#1
-  - Blocktt/KDHEtools#1
+- feature: Add taxa translator files to Shiny, Issue \#4
+  - Blocktt/KDHEtools#4
 
 # KDHEtools v0.1.2.9005 (2023-08-04)
 

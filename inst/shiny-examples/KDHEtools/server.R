@@ -410,9 +410,7 @@ shinyServer(function(input, output, session) {
         #, contentType = "application/zip"
     )##downloadData~END
 
-    # File Builder----
-
-    ## FB, Taxa Translator ----
+    # File Builder, Taxa Translator ----
 
     # Input File, Display Name
     output$fn_input_display_taxatrans <- renderText({
@@ -431,11 +429,11 @@ shinyServer(function(input, output, session) {
 
 
 
-    ## FB, Predictors----
+    # File Builder, Predictors----
 
     # Input File, Display Name
     output$fn_input_display_predictors <- renderText({
-      inFile <- input$fn_input
+      inFile <- input$fn_input_predictors
 
       if (is.null(inFile)) {
         return("..No file uploaded yet...")
@@ -447,8 +445,374 @@ shinyServer(function(input, output, session) {
 
 
 
+    ## Predictors, FileWatch ----
+    file_watch_predictors <- reactive({
+      # trigger for df_import()
+      input$fn_input_predictors
+    })## file_watch
 
-    ## FB, Merge Files ----
+    ## Predictors, Import ----
+    df_import_predictors <- eventReactive(file_watch_predictors(), {
+      # use a multi-item reactive so keep on a single line (if needed later)
+
+      # input$df_import_mf1 will be NULL initially. After the user selects
+      # and uploads a file, it will be a data frame with 'name',
+      # 'size', 'type', and 'datapath' columns. The 'datapath'
+      # column will contain the local filenames where the data can
+      # be found.
+
+      inFile <- input$fn_input_predictors
+
+      if (is.null(inFile)) {
+        return(NULL)
+      }##IF~is.null~END
+
+      sep_user <- input$sep
+
+      # Define file
+      fn_inFile <- inFile$datapath
+
+      #message(getwd())
+      # message(paste0("Import, separator: '", input$sep,"'"))
+      message(paste0("Import, file name: ", inFile$name))
+
+browser()
+      # Clean out "Results" folder
+      source(file.path("external", "file_remove_results.R"))
+
+      df_input <- read.delim(fn_inFile
+                             , header = TRUE
+                             , sep = sep_user
+                             , stringsAsFactors = FALSE
+                             , na.strings = c("", "NA"))
+
+      # Copy to "Results" folder - Import "as is"
+      file.copy(inFile$datapath
+                , file.path(path_results, inFile$name))
+
+      # button, enable, calc
+      shinyjs::enable("b_calc_predictors")
+
+      # button, disable, download
+      shinyjs::disable("b_download_predictors")
+
+      # # activate tab Panel with table of imported data
+      # updateTabsetPanel(session = getDefaultReactiveDomain()
+      #                   , "MF_mp_tsp"
+      #                   , selected = "tab_MF_1")
+
+      # Return Value
+      return(df_input)
+
+    })##output$df_import_predictors~ END
+
+    ## Predictors, Calc----
+    observeEvent(input$b_calc_predictors, {
+      shiny::withProgress({
+
+        ### Calc, 00, Initialize ----
+        prog_detail <- "Calculation, Predictors..."
+        message(paste0("\n", prog_detail))
+
+        # Number of increments
+        prog_n <- 8
+        prog_sleep <- 0.25
+
+        ## Calc, 01, Import User Data ----
+        prog_detail <- "Import Data, User"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # button, disable, download
+        shinyjs::disable("b_download_predictors")
+
+        # Import data
+        # data
+        inFile <- input$fn_input_predictors
+        fn_input_base <- tools::file_path_sans_ext(inFile$name)
+        message(paste0("Import, file name, base: ", fn_input_base))
+        df_sites <- read.delim(inFile$datapath
+                               , header = TRUE
+                               , sep = input$sep
+                               , stringsAsFactors = FALSE)
+        # QC, FAIL if TRUE
+        if (is.null(df_sites)) {
+          return(NULL)
+        }
+
+
+        ## Calc, 02, Gather and Test Inputs  ----
+        prog_detail <- "QC Inputs"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # Fun Param, Define
+        #sel_col_sampid <- input$predictors_user_col_sampid
+        sel_col_lat    <- input$predictors_user_col_lat
+        sel_col_long   <- input$predictors_user_col_long
+        sel_col_epsg   <- input$predictors_user_col_epsg
+
+        # if (sel_col_sampid == "") {
+        #   # end process with pop up
+        #   msg <- "'SampleID' column name is missing!"
+        #   shinyalert::shinyalert(title = "Predictors"
+        #                          , text = msg
+        #                          , type = "error"
+        #                          , closeOnEsc = TRUE
+        #                          , closeOnClickOutside = TRUE)
+        #   validate(msg)
+        # }## IF ~ sel_col_sampid
+
+        if (sel_col_lat == "") {
+          # end process with pop up
+          msg <- "'Latitude' column name is missing!"
+          shinyalert::shinyalert(title = "Predictors"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ sel_col_sampid
+
+
+        if (sel_col_long == "") {
+          # end process with pop up
+          msg <- "'Longitude' column name is missing!"
+          shinyalert::shinyalert(title = "Predictors"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ sel_col_sampid
+
+
+        # need a value to evaluate in the next IF..
+        if (sel_col_epsg == "") {
+          epsg_user <- NA
+        } else {
+          epsg_user <- unique(df_sites[, sel_col_epsg])
+        }## IF ~ sel_col_epsg
+
+        # Define default EPSG if not provided
+        if (sel_col_epsg == "") {
+          # No Field selected
+          # use default EPSG
+          value_epsg <- epsg_default
+        } else if (all(is.na(epsg_user))) {
+          # All user values are NA
+          # use default EPSG
+          value_epsg <- epsg_default
+        } else {
+          # user provided value
+          epsg_user <- unique(df_sites[, sel_col_epsg])
+          value_epsg <- as.numeric(epsg_user[!is.na(epsg_user)])
+        }## IF ~ sel_col_epsg
+
+        msg <- paste0("EPSG = ", value_epsg)
+        message(msg)
+
+        # add EPSG to data (in case changed)
+        df_sites[, "EPSG_CALC"] <- value_epsg
+
+
+        ## Calc, 03, Generate COMID ----
+
+        # existing COMID to COMID_user
+        if ("COMID" %in% toupper(names(df_sites))) {
+          # Rename to COMID_user
+          names(df_sites)[toupper(names(df_sites)) %in% "COMID"] <- "COMID_user"
+        }## IF ~ COMID
+
+        # Add COMID based on Lat-Long
+        # COMID
+        comid <- StreamCatTools::sc_get_comid(df_sites
+                                              , xcoord = sel_col_long
+                                              , ycoord = sel_col_lat
+                                              , crsys = value_epsg)
+
+        # Add COMID to data
+        df_sites[, "COMID"] <- strsplit(comid, ",")
+
+        # END if COMID all NA
+        comid_unique <- unique(df_sites[, "COMID"])
+        if (length(comid_unique) == 1 & any(comid_unique == "NA")) {
+          # end process with pop up
+          m1 <- "'COMID' all NA!"
+          m2 <- "Lat-Long and/or EPSG not valid."
+          m3 <- "Or try again with existing Lat-Long with default EPSG (NAD83 NA)"
+          msg <- paste(m1, m2, m3, sep = "\n")
+          shinyalert::shinyalert(title = "Generate COMID"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ sel_col_lat
+
+        ## Calc, 04, Import Predictors----
+        prog_detail <- "Import Predictors"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # **BEN**
+        # Should save the predictor file as an RDA file so is smaller and loads faster
+        # Also, rename to a generic name
+        # Create script in data-raw to transform file so can have the code when the file is updated
+        # XLSX is 22.4 MB, CSV is 18.2 MB so not much savings, RDA will be < 2 MB
+
+        fn_pred <- "KS_StreamCat_PredictorTable_BenB_20230721.xlsx"
+        df_pred <- readxl::read_excel(file.path("data", fn_pred)
+                                      , sheet = "Predictors_StreamCat"
+                                      , guess_max = 10^5)
+
+        ## Calc, 05, Merge ----
+        prog_detail <- "Merge Predictors"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # predictors based on COMID
+        df_pred_merge <- merge(df_sites
+                               , df_pred
+                               , by.x = "COMID"
+                               , by.y = "COMID"
+                               , all.x = TRUE)
+
+
+        ## Calc, 06, Save Results ----
+        prog_detail <- "Save Results"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # Save files
+
+        # ## save, criteria
+        # df_save <- df_pred
+        # fn_part <- paste0("_predictors_", "0criteria", ".csv")
+        # write.csv(df_save
+        #           , file.path(path_results, paste0(fn_input_base, fn_part))
+        #           , row.names = FALSE)
+        # rm(df_save, fn_part)
+
+        #**BEN**
+        #Add criteria file as a hyperlink in the text on screen.
+        # don't need to save 22 MB every time run operation
+
+        ## save, results
+        df_save <- df_pred_merge
+        fn_part <- paste0("_predictors_", "1results", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+
+        ## Calc, 07, Create Zip ----
+        prog_detail <- "Create Zip File For Download"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # Create zip file for download
+        fn_4zip <- list.files(path = path_results
+                              , full.names = TRUE)
+        zip::zip(file.path(path_results, "results.zip"), fn_4zip)
+
+
+        ## Calc, 08, Clean Up ----
+        prog_detail <- "Calculate, Clean Up"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # button, enable, download
+        shinyjs::enable("b_download_predictors")
+
+      }## expr ~ withProgress ~ END
+      , message = "Calculating Predictors"
+      )## withProgress
+
+    }##expr ~ ObserveEvent
+
+    )##observeEvent ~ b_calc_predictors
+
+    ## b_download_predictors ----
+    output$b_download_predictors <- downloadHandler(
+
+      filename = function() {
+        inFile <- input$fn_input
+        fn_input_base <- tools::file_path_sans_ext(inFile$name)
+        paste0(fn_input_base
+               , "_Predictors_"
+               , format(Sys.time(), "%Y%m%d_%H%M%S")
+               , ".zip")
+      } ,
+      content = function(fname) {##content~START
+
+        file.copy(file.path(path_results, "results.zip"), fname)
+
+      }##content~END
+      #, contentType = "application/zip"
+    )##download ~ predictors
+
+
+    ## Predictors, UI----
+
+    # output$UI_predictors_user_col_sampid <- renderUI({
+    #   str_col <- "Column, SampleID (unique station or sample identifier)"
+    #   selectInput("predictors_user_col_sampid"
+    #               , label = str_col
+    #               , choices = c("", names(df_import_predictors()))
+    #               , selected = "SampleID"
+    #               , multiple = FALSE)
+    # })## UI_colnames
+
+    output$UI_predictors_user_col_lat <- renderUI({
+      str_col <- "Column, Latitude (decimal degrees)"
+      selectInput("predictors_user_col_lat"
+                  , label = str_col
+                  , choices = c("", names(df_import_predictors()))
+                  , selected = "Latitude"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+    output$UI_predictors_user_col_long <- renderUI({
+      str_col <- "Column, Longitude (decimal degrees)"
+      selectInput("predictors_user_col_long"
+                  , label = str_col
+                  , choices = c("", names(df_import_predictors()))
+                  , selected = "Longitude"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+    output$UI_predictors_user_col_epsg <- renderUI({
+      m1 <- "Column, EPSG (datum), e.g., NAD83 North America is 4269."
+      m2 <- "Column can be left blank and default of 4269 will be used."
+      str_col <- paste(m1, m2, sep = "\n")
+      selectInput("predictors_user_col_epsg"
+                  , label = str_col
+                  , choices = c("", names(df_import_predictors()))
+                  , selected = "EPSG"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+
+
+
+
+    # File Builder, Merge Files ----
 
     ### Merge, Import, FileWatch ----
     file_watch_mf1 <- reactive({
@@ -461,7 +825,7 @@ shinyServer(function(input, output, session) {
       input$fn_input_mf2
     })## file_watch
 
-    ### Merge, Import, df_import_mf1 ----
+    ## Merge, Import, df_import_mf1 ----
     df_import_mf1 <- eventReactive(file_watch_mf1(), {
       # use a multi-item reactive so keep on a single line (if needed later)
 
@@ -512,7 +876,7 @@ shinyServer(function(input, output, session) {
     })##output$df_import_mf1 ~ END
 
 
-    ### Merge, Import, df_import_mf2----
+    ## Merge, Import, df_import_mf2----
     df_import_mf2 <- eventReactive(file_watch_mf2(), {
       # use a multi-item reactive so keep on a single line (if needed later)
 
@@ -562,7 +926,7 @@ shinyServer(function(input, output, session) {
 
     })##output$df_import_mf2 ~ END
 
-    ### Merge, Import, df_import_mf1_DT ----
+    ## Merge, Import, df_import_mf1_DT ----
     output$df_import_mf1_DT <- DT::renderDT({
       df_data <- df_import_mf1()
     }##expression~END
@@ -574,7 +938,7 @@ shinyServer(function(input, output, session) {
                      , autoWidth = TRUE)
     )##df_import_mf1_DT ~ END
 
-    ### Merge, Import, df_import_mf2_DT ----
+    ## Merge, Import, df_import_mf2_DT ----
     output$df_import_mf2_DT <- DT::renderDT({
       df_data <- df_import_mf2()
     }##expression~END
@@ -586,7 +950,7 @@ shinyServer(function(input, output, session) {
                      , autoWidth = TRUE)
     )##df_import_mf1_DT ~ END
 
-    ### Merge, UI----
+    ## Merge, UI----
 
     output$UI_mergefiles_f1_col_merge <- renderUI({
       str_col <- "Merge Identifier, Primary File, Column Name"
@@ -609,7 +973,7 @@ shinyServer(function(input, output, session) {
     })## UI_colnames
 
 
-    ### b_Calc_MergeFiles ----
+    ## b_Calc_MergeFiles ----
     observeEvent(input$b_calc_mergefiles, {
       shiny::withProgress({
 
@@ -771,7 +1135,7 @@ shinyServer(function(input, output, session) {
     )##observeEvent ~ b_calc_met_therm ~ END
 
 
-    ### b_download_mergefiles ----
+    ## b_download_mergefiles ----
     output$b_download_mergefiles <- downloadHandler(
 
       filename = function() {

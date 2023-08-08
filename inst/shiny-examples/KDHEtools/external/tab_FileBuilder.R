@@ -6,42 +6,49 @@ function(){
                       # SideBar
                       sidebarLayout(
                         sidebarPanel(h2("Taxa Translate and Attribute Assignment")
-                          , useShinyjs()
+                                     , useShinyjs()
 
-                          , p("The process below will combine user data with an official taxa list.")
-                          , h4("A. Upload a File")
-                          , p("If no file name showing below repeat 'Import File' in the left sidebar.")
-                          , p(textOutput("fn_input_display_taxatrans"))
+                                     , p("The process below will combine user data with an official taxa list.")
+                                     , h4("A. Upload a File")
+                                     , fileInput("fn_input_taxatrans"
+                                                 , label = "Import Data File for Adding Taxa Translation and Attributes"
+                                                 , multiple = FALSE
+                                                 , accept = c("text/csv"
+                                                              , "text/comma-separated-values"
+                                                              , "text/tab-separated-values"
+                                                              , "text/plain"
+                                                              , ".csv")
+                                     )
 
-                          , h4("B. Select Calculation.")
-                          # , uiOutput("UI_taxatrans_pick_official")
+                                     , h4("B. Select Calculation.")
+                                     # , uiOutput("UI_taxatrans_pick_official")
 
-                          , h4("C. User File Column Names")
+                                     , h4("C. User File Column Names")
 
-                          , h6("Required Fields")
-                          , p("If the default values are present they will be auto-populated.")
-                          # SampleID (really for group_by)
-                          # , uiOutput("UI_taxatrans_user_col_sampid")
-                          # , uiOutput("UI_taxatrans_user_col_taxaid")
-                          # N_Taxa (really for group_by)
+                                     , h6("Required Fields")
+                                     , p("If the default values are present they will be auto-populated.")
+                                     # SampleID (really for group_by)
+                                     # , uiOutput("UI_taxatrans_user_col_sampid")
+                                     # , uiOutput("UI_taxatrans_user_col_taxaid")
+                                     # N_Taxa (really for group_by)
 
-                          # , uiOutput("UI_taxatrans_user_col_n_taxa")
+                                     # , uiOutput("UI_taxatrans_user_col_n_taxa")
 
-                          , h6("Optional Fields")
-                          , p("All columns other than those specified above (required) or below (optional) will be dropped.
+                                     , h6("Optional Fields")
+                                     , p("All columns other than those specified above (required) or below (optional) will be dropped.
                 IMPORTANT! Do not repeat the required columns, and do not include Life Stage or other fields that might cause a taxon to occur in more than one row for a given sample (which could lead to double-counting of that taxon in the richness metrics) .")
 
-                # , uiOutput("UI_taxatrans_user_col_groupby")
+                                     # , uiOutput("UI_taxatrans_user_col_groupby")
 
-                , h4("D. Run Operation")
-                , p("This button will merge the user file with the official taxa file")
-                # , shinyjs::disabled(shinyBS::bsButton("b_calc_taxatrans"
-                #                                       , label = "Run Operation"))
+                                     , h4("D. Run Operation")
+                                     , p("This button will merge the user file with the official taxa file")
+                                     , shinyjs::disabled(shinyBS::bsButton("b_calc_taxatrans"
+                                                                           , label = "Run Operation"))
 
-                , h4("E. Download Output")
-                , p("All input and output files will be available in a single zip file.")
-                # , shinyjs::disabled(downloadButton("b_download_taxatrans"
-                #                                    , "Download Results"))
+                                     , h4("E. Download Output")
+                                     , p("All input and output files will be available in a single zip file.")
+                                     , shinyjs::disabled(downloadButton("b_download_taxatrans"
+                                                                        , "Download Results"))
 
                         )##sidebarPanel~END
                         , mainPanel(
@@ -56,7 +63,7 @@ function(){
                         )##mainPanel~END
 
                       )##sidebarLayout~END
-                      )## tabPanel ~ END
+             )## tabPanel ~ END
              # tabPanel, 2, Predictors ----
              , tabPanel("2. Generate Predictor Parameters",
                         # SideBar
@@ -64,39 +71,47 @@ function(){
                           sidebarPanel(h2("Assign Predictor Variables")
                                        #, useShinyjs()
                                        , h4("A. Upload a File")
-                                       , p("If no file name showing below repeat 'Import File' in the left sidebar.")
-                                       , p(textOutput("fn_input_display_predictors"))
+                                       , fileInput("fn_input_predictors"
+                                                   , label = "Import Data File for Adding Predictors"
+                                                   , multiple = FALSE
+                                                   , accept = c("text/csv"
+                                                                , "text/comma-separated-values"
+                                                                , "text/tab-separated-values"
+                                                                , "text/plain"
+                                                                , ".csv")
+                                       )
 
                                        , h4("C. Define COMID Fields")
                                        , h6("Required Fields")
-                                       , p("The input file needs to include COMID that matches the input file to the predictors file.")
-                                       # for expediency hard code the classification fields
-                                       # , uiOutput("UI_indexclass_user_col_elev")
-                                       # , uiOutput("UI_indexclass_user_col_slope")
-                                       # SampleID (only for group_by)
-                                       # , uiOutput("UI_predictor_user_col_sampid")
+
+                                       , p("The input file needs to include latitude, longitude, and project (EPSG) to derive the COMID.")
+                                       , p("The COMID will be used to match to the 'predictors' file.")
+                                       , p("Any existing field named 'COMID' will be renamed to 'COMID_user'.")
+                                       , uiOutput("UI_predictors_user_col_lat")
+                                       , uiOutput("UI_predictors_user_col_long")
+                                       , uiOutput("UI_predictors_user_col_epsg")
 
                                        , h4("D. Run Operation")
-                                       , p("This button will assign predictors on COMID")
-                                       # , shinyjs::disabled(shinyBS::bsButton("b_calc_predictors"
-                                       #                                       , label = "Run Operation"))
+                                       , p("This button will assign predictors based on COMID")
+                                       , shinyjs::disabled(shinyBS::bsButton("b_calc_predictors"
+                                                                             , label = "Run Operation"))
 
                                        , h4("E. Download Output")
                                        , p("All input and output files will be available in a single zip file.")
-                                       # , shinyjs::disabled(downloadButton("b_download_indexclass"
-                                       #                                    , "Download Results"))
+                                       , shinyjs::disabled(downloadButton("b_download_predictors"
+                                                                          , "Download Results"))
 
                           )## sidebarPanel ~ END
-                        , mainPanel(
-                          tabsetPanel(type = "tabs"
-                                      , tabPanel(title = "About (Predictors)"
-                                                 , includeHTML("www/App_FB_Predictors_1About.html")
-                                      )## tabPanel ~ END
-                                      , tabPanel(title = "Output Explanation (Predictors)"
-                                                 , includeHTML("www/App_FB_Predictors_2Output.html")
-                                      )## tabPanel ~ END
-                          )## tabsetPanel ~ END
-                        )## mainPanel ~ END
+                          , mainPanel(
+                            tabsetPanel(type = "tabs"
+                                        , tabPanel(title = "About (Predictors)"
+                                                   , includeHTML("www/App_FB_Predictors_1About.html")
+                                        )## tabPanel ~ END
+                                        , tabPanel(title = "Output Explanation (Predictors)"
+                                                   , includeHTML("www/App_FB_Predictors_2Output.html")
+                                        )## tabPanel ~ END
+                            )## tabsetPanel ~ END
+                          )## mainPanel ~ END
                         )##sidebarLayout~END
              )## tabPanel ~ END
              # tabPanel, 3, Merge Files ----
@@ -150,31 +165,13 @@ function(){
                                         , id = "MF_mp_tsp"
                                         , tabPanel(title = "About (Merge Files)"
                                                    , includeHTML("www/App_FB_MergeFiles_1About.html")
-                                                   )
+                                        )
                                         , tabPanel(title = "Output (Merge Files)"
                                                    , includeHTML("www/App_FB_MergeFiles_2Output.html"))
                             )## tabsetPanel ~ END
                           )## mainPanel ~ END
                         )##sidebarLayout~END
-                        )## tabPanel ~ END
+             )## tabPanel ~ END
            ) ## tabsetPanel~END
   )## tabPanel~END
 }##FUNCTION~END
-
-
-
-# function(){
-#   tabPanel("File Builder",
-#            # SideBar
-#            sidebarLayout(
-#              sidebarPanel(
-#
-#              )##sidebarPanel~END
-#              , mainPanel(
-#
-#              )##mainPanel~END
-#
-#            )##sidebarLayout~END
-#
-#   )## tabPanel~END
-# }##FUNCTION~END
