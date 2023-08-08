@@ -476,7 +476,6 @@ shinyServer(function(input, output, session) {
       # message(paste0("Import, separator: '", input$sep,"'"))
       message(paste0("Import, file name: ", inFile$name))
 
-browser()
       # Clean out "Results" folder
       source(file.path("external", "file_remove_results.R"))
 
@@ -496,15 +495,27 @@ browser()
       # button, disable, download
       shinyjs::disable("b_download_predictors")
 
-      # # activate tab Panel with table of imported data
-      # updateTabsetPanel(session = getDefaultReactiveDomain()
-      #                   , "MF_mp_tsp"
-      #                   , selected = "tab_MF_1")
+      # activate tab Panel with table of imported data
+      updateTabsetPanel(session = getDefaultReactiveDomain()
+                        , "FB_Predictors"
+                        , selected = "tab_FB_Predictors_DT")
 
       # Return Value
       return(df_input)
 
     })##output$df_import_predictors~ END
+
+    ## Predictors, Import_DT ----
+    output$df_import_predictors_DT <- DT::renderDT({
+      df_data <- df_import_predictors()
+    }##expression~END
+    , filter = "top"
+    , caption = "Table. Imported data for predictors."
+    , options = list(scrollX = TRUE
+                     , pageLength = 5
+                     , lengthMenu = c(5, 10, 25, 50, 100, 1000)
+                     , autoWidth = TRUE)
+    )##df_import_DT~END
 
     ## Predictors, Calc----
     observeEvent(input$b_calc_predictors, {
@@ -704,8 +715,8 @@ browser()
         #           , row.names = FALSE)
         # rm(df_save, fn_part)
 
-        #**BEN**
-        #Add criteria file as a hyperlink in the text on screen.
+        # **BEN**
+        # Add criteria file as a hyperlink in the text on screen.
         # don't need to save 22 MB every time run operation
 
         ## save, results
@@ -867,8 +878,8 @@ browser()
 
       # activate tab Panel with table of imported data
       updateTabsetPanel(session = getDefaultReactiveDomain()
-                        , "MF_mp_tsp"
-                        , selected = "tab_MF_1")
+                        , "FB_MergeFiles"
+                        , selected = "tab_FB_MF1_DT")
 
       # Return Value
       return(df_input)
@@ -918,8 +929,8 @@ browser()
 
       # activate tab Panel with table of imported data
       updateTabsetPanel(session = getDefaultReactiveDomain()
-                        , "MF_mp_tsp"
-                        , selected = "tab_MF_2")
+                        , "FB_MergeFiles"
+                        , selected = "tab_FB_MF2_DT")
 
       # Return Value
       return(df_input)

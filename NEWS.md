@@ -3,7 +3,15 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-08 08:13:15.33725
+    #> Last Update: 2023-08-08 10:43:18.22354
+
+# KDHEtools v0.1.2.9009 (2023-08-08)
+
+- refactor: Shiny app import add link to import table
+
+  - Predictors, Blocktt/KDHEtools#3
+
+  - Merge Files, Blocktt/KDHEtools#1
 
 # KDHEtools v0.1.2.9008 (2023-08-08)
 

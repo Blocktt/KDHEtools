@@ -104,12 +104,18 @@ function(){
                           )## sidebarPanel ~ END
                           , mainPanel(
                             tabsetPanel(type = "tabs"
+                                        , id = "FB_Predictors"
                                         , tabPanel(title = "About (Predictors)"
                                                    , includeHTML("www/App_FB_Predictors_1About.html")
                                         )## tabPanel ~ END
                                         , tabPanel(title = "Output Explanation (Predictors)"
                                                    , includeHTML("www/App_FB_Predictors_2Output.html")
                                         )## tabPanel ~ END
+                                        , tabPanel(title = "Data Import (Predictors)"
+                                                   , p("A table is shown below after data is loaded.")
+                                                   , DT::dataTableOutput("df_import_predictors_DT")
+                                                   , value = "tab_FB_Predictors_DT"
+                                        )## tabPanel ~ Import ~ END
                             )## tabsetPanel ~ END
                           )## mainPanel ~ END
                         )##sidebarLayout~END
@@ -162,12 +168,22 @@ function(){
                           )## sidebarPanel ~ END
                           , mainPanel(
                             tabsetPanel(type = "tabs"
-                                        , id = "MF_mp_tsp"
+                                        , id = "FB_MergeFiles"
                                         , tabPanel(title = "About (Merge Files)"
                                                    , includeHTML("www/App_FB_MergeFiles_1About.html")
                                         )
                                         , tabPanel(title = "Output (Merge Files)"
                                                    , includeHTML("www/App_FB_MergeFiles_2Output.html"))
+                                        , tabPanel(title = "Data Import (Merge Files, File 1)"
+                                                   , p("A table is shown below after data is loaded.")
+                                                   , DT::dataTableOutput("df_import_mf1_DT")
+                                                   , value = "tab_FB_MF1_DT"
+                                        )## tabPanel ~ Import ~ END
+                                        , tabPanel(title = "Data Import (Merge Files, File 2)"
+                                                   , p("A table is shown below after data is loaded.")
+                                                   , DT::dataTableOutput("df_import_mf2_DT")
+                                                   , value = "tab_FB_MF2_DT"
+                                        )## tabPanel ~ Import ~ END
                             )## tabsetPanel ~ END
                           )## mainPanel ~ END
                         )##sidebarLayout~END
