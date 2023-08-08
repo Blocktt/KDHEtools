@@ -112,3 +112,8 @@ increasers <- c("x_HBI_RFadj")
 epsg_wgs84    <- 4326
 epsg_nad83_na <- 4269
 epsg_default  <- epsg_nad83_na
+
+# Supporting Files ----
+fn_support_pred <- "KS_StreamCat_PredictorTable_BenB_20230721.xlsx"
+sheet_support_pred <- "Predictors_StreamCat"
+path_support_pred <- file.path("data", fn_support_pred)

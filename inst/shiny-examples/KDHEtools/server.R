@@ -678,9 +678,10 @@ shinyServer(function(input, output, session) {
         # Create script in data-raw to transform file so can have the code when the file is updated
         # XLSX is 22.4 MB, CSV is 18.2 MB so not much savings, RDA will be < 2 MB
 
-        fn_pred <- "KS_StreamCat_PredictorTable_BenB_20230721.xlsx"
-        df_pred <- readxl::read_excel(file.path("data", fn_pred)
-                                      , sheet = "Predictors_StreamCat"
+        path_pred <- path_support_pred  # Defined in GLOBAL
+        sheet_pred <- sheet_support_pred
+        df_pred <- readxl::read_excel(path_pred
+                                      , sheet = sheet_pred
                                       , guess_max = 10^5)
 
         ## Calc, 05, Merge ----

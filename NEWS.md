@@ -3,7 +3,12 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-08 10:43:18.22354
+    #> Last Update: 2023-08-08 10:53:37.577043
+
+# KDHEtools v0.1.2.9010 (2023-08-08)
+
+- refactor: Move predictors file name and details to global
+  - Predictors, Blocktt/KDHEtools#3
 
 # KDHEtools v0.1.2.9009 (2023-08-08)
 
