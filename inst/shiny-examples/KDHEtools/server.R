@@ -412,38 +412,515 @@ shinyServer(function(input, output, session) {
 
     # File Builder, Taxa Translator ----
 
-    # Input File, Display Name
-    output$fn_input_display_taxatrans <- renderText({
-      inFile <- input$fn_input
+    ## Taxa Trans, FileWatch ----
+    file_watch_taxatrans <- reactive({
+      # trigger for df_import()
+      input$fn_input_taxatrans
+    })## file_watch
+
+    ## Taxa Trans, Import ----
+    df_import_taxatrans <- eventReactive(file_watch_taxatrans(), {
+      # use a multi-item reactive so keep on a single line (if needed later)
+
+      # input$df_import_mf1 will be NULL initially. After the user selects
+      # and uploads a file, it will be a data frame with 'name',
+      # 'size', 'type', and 'datapath' columns. The 'datapath'
+      # column will contain the local filenames where the data can
+      # be found.
+
+      inFile <- input$fn_input_taxatrans
 
       if (is.null(inFile)) {
-        return("..No file uploaded yet...")
+        return(NULL)
       }##IF~is.null~END
 
-      return(paste0("'", inFile$name, "'"))
+      sep_user <- input$sep
 
-    })## fn_input_display_taxatrans
+      # Define file
+      fn_inFile <- inFile$datapath
+
+      #message(getwd())
+      # message(paste0("Import, separator: '", input$sep,"'"))
+      message(paste0("Import, file name: ", inFile$name))
+
+      # Clean out "Results" folder
+      source(file.path("external", "file_remove_results.R"))
+
+      df_input <- read.delim(fn_inFile
+                             , header = TRUE
+                             , sep = sep_user
+                             , stringsAsFactors = FALSE
+                             , na.strings = c("", "NA"))
+
+      # Copy to "Results" folder - Import "as is"
+      file.copy(inFile$datapath
+                , file.path(path_results, inFile$name))
+
+      # button, enable, calc
+      shinyjs::enable("b_calc_taxatrans")
+
+      # button, disable, download
+      shinyjs::disable("b_download_taxatrans")
+
+      # activate tab Panel with table of imported data
+      updateTabsetPanel(session = getDefaultReactiveDomain()
+                        , "FB_TaxaTrans"
+                        , selected = "tab_FB_TaxaTrans_DT")
+
+      # Return Value
+      return(df_input)
+
+    })##output$df_import_taxatrans~ END
+
+    ## Taxa Trans, Import_DT ----
+    output$df_import_taxatrans_DT <- DT::renderDT({
+      df_data <- df_import_taxatrans()
+    }##expression~END
+    , filter = "top"
+    , caption = "Table. Imported data for taxa translator-attributes."
+    , options = list(scrollX = TRUE
+                     , pageLength = 5
+                     , lengthMenu = c(5, 10, 25, 50, 100, 1000)
+                     , autoWidth = TRUE)
+    )##df_import_DT~END
+
+
+    ## Taxa Trans, Calc----
+    observeEvent(input$b_calc_taxatrans, {
+      shiny::withProgress({
+
+        ### Calc, 00, Initialize ----
+        prog_detail <- "Calculation, Taxa Translate..."
+        message(paste0("\n", prog_detail))
+
+        # Number of increments
+        prog_n <- 8
+        prog_sleep <- 0.25
+
+        ## Calc, 01, Import User Data ----
+        prog_detail <- "Import Data, User"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # button, disable, download
+        shinyjs::disable("b_download_taxatrans")
+
+        # Import data
+        # data
+        inFile <- input$fn_input_taxatrans
+        fn_input_base <- tools::file_path_sans_ext(inFile$name)
+        message(paste0("Import, file name, base: ", fn_input_base))
+        df_input <- read.delim(inFile$datapath
+                               , header = TRUE
+                               , sep = input$sep
+                               , stringsAsFactors = FALSE)
+        # QC, FAIL if TRUE
+        if (is.null(df_input)) {
+          return(NULL)
+        }
+
+
+        ## Calc, 02, Gather and Test Inputs  ----
+        prog_detail <- "QC Inputs"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # Fun Param, Define
+        sel_user_sampid  <- input$taxatrans_user_col_sampid
+        sel_user_taxaid  <- input$taxatrans_user_col_taxaid
+        sel_user_ntaxa   <- input$taxatrans_user_col_n_taxa
+        sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
+
+        # include = yes; unique(sel_user_groupby)
+        # include sampid, taxaid, and n_taxa so not dropped
+        user_col_keep <- names(df_input)[names(df_input) %in% c(sel_user_groupby
+                                                                , sel_user_sampid
+                                                                , sel_user_taxaid
+                                                                , sel_user_ntaxa)]
+        # flip to col_drop
+        user_col_drop <- names(df_input)[!names(df_input) %in% user_col_keep]
 
 
 
+        # Fun Param, Test
+
+        # End if missing
+        if (sel_user_sampid == "") {
+          # end process with pop up
+          msg <- "'SampleID' column name is missing!"
+          shinyalert::shinyalert(title = "Taxa Translator"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ sel_user_sampid
+
+        if (sel_user_taxaid == "") {
+          # end process with pop up
+          msg <- "'Taxa_Name' column name is missing!"
+          shinyalert::shinyalert(title = "Taxa Translator"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ sel_user_taxaid
+
+        if (sel_user_ntaxa == "") {
+          # end process with pop up
+          msg <- "'N_Taxa' column name is missing!"
+          shinyalert::shinyalert(title = "Taxa Translator"
+                                 , text = msg
+                                 , type = "error"
+                                 , closeOnEsc = TRUE
+                                 , closeOnClickOutside = TRUE)
+          validate(msg)
+        }## IF ~ sel_user_ntaxa
+
+
+        # KS specific, reference tables are ALL CAPS
+        # User input data Taxa_ID to ALL CAPS
+        df_input[, sel_user_taxaid] <- toupper(df_input[, sel_user_taxaid])
+
+
+      #   # Remove extra columns from import
+      # # Specific to shiny project, not a part of the taxa_translate function
+      # col_keep <- !names(taxatrans_results$merge) %in% col_drop_project
+      # taxatrans_results$merge <- taxatrans_results$merge[, col_keep]
+
+
+        ## Calc, 03, Import Official Data (and Metadata)  ----
+        prog_detail <- "Import Data, Translations and Attributes"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # import, taxa translations
+        path_taxa_trans <- path_support_taxa_trans  # Defined in GLOBAL
+        df_taxa_trans   <- read.delim(path_taxa_trans
+                                          , header = TRUE
+                                          , sep = ","
+                                          , stringsAsFactors = FALSE)
+
+        # import, taxa translations, metadata
+        path_taxa_trans    <- path_support_taxa_trans_meta  # Defined in GLOBAL
+        df_taxa_trans_meta <- read.delim(path_taxa_trans
+                                                , header = TRUE
+                                                , sep = ","
+                                                , stringsAsFactors = FALSE)
+
+
+        # import, taxa attributes
+        path_taxa_attr <- path_support_taxa_attr  # Defined in GLOBAL
+        df_taxa_attr   <- read.delim(path_taxa_attr
+                                          , header = TRUE
+                                          , sep = ","
+                                          , stringsAsFactors = FALSE)
+
+        # import, taxa attributes, metadata
+        path_taxa_attr    <- path_support_taxa_attr_meta  # Defined in GLOBAL
+        df_taxa_attr_meta <- read.delim(path_taxa_attr
+                                               , header = TRUE
+                                               , sep = ","
+                                               , stringsAsFactors = FALSE)
+
+        # get value from Global
+        # iterate here so don't have to modify code since have new names above
+        fn_taxoff      <- fn_support_taxa_trans
+        fn_taxoff_attr <- fn_support_taxa_attr
+
+
+        ## Calc, 04, Translate Function ----
+        prog_detail <- "Import Data, Translate"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        ## run the function
+        taxatrans_results <- BioMonTools::taxa_translate(df_user = df_input
+                         , df_official = df_taxa_trans
+                         , df_official_metadata = df_taxa_trans_meta
+                         , taxaid_user = sel_user_taxaid
+                         , taxaid_official_match = col_taxaid_official_match
+                         , taxaid_official_project = col_taxaid_official_project
+                         , taxaid_drop = NULL
+                         , col_drop = NULL
+                         , sum_n_taxa_boo = TRUE
+                         , sum_n_taxa_col = sel_user_ntaxa
+                         , sum_n_taxa_group_by = user_col_keep)
+
+
+        # Remove non-project taxaID cols
+        col_drop_project <- col_taxaid_official_project_drop
+        # Specific to shiny project, not a part of the taxa_translate function
+        col_keep <- !names(taxatrans_results$merge) %in% col_drop_project
+        taxatrans_results$merge <- taxatrans_results$merge[, col_keep]
+
+
+        # Attributes if have 2nd file
+        if (!is.na(fn_taxoff_attr)) {
+          df_ttrm <- taxatrans_results$merge
+          # drop translation file columns
+          col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid
+                                                                , sel_user_taxaid
+                                                                , sel_user_ntaxa
+                                                                , col_taxaid_official_project
+                                                                , sel_user_groupby)]
+          df_ttrm <- df_ttrm[, col_keep_ttrm]
+          # merge with attributes
+          df_merge_attr <- merge(df_ttrm
+                                 , df_taxa_attr
+                                 , by.x = sel_user_taxaid
+                                 , by.y = col_taxaid_attr
+                                 , all.x = TRUE
+                                 , sort = FALSE
+                                 , suffixes = c("_xDROP", "_yKEEP"))
+          # Drop duplicate names from Trans file (x)
+          col_keep <- names(df_merge_attr)[!grepl("_xDROP$"
+                                                  , names(df_merge_attr))]
+          df_merge_attr <- df_merge_attr[, col_keep]
+          # KEEP and rename duplicate names from Attribute file (y)
+          names(df_merge_attr) <- gsub("_yKEEP$", "", names(df_merge_attr))
+          # Save back to results list
+          taxatrans_results$merge <- df_merge_attr
+
+          # QC check
+          # testthat::expect_equal(nrow(df_merge_attr), nrow(df_ttrm))
+          # testthat::expect_equal(sum(df_merge_attr[, sel_user_ntaxa], na.rm = TRUE)
+          #                        , sum(df_ttrm[, sel_user_ntaxa], na.rm = TRUE))
+        }## IF ~ !is.na(fn_taxoff_attr)
+
+
+
+        ## Calc, 05, Data Munge ----
+        prog_detail <- "Munge Data,"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # make changes to data output before save
+
+        # Reorder by SampID and TaxaID
+        taxatrans_results$merge <- taxatrans_results$merge[
+          order(taxatrans_results$merge[, sel_user_sampid]
+                , taxatrans_results$merge[, sel_user_taxaid]), ]
+
+        # Add input filenames
+        if (!nrow(taxatrans_results$merge) == 0) {
+          # FAILS if no taxa match as the df has zero rows
+          taxatrans_results$merge[, "file_taxatrans"]  <- fn_taxoff
+          taxatrans_results$merge[, "file_attributes"] <- fn_taxoff_attr
+        }## IF ~ nrow
+
+        # Resort columns
+        ## Keep columns at start of output
+        col_start <- c(sel_user_sampid
+                       , sel_user_taxaid
+                       , sel_user_ntaxa
+                       , "file_taxatrans"
+                       , "file_attributes")
+        ## All other columns
+        col_other <- names(taxatrans_results$merge)[!names(taxatrans_results$merge)
+                                                    %in% col_start]
+        ## remove TaxaTrans TaxaID column (defined in Global.R)
+        col_other <- col_other[!col_other %in% col_taxaid_official_project]
+        ## Apply
+        taxatrans_results$merge <- taxatrans_results$merge[, c(col_start
+                                                               , col_other)]
+
+
+        # Convert required file names to standard
+        ## do at end so don't have to modify any other variables
+        boo_req_names <- TRUE
+        if (boo_req_names == TRUE) {
+          names(taxatrans_results$merge)[names(taxatrans_results$merge)
+                                         %in% sel_user_sampid] <- "SampleID"
+          names(taxatrans_results$merge)[names(taxatrans_results$merge)
+                                         %in% sel_user_taxaid] <- "TaxaID"
+          names(taxatrans_results$merge)[names(taxatrans_results$merge)
+                                         %in% sel_user_ntaxa] <- "N_Taxa"
+        }## IF ~ boo_req_names
+
+
+        ## Calc, 06, Save Results ----
+        prog_detail <- "Save Results"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+browser()
+        # Save files
+
+        ## File version names
+        df_save <- data.frame(Calculation = "KS"
+                              , OperationalTaxonomicUnit = fn_taxoff
+                              , TranslationTable = col_taxaid_official_project
+                              , AttributeTable = fn_taxoff_attr)
+        fn_part <- paste0("_taxatrans_", "0fileversions", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+        ## Taxa User
+        # saved when imported
+
+        ## Taxa Official
+        df_save <- df_taxa_trans
+        fn_part <- paste0("_taxatrans_", "1official", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+        ## Taxa Official, Attributes
+        df_save <- df_taxa_attr
+        fn_part <- paste0("_taxatrans_", "1attributes", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+        ## meta data
+        df_save <- taxatrans_results$official_metadata # df_taxoff_meta
+        fn_part <- paste0("_taxatrans_", "1metadata", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+        ## translate - crosswalk
+        df_save <- taxatrans_results$taxatrans_unique # df_taxoff_meta
+        fn_part <- paste0("_taxatrans_", "2taxamatch", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+        ## Non Match
+        df_save <- data.frame(taxatrans_results$nonmatch)
+        fn_part <- paste0("_taxatrans_", "3nonmatch", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+        ## Taxa Trans
+        df_save <- taxatrans_results$merge
+        fn_part <- paste0("_taxatrans_", "MERGED", ".csv")
+        write.csv(df_save
+                  , file.path(path_results, paste0(fn_input_base, fn_part))
+                  , row.names = FALSE)
+        rm(df_save, fn_part)
+
+
+        ## Calc, 07, Create Zip ----
+        prog_detail <- "Create Zip File For Download"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # Create zip file for download
+        fn_4zip <- list.files(path = path_results
+                              , full.names = TRUE)
+        zip::zip(file.path(path_results, "results.zip"), fn_4zip)
+
+
+        ## Calc, 08, Clean Up ----
+        prog_detail <- "Calculate, Clean Up"
+        message(paste0("\n", prog_detail))
+        # Increment the progress bar, and update the detail text.
+        incProgress(1/prog_n, detail = prog_detail)
+        Sys.sleep(prog_sleep)
+
+        # button, enable, download
+        shinyjs::enable("b_download_taxatrans")
+
+      }## expr ~ withProgress ~ END
+      , message = "Calculating Taxa Translations and Attributes"
+      )## withProgress
+
+    }##expr ~ ObserveEvent
+
+    )##observeEvent ~ b_calc_taxatrans
+
+
+    ## b_download_taxatrans ----
+    output$b_download_taxatrans <- downloadHandler(
+
+      filename = function() {
+        inFile <- input$fn_input
+        fn_input_base <- tools::file_path_sans_ext(inFile$name)
+        paste0(fn_input_base
+               , "_TaxaTrans_"
+               , format(Sys.time(), "%Y%m%d_%H%M%S")
+               , ".zip")
+      } ,
+      content = function(fname) {##content~START
+
+        file.copy(file.path(path_results, "results.zip"), fname)
+
+      }##content~END
+      #, contentType = "application/zip"
+    )##download ~ taxatrans
+
+    ## TaxaTrans, UI ----
+
+    output$UI_taxatrans_user_col_sampid <- renderUI({
+      str_col <- "Column, Unique Sample Identifier (e.g., SampleID)"
+      selectInput("taxatrans_user_col_sampid"
+                  , label = str_col
+                  , choices = c("", names(df_import_taxatrans()))
+                  , selected = "SampleID"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+    output$UI_taxatrans_user_col_taxaid <- renderUI({
+      str_col <- "Column, TaxaID"
+      selectInput("taxatrans_user_col_taxaid"
+                  , label = str_col
+                  , choices = c("", names(df_import_taxatrans()))
+                  , selected = "TaxaID"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+    output$UI_taxatrans_user_col_drop <- renderUI({
+      str_col <- "Columns to Drop"
+      selectInput("taxatrans_user_col_drop"
+                  , label = str_col
+                  , choices = c("", names(df_import_taxatrans()))
+                  , multiple = TRUE)
+    })## UI_colnames
+
+    output$UI_taxatrans_user_col_n_taxa <- renderUI({
+      str_col <- "Column, Taxa Count (number of individuals or N_Taxa)"
+      selectInput("taxatrans_user_col_n_taxa"
+                  , label = str_col
+                  , choices = c("", names(df_import_taxatrans()))
+                  , selected = "N_Taxa"
+                  , multiple = FALSE)
+    })## UI_colnames
+
+    output$UI_taxatrans_user_col_groupby <- renderUI({
+      str_col <- "Columns to Keep in Output"
+      selectInput("taxatrans_user_col_groupby"
+                  , label = str_col
+                  , choices = c("", names(df_import_taxatrans()))
+                  , multiple = TRUE)
+    })## UI_colnames
 
 
 
     # File Builder, Predictors----
-
-    # Input File, Display Name
-    output$fn_input_display_predictors <- renderText({
-      inFile <- input$fn_input_predictors
-
-      if (is.null(inFile)) {
-        return("..No file uploaded yet...")
-      }##IF~is.null~END
-
-      return(paste0("'", inFile$name, "'"))
-
-    })## fn_input_display_predictors
-
-
 
     ## Predictors, FileWatch ----
     file_watch_predictors <- reactive({

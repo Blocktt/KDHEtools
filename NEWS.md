@@ -3,7 +3,12 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-08 10:53:37.577043
+    #> Last Update: 2023-08-09 15:38:36.031176
+
+# KDHEtools v0.1.2.9011 (2023-08-09)
+
+- refactor: Shiny app taxa translator and attribute assignment
+  - Predictors, Blocktt/KDHEtools#4
 
 # KDHEtools v0.1.2.9010 (2023-08-08)
 

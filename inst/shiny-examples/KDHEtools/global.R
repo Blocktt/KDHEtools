@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9004"
+pkg_ver <- "0.1.2.9011"
 
 # Packages----
 library(shiny)
@@ -114,6 +114,28 @@ epsg_nad83_na <- 4269
 epsg_default  <- epsg_nad83_na
 
 # Supporting Files ----
+## Predictors
 fn_support_pred <- "KS_StreamCat_PredictorTable_BenB_20230721.xlsx"
 sheet_support_pred <- "Predictors_StreamCat"
 path_support_pred <- file.path("data", fn_support_pred)
+## Taxa Translator
+fn_support_taxa_trans <- "KS_TaxaTranslator_20230717.csv"
+path_support_taxa_trans <- file.path("data", "taxa_trans"
+                                     , fn_support_taxa_trans)
+col_taxaid_official_match <- "TaxaID_orig"
+col_taxaid_official_project <- "OTU_MMI_genus"
+col_taxaid_official_project_drop <- c("OTU_MMI", "OTU_BCG")
+#
+fn_support_taxa_trans_meta <- "KS_TaxaTranslator_Metadata_20230717.csv"
+path_support_taxa_trans_meta <- file.path("data", "taxa_trans"
+                                     , fn_support_taxa_trans_meta)
+## Taxa Attributes
+fn_support_taxa_attr <- "KS_Attributes_20230717.csv"
+path_support_taxa_attr <- file.path("data", "taxa_trans", fn_support_taxa_attr)
+col_taxaid_attr <- "TaxaID"
+#
+fn_support_taxa_attr_meta <- "KS_Attributes_Metadata_20230717.csv"
+path_support_taxa_attr_meta <- file.path("data", "taxa_trans"
+                                         , fn_support_taxa_attr_meta)
+
+
