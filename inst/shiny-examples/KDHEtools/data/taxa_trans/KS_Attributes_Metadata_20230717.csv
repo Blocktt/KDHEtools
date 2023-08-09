@@ -1,0 +1,38 @@
+Version,7/17/2023
+Primary contact,Liz Smith (Elizabeth.Smith@ks.gov) 
+,
+TaxaID,"taxon name from the selected OTU (OTU_MMI, OTU_MMI_genus, OTU_BCG)"
+Rank,"level of taxonomic resolution (e.g., order, family, genus, species)"
+Slash,slashed OTU (/)
+NonTarget,FALSE = target (ok to include in calculations). TRUE = nontarget (not appropriate to include in the KS MMI and BCG calculations)
+BCG_sens,yes = included in the MMI; taxon is counted in the number of BCG attribute III+IV better taxa metric
+Habit_CBCN,yes = included in the MMI; taxon is counted in the number of climber + clinger taxa metric
+Order_EPT,yes = included in the MMI; taxon is counted in the number of EPT taxa metric
+Volt_semi,yes = included in the MMI; taxon is counted in the number of semivoltine taxa metric
+TolVal,"Tolerance to general disturbance, scaled from 0 (most intolerant) to 10 (most tolerant); Source: KS tolerance analysis (Tetra Tech 2023), Huggins and Moffett (1988), KBTOLR, Regional BCG"
+BCG_Attr,"Biological Condition Gradient (BCG) taxa attribute assignments (2, 3, 4, 5, 6m). 2 = highly sensitive; 3 = sensitive ubiquitous; 4 = moderately tolerant; 5 = highly tolerant; 6 = nonnative, moderately tolerant"
+BCG_Attr2,"BCG attribute subcategory: 4_better, 4_middle, 4_worse. ‘4_better’ are mostly habitat specialists that are not particularly sensitive to water quality, but appear to be sensitive to siltation/high% fines; ‘4_middle’ are taxa that occur everywhere; ‘4_worse’ are ubiquitous, but typically have higher abundance at poorer sites, such as those affected by nutrient enrichment or sedimentation"
+FFG,"Primary Functional Feeding Group: collector-gatherer (CG), collector-filterer (CF), predator (PR), scraper (SC), shredder (SH), macrophyte herbivore (MH), omnivore (OM), parasite (PA), piercer-herbivore (PH), xylophage (XY). Multiple entries are allowed and are separated with a comma"
+FFG_Src,"Source(s) of FFG information: Iowa Department of Natural Resources (IA DNR), Missouri Department of Natural Resources (MO DNR), Nebraska Department of Environmental Quality (NE DEQ), Minnesota Pollution Control Agency (MPCA), Oklahoma Conservation Commission (OCC), Oklahoma Water Resources Board (OWRB), and EPA National Rivers and Streams Assessment (NRSA)"
+HABIT,"Habit: burrowers (BU), climbers (CB), clingers (CN), sprawlers (SP), swimmers (SW). Multiple entries are allowed and are separated with a comma"
+HABIT_Src,"Source(s) of habit information: Iowa Department of Natural Resources (IA DNR), Missouri Department of Natural Resources (MO DNR), Nebraska Department of Environmental Quality (NE DEQ), Minnesota Pollution Control Agency (MPCA), Oklahoma Conservation Commission (OCC), Oklahoma Water Resources Board (OWRB), and EPA National Rivers and Streams Assessment (NRSA)"
+LIFE_CYCLE,"Number of broods or generations of an organism in a year (also referred to as 'voltinism'): univoltine (UNI), semivoltine (SEMI), or multivoltine (MULTI). Multiple entries are allowed and are separated with a comma"
+LIFE_CYCLE_Src,"Source(s) of voltinism information: EPA NRSA, Twardochleb et al. 2020"
+THERMAL_INDICATOR,"Exploratory thermal preference assignment: cool or warm; based on results from a taxa tolerance analysis on the KDHE dataset (Tetra Tech 2023), using the modeled mean summer (July/August) stream temperature (MSST) metric (Hill et al. 2013) from USEPA’s StreamCat dataset (Hill et al. 2016)"
+AirBreather,"TRUE = air breather, which include: Hemiptera (all families); Coleoptera - all adults other than Elmidae ande Dryopidae, and larvae of Dystiscidae, Hydrophilidae, Hydraenidae, Heteroceridae; Gyrinidae; Haliplidae; Scirtidae; Diptera (Culicidae larvae, Ptychopteridae larvae, Chaoboridae larvae (except Chaoborus sp.), Stratiomyidae, Dolichopodidae and Syrphidae"
+PHYLUM,taxonomic hierarchy; provided by KDHE
+CLASS,taxonomic hierarchy; provided by KDHE
+ORDER,taxonomic hierarchy; provided by KDHE
+FAMILY,taxonomic hierarchy; provided by KDHE
+GENUS,taxonomic hierarchy; added by Tetra Tech
+KBGENSPE,taxonomic hierarchy; provided by KDHE
+NOD,"nutrients and oxygen-demanding substances. from Huggins and Moffett 1988, scaled from 0 (intolerant) - 5 (most tolerant); based on literature reviews and best professional judgment"
+AP,"agricultural pesticides. from Huggins and Moffett 1988, scaled from 0 (intolerant) - 5 (most tolerant); based on literature reviews and best professional judgment"
+HM,"heavy metals. from Huggins and Moffett 1988, scaled from 0 (intolerant) - 5 (most tolerant); based on literature reviews and best professional judgment"
+POC,"persistent organic compounds. from Huggins and Moffett 1988, scaled from 0 (intolerant) - 5 (most tolerant); based on literature reviews and best professional judgment"
+SA,"salinity. from Huggins and Moffett 1988, scaled from 0 (intolerant) - 5 (most tolerant); based on literature reviews and best professional judgment"
+SSS,"suspended solids and sediments. from Huggins and Moffett 1988, scaled from 0 (intolerant) - 5 (most tolerant); based on literature reviews and best professional judgment"
+Min_HM1988,"minimum score NOD, AP, HM, POC, SA, SSS"
+Max_HM1988,"maximum score NOD, AP, HM, POC, SA, SSS"
+Mean_HM1988,"mean score NOD, AP, HM, POC, SA, SSS"
+KBTOLR,"KDHE tolerance values, scaled from 0 (intolerant) -11 (tolerant); based on literature reviews and best professional judgment"

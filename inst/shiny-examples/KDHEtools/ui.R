@@ -17,10 +17,11 @@ tab_FileBuilder <- source("external/tab_FileBuilder.R", local = TRUE)$value
 tab_Calculator <- source("external/tab_Calculator.R", local = TRUE)$value
 
 # Define UI
-shinyUI(navbarPage(theme = shinytheme("yeti"), "KDHE Macroinvertebrate IBI Calculator v0.0.1.9010"
-                   ,tab_Background()
-                   ,tab_Instructions()
-                   ,tab_FileBuilder()
-                   ,tab_Calculator()
+shinyUI(navbarPage(theme = shinytheme("yeti")
+                   , paste0("KDHE Macroinvertebrate IBI Calculator ", pkg_ver)
+                   , tab_Background()
+                   , tab_Instructions()
+                   , tab_FileBuilder()
+                   , tab_Calculator()
           )## navbarPage~END
 )## shinyUI~END

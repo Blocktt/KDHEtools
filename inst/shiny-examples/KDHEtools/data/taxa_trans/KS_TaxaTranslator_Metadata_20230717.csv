@@ -1,0 +1,21 @@
+Version,7/17/2023
+Primary contact,Liz Smith (Elizabeth.Smith@ks.gov) 
+,
+TaxaID_orig,taxon name from the original source file
+KS_TAXACODE,taxon code; provided by KDHE
+Rank_orig,"level of taxonomic resolution (e.g., order, family, genus, species)"
+NonTarget,TRUE = not appropriate to include in the KS MMI calculations. NonTarget taxa are excluded from all metric calculations
+OTU_MMI,Operational Taxonomic Unit (OTU) for the KS MMI calculation. DNI (do not include) = taxon is not included in the MMI calculation
+OTU_MMI_genus,Alternate OTU for the KS MMI calculation; differs from OTU_MMI in that species-level IDs are collapsed to genus or higher levels. DNI (do not include) = NonTarget.
+OTU_BCG,OTU for the KS-Great Plains Biological Condition Gradient (BCG) models; currently the same as OTU_MMI
+PHYLUM,taxonomic hierarchy based on the Taxon_orig field; provided by KDHE
+CLASS,taxonomic hierarchy based on the Taxon_orig field; provided by KDHE
+ORDER,taxonomic hierarchy based on the Taxon_orig field; provided by KDHE
+FAMILY,taxonomic hierarchy based on the Taxon_orig field; provided by KDHE
+GENUS,taxonomic hierarchy based on the Taxon_orig field; added by Tetra Tech
+NumSamp_All,total number of samples the TaxaID_orig occurs in
+NumSites_All,total number of unique sites the TaxaID_orig occurs at
+Yr_Min,first year of occurrence in the KDHE dataset
+Yr_Max,last year of occurrence in the KDHE dataset
+NumSamp_SB,number of Stream Biological (SB) Monitoring Program samples the TaxaID_orig occurs in
+NumSamp_SP,number of Stream Probabilistic (SP) program samples the TaxaID_orig occurs in
