@@ -756,7 +756,7 @@ shinyServer(function(input, output, session) {
         # Increment the progress bar, and update the detail text.
         incProgress(1/prog_n, detail = prog_detail)
         Sys.sleep(prog_sleep)
-browser()
+
         # Save files
 
         ## File version names

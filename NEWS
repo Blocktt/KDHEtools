@@ -3,7 +3,11 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-09 15:38:36.031176
+    #> Last Update: 2023-08-09 15:42:17.755668
+
+# KDHEtools v0.1.2.9012 (2023-08-09)
+
+- refactor: Remove errant browser debugging function
 
 # KDHEtools v0.1.2.9011 (2023-08-09)
 
