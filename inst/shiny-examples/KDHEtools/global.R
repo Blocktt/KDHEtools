@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9013"
+pkg_ver <- "0.1.2.9014"
 
 # Packages----
 library(shiny)
@@ -20,6 +20,9 @@ library(shinyBS)
 # By default, the file size limit is 5MB.
 # It can be changed by setting this option.
 options(shiny.maxRequestSize = 25 * 1024^2)
+
+# Default Import File Sep
+sep_default <- ","
 
 # Folders----
 path_data <- file.path("data")

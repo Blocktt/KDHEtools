@@ -3,11 +3,19 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-10 07:00:35.357436
+    #> Last Update: 2023-08-10 07:10:51.284189
 
-# KDHEtools v0.1.2.9013 (2023-08-09)
+# KDHEtools v0.1.2.9014 (2023-08-10)
 
-- docs: Remove unused packages from DESCRIPTION and global.R
+- refactor: Shiny app set default import file separator in global
+
+- docs: Remove unused packages from DESCRIPTION Suggests and global.R
+
+  - Predictors, Blocktt/KDHEtools#7
+
+# KDHEtools v0.1.2.9013 (2023-08-10)
+
+- docs: Remove unused packages from DESCRIPTION Imports and global.R
   - Predictors, Blocktt/KDHEtools#7
 
 # KDHEtools v0.1.2.9012 (2023-08-09)

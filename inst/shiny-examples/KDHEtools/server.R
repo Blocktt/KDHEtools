@@ -434,7 +434,7 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }##IF~is.null~END
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       # Define file
       fn_inFile <- inFile$datapath
@@ -944,7 +944,7 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }##IF~is.null~END
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       # Define file
       fn_inFile <- inFile$datapath
@@ -1330,7 +1330,7 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }##IF~is.null~END
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       # Define file
       fn_inFile <- inFile$datapath
@@ -1384,7 +1384,7 @@ shinyServer(function(input, output, session) {
       # Define file
       fn_inFile <- inFile$datapath
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       #message(getwd())
       #message(paste0("Import, separator: '", input$sep,"'"))
