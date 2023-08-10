@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9012"
+pkg_ver <- "0.1.2.9013"
 
 # Packages----
 library(shiny)
@@ -10,34 +10,8 @@ library(shinyjs)
 library(BioMonTools)
 library(knitr)
 library(rmarkdown)
-
-## Pkg, New
 library(StreamCatTools)
-
-## Pkg, No Reference
-library(readxl)       # no references
-library(reshape2)     # no references
-library(dplyr)        # no references
-library(tidyr)        # no references
-library(stringr)      # no references
-library(shinythemes)  # no references
-library(randomForest) # no references
-
-## Pkg, Add to DESCRIPTION
 library(shinyBS)
-library(utils)        # no references
-library(markdown)     # no references
-library(magrittr)     # no references
-
-## Pkg, Add from DESCRIPTION
-library(flextable)    # no references
-library(kableExtra)   # no references
-
-## Pkg, Possible delete
-library(ggplot2) # possible delete  # no references
-library(maps)    # possible delete  # no references
-library(leaflet) # possible delete  # no references
-library(mapview) # possible delete  # no references
 
 # Remove from global.R and DESCRIPTION
 # library(capture) # possible delete
