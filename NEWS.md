@@ -3,7 +3,25 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-10 07:10:51.284189
+    #> Last Update: 2023-08-10 12:30:03.565687
+
+# KDHEtools v0.1.2.9015 (2023-08-10)
+
+- docs: Add packages as needed and pkg:: references, Blocktt/KDHEtools#7
+
+  - shinythemes
+
+  - lubridate
+
+  - dplyr
+
+- docs: Add Depends R \>= 3.5.0
+
+- features: Add OTU selection to Taxa Translator
+
+- features: Add Excluded Taxa check box to MMI calc, Blocktt/KDHEtools#8
+
+  - Code not created to use it only the hook for it
 
 # KDHEtools v0.1.2.9014 (2023-08-10)
 
@@ -11,12 +29,12 @@ NEWS-KDHEtools
 
 - docs: Remove unused packages from DESCRIPTION Suggests and global.R
 
-  - Predictors, Blocktt/KDHEtools#7
+  - Blocktt/KDHEtools#7
 
 # KDHEtools v0.1.2.9013 (2023-08-10)
 
 - docs: Remove unused packages from DESCRIPTION Imports and global.R
-  - Predictors, Blocktt/KDHEtools#7
+  - Blocktt/KDHEtools#7
 
 # KDHEtools v0.1.2.9012 (2023-08-09)
 
@@ -25,12 +43,12 @@ NEWS-KDHEtools
 # KDHEtools v0.1.2.9011 (2023-08-09)
 
 - refactor: Shiny app taxa translator and attribute assignment
-  - Predictors, Blocktt/KDHEtools#4
+  - Blocktt/KDHEtools#4
 
 # KDHEtools v0.1.2.9010 (2023-08-08)
 
-- refactor: Move predictors file name and details to global
-  - Predictors, Blocktt/KDHEtools#3
+- refactor: Move predictors file name and details to global,
+  Blocktt/KDHEtools#3
 
 # KDHEtools v0.1.2.9009 (2023-08-08)
 
@@ -42,8 +60,7 @@ NEWS-KDHEtools
 
 # KDHEtools v0.1.2.9008 (2023-08-08)
 
-- docs: Referenced wrong issue
-  - Blocktt/KDHEtools#3
+- docs: Referenced wrong issue, Blocktt/KDHEtools#3
 
 # KDHEtools v0.1.2.9007 (2023-08-08)
 

@@ -3,7 +3,7 @@ Type: Package
 Title: Used to calculate Kansas DHE IBI metrics, scores, and produce output files 
 Description: Tools to calculate multi-metric index in R and Shiny.  
     Designed to work with Kansas DHE data.
-Version: 0.1.2.9014
+Version: 0.1.2.9015
 Authors@R: c(
   person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
   person("Diane","Allen", role="aut"),
@@ -14,15 +14,22 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
+Depends: 
+    R (>= 3.5.0)
 Imports:
   BioMonTools,
   shiny,
-  DT,
   shinyBS,
   shinyjs,
+  shinythemes,
+  shinyalert,
+  DT,
   knitr,
   rmarkdown,
-  StreamCatTools
+  StreamCatTools,
+  lubridate,
+  dplyr,
+  zip
 VignetteBuilder: knitr
 URL: https://github.com/Blocktt/KDHEtools
 BugReports: https://github.com/leppott/MBSStools/issues

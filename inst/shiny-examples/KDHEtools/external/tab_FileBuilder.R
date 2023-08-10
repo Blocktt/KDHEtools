@@ -20,7 +20,10 @@ function(){
                                                               , ".csv")
                                      )
 
-                                     , h4("B. User File Column Names")
+                                     , h4("B. Operational Taxonomic Unit")
+                                     , uiOutput("UI_taxatrans_otu_pick")
+
+                                     , h4("C. User File Column Names")
 
                                      , h6("Required Fields")
                                      , p("If the default values are present they will be auto-populated.")
@@ -31,15 +34,14 @@ function(){
                                      , h6("Optional Fields")
                                      , p("All columns other than those specified above (required) or below (optional) will be dropped.
                 IMPORTANT! Do not repeat the required columns, and do not include Life Stage or other fields that might cause a taxon to occur in more than one row for a given sample (which could lead to double-counting of that taxon in the richness metrics) .")
-
                                      , uiOutput("UI_taxatrans_user_col_groupby")
 
-                                     , h4("C. Run Operation")
+                                     , h4("D. Run Operation")
                                      , p("This button will merge the user file with the official taxa file")
                                      , shinyjs::disabled(shinyBS::bsButton("b_calc_taxatrans"
                                                                            , label = "Run Operation"))
 
-                                     , h4("D. Download Output")
+                                     , h4("E. Download Output")
                                      , p("All input and output files will be available in a single zip file.")
                                      , shinyjs::disabled(downloadButton("b_download_taxatrans"
                                                                         , "Download Results"))

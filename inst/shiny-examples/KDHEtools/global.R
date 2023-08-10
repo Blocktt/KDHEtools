@@ -1,17 +1,22 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9014"
+pkg_ver <- "0.1.2.9015"
 
 # Packages----
 library(shiny)
-library(DT)
 library(shinyjs)
+library(shinyBS)
+library(shinythemes)
+library(shinyalert)
+library(DT)
 library(BioMonTools)
 library(knitr)
 library(rmarkdown)
 library(StreamCatTools)
-library(shinyBS)
+library(lubridate)
+library(dplyr)
+library(zip)
 
 # Remove from global.R and DESCRIPTION
 # library(capture) # possible delete
@@ -100,8 +105,9 @@ fn_support_taxa_trans <- "KS_TaxaTranslator_20230717.csv"
 path_support_taxa_trans <- file.path("data", "taxa_trans"
                                      , fn_support_taxa_trans)
 col_taxaid_official_match <- "TaxaID_orig"
-col_taxaid_official_project <- "OTU_MMI_genus"
-col_taxaid_official_project_drop <- c("OTU_MMI", "OTU_BCG")
+col_taxaid_official_all <- c("OTU_MMI", "OTU_MMI_genus", "OTU_BCG")
+col_taxaid_official_mmi <- c("OTU_MMI", "OTU_MMI_genus")
+col_taxaid_official_mmi_default <- "OTU_MMI"
 #
 fn_support_taxa_trans_meta <- "KS_TaxaTranslator_Metadata_20230717.csv"
 path_support_taxa_trans_meta <- file.path("data", "taxa_trans"
