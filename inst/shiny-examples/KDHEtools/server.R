@@ -717,7 +717,7 @@ shinyServer(function(input, output, session) {
 
 
         # Remove non-project taxaID cols
-        col_drop_project <- col_taxaid_official_project_drop
+        col_drop_project <- col_taxaid_official_mmi_drop
         # Specific to shiny project, not a part of the taxa_translate function
         col_keep <- !names(taxatrans_results$merge) %in% col_drop_project
         taxatrans_results$merge <- taxatrans_results$merge[, col_keep]
@@ -939,7 +939,7 @@ shinyServer(function(input, output, session) {
       selectInput("taxatrans_user_col_sampid"
                   , label = str_col
                   , choices = c("", names(df_import_taxatrans()))
-                  , selected = "SampleID"
+                  , selected = toupper("SampleID")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -948,7 +948,7 @@ shinyServer(function(input, output, session) {
       selectInput("taxatrans_user_col_taxaid"
                   , label = str_col
                   , choices = c("", names(df_import_taxatrans()))
-                  , selected = "TaxaID"
+                  , selected = toupper("TaxaID")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -965,7 +965,7 @@ shinyServer(function(input, output, session) {
       selectInput("taxatrans_user_col_n_taxa"
                   , label = str_col
                   , choices = c("", names(df_import_taxatrans()))
-                  , selected = "N_Taxa"
+                  , selected = toupper("N_Taxa")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1339,7 +1339,7 @@ shinyServer(function(input, output, session) {
       selectInput("predictors_user_col_lat"
                   , label = str_col
                   , choices = c("", names(df_import_predictors()))
-                  , selected = "Latitude"
+                  , selected = toupper("Latitude")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1348,7 +1348,7 @@ shinyServer(function(input, output, session) {
       selectInput("predictors_user_col_long"
                   , label = str_col
                   , choices = c("", names(df_import_predictors()))
-                  , selected = "Longitude"
+                  , selected = toupper("Longitude")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1513,7 +1513,7 @@ shinyServer(function(input, output, session) {
                   , label = str_col
                   # , choices = c("SiteID", "feature", "in progress")
                   , choices = c("", names(df_import_mf1()))
-                  , selected = "SiteID"
+                  , selected = toupper("SiteID")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1523,7 +1523,7 @@ shinyServer(function(input, output, session) {
                   , label = str_col
                   #, choices = c("SiteID", "feature", "in progress")
                   , choices = c("", names(df_import_mf2()))
-                  , selected = "SiteID"
+                  , selected = toupper("SiteID")
                   , multiple = FALSE)
     })## UI_colnames
 

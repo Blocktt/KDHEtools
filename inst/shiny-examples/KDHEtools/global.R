@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9015"
+pkg_ver <- "0.1.2.9016"
 
 # Packages----
 library(shiny)
@@ -108,6 +108,8 @@ col_taxaid_official_match <- "TaxaID_orig"
 col_taxaid_official_all <- c("OTU_MMI", "OTU_MMI_genus", "OTU_BCG")
 col_taxaid_official_mmi <- c("OTU_MMI", "OTU_MMI_genus")
 col_taxaid_official_mmi_default <- "OTU_MMI"
+col_taxaid_official_mmi_drop <- col_taxaid_official_all[!col_taxaid_official_all
+                                          %in% col_taxaid_official_mmi_default]
 #
 fn_support_taxa_trans_meta <- "KS_TaxaTranslator_Metadata_20230717.csv"
 path_support_taxa_trans_meta <- file.path("data", "taxa_trans"

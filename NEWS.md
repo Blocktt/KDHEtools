@@ -3,7 +3,21 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-10 12:30:03.565687
+    #> Last Update: 2023-08-10 16:28:36.455596
+
+# KDHEtools v0.1.2.9016 (2023-08-10)
+
+- fix: Update changes in BioMonTools::taxa_translate,
+  Blocktt/KDHEtools#4
+
+- refactor: Update import functions in new sections to use all upper
+  case names for default selections
+
+  - Taxa Translator, Blocktt/KDHEtools#4
+
+  - Predictors, Blocktt/KDHEtools#3
+
+  - Merge Files, Blocktt/KDHEtools#1
 
 # KDHEtools v0.1.2.9015 (2023-08-10)
 
