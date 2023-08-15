@@ -30,7 +30,7 @@ function(){
 
              )## tabPanel ~ END
              # tabPanel, 3, Merge Files ----
-             , tabPanel("Within app Preparation (File Builder)"
+             , tabPanel("Within App Preparation"
                         , tabsetPanel(
                           # tabPanel, 1, Taxa Trans ----
                           tabPanel("1. Taxa Translate and Attribute Assignment",

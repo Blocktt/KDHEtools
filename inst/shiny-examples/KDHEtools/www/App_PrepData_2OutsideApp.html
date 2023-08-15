@@ -41,7 +41,7 @@ Comment
 <tbody>
 <tr>
 <td style="text-align:left;">
-SampleID
+SAMPLEID
 </td>
 <td style="text-align:left;">
 text
@@ -59,24 +59,7 @@ date, and replicate number).
 </tr>
 <tr>
 <td style="text-align:left;">
-CollDate
-</td>
-<td style="text-align:left;">
-date
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-Date on which the sample was collected.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-CollMeth
+STATIONID
 </td>
 <td style="text-align:left;">
 text
@@ -86,23 +69,6 @@ NA
 </td>
 <td style="text-align:left;">
 Yes
-</td>
-<td style="text-align:left;">
-Method used to collect the sample.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-StationID
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-No
 </td>
 <td style="text-align:left;">
 Unique site identifier.
@@ -110,7 +76,7 @@ Unique site identifier.
 </tr>
 <tr>
 <td style="text-align:left;">
-Lat
+LAT
 </td>
 <td style="text-align:left;">
 numeric
@@ -119,7 +85,7 @@ numeric
 real number, in decimal degrees
 </td>
 <td style="text-align:left;">
-No
+Yes
 </td>
 <td style="text-align:left;">
 NAD83 datum.
@@ -127,7 +93,7 @@ NAD83 datum.
 </tr>
 <tr>
 <td style="text-align:left;">
-Long
+LONG
 </td>
 <td style="text-align:left;">
 numeric
@@ -145,7 +111,7 @@ meridian) should be negative.
 </tr>
 <tr>
 <td style="text-align:left;">
-TaxaID
+TAXAID
 </td>
 <td style="text-align:left;">
 text
@@ -162,7 +128,7 @@ Taxonomic identification of organisms in each sample.
 </tr>
 <tr>
 <td style="text-align:left;">
-N_Taxa
+N_TAXA
 </td>
 <td style="text-align:left;">
 numeric
@@ -179,24 +145,7 @@ Number of individual valves (not number of taxa).
 </tr>
 <tr>
 <td style="text-align:left;">
-Exclude
-</td>
-<td style="text-align:left;">
-text
-</td>
-<td style="text-align:left;">
-TRUE, FALSE
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-Redundant (non-distinct) taxa should marked “TRUE”.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Nontarget
+NONTARGET
 </td>
 <td style="text-align:left;">
 text
@@ -213,7 +162,7 @@ Non-target taxa should be marked “TRUE”.
 </tr>
 <tr>
 <td style="text-align:left;">
-Airbreather
+AIRBREATHER
 </td>
 <td style="text-align:left;">
 text
@@ -230,7 +179,7 @@ Airbreathing taxa should be marked “TRUE”.
 </tr>
 <tr>
 <td style="text-align:left;">
-BCG_Attr
+BCG_ATTR
 </td>
 <td style="text-align:left;">
 text
@@ -248,7 +197,25 @@ taxon (relates to TaxaID).
 </tr>
 <tr>
 <td style="text-align:left;">
-Habit
+BCG_ATTR2
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Biological Condition Gradient (BCG) attribute of a macroinvertebrate
+taxon (relates to TaxaID).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HABIT
 </td>
 <td style="text-align:left;">
 text
@@ -267,7 +234,7 @@ Swimmers (SW).
 </tr>
 <tr>
 <td style="text-align:left;">
-Life_Cycle
+LIFE_CYCLE
 </td>
 <td style="text-align:left;">
 text
@@ -306,7 +273,7 @@ are included in the ‘tolerant’ metrics.
 </tr>
 <tr>
 <td style="text-align:left;">
-Phylum
+PHYLUM
 </td>
 <td style="text-align:left;">
 text
@@ -323,7 +290,7 @@ Entries should be consistent with the phylogeny.
 </tr>
 <tr>
 <td style="text-align:left;">
-Order
+ORDER
 </td>
 <td style="text-align:left;">
 text
@@ -340,7 +307,7 @@ Entries should be consistent with the phylogeny.
 </tr>
 <tr>
 <td style="text-align:left;">
-Family
+FAMILY
 </td>
 <td style="text-align:left;">
 text
@@ -357,7 +324,7 @@ Entries should be consistent with the phylogeny.
 </tr>
 <tr>
 <td style="text-align:left;">
-Genus
+GENUS
 </td>
 <td style="text-align:left;">
 text

@@ -11,4 +11,18 @@ output:
 knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
 ```
 
-# Jen to provide text
+# Preparing input files
+
+There are two pathways for preparing input files:
+
+**Option 1**: Generate a file outside of the Shiny app that is ready to go (i.e., has all the required fields, with exact column heading names). See the **Outside App Preparation** subtab for details.
+
+**Option 2**: Use the File Builder (see the **Within App Preparation** subtab for details).
+
+-   Step 1: Taxa Translate and Attribute Assignment
+
+-   Step 2: Generate Predictor Parameters
+
+-   Step 3: Merge Files
+
+Using the File Builder option ensures that you are using proper taxa attributes and predictors for the MMI calculation.
