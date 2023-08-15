@@ -1,0 +1,703 @@
+
+
+
+<div id="preparing-the-input-file" class="section level2">
+<h2>Preparing the input file</h2>
+<p>KDHEtools requires input files to be in a tabular format, saved as
+either comma-separated values (CSV) (most commonly used) or
+tab-separated (.txt or .tsv) files. Table 1 contains a list of required
+fields. Column names must match the spelling and symbology exactly as
+shown (some column headings have underscores). Note, macroinvertebrate
+traits are not required for each record (i.e., trait fields allow null
+values).</p>
+<p>Click here to view an <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files">EXAMPLE
+INPUT FILE</a>. If the user is unsure how to download a data file from
+GitHub, <a href="https://www.youtube.com/watch?v=GIJdfuAoqFI">watch this
+short video</a> or contact Ben Block (Ben.Block@tetratech.com).</p>
+<div id="table-1.-list-of-required-fields.-column-names-must-match-the-spelling-and-symbology-exactly-as-shown.-note-that-some-fields-are-upper-case-while-others-are-camel-case." class="section level4">
+<h4>Table 1. List of required fields. Column names must match the
+spelling and symbology exactly as shown. Note that some fields are upper
+case while others are camel case.</h4>
+<table class="table" style="font-size: 14px; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Column Name
+</th>
+<th style="text-align:left;">
+Data Type
+</th>
+<th style="text-align:left;">
+Domain (allowable entries)
+</th>
+<th style="text-align:left;">
+Null Allowed
+</th>
+<th style="text-align:left;">
+Comment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+SampleID
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Unique sample identifier (typically comprised of the site name, sample
+date, and replicate number).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CollDate
+</td>
+<td style="text-align:left;">
+date
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Date on which the sample was collected.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CollMeth
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Method used to collect the sample.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+StationID
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Unique site identifier.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+real number, in decimal degrees
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+NAD83 datum.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Long
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+real number, in decimal degrees
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+NAD83 datum. Longitude values in North America (west of the prime
+meridian) should be negative.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TaxaID
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Taxonomic identification of organisms in each sample.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N_Taxa
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+non-negative real number
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Number of individual valves (not number of taxa).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Exclude
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+TRUE, FALSE
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Redundant (non-distinct) taxa should marked “TRUE”.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nontarget
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+TRUE, FALSE
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Non-target taxa should be marked “TRUE”.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Airbreather
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+TRUE, FALSE
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Airbreathing taxa should be marked “TRUE”.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_Attr
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Biological Condition Gradient (BCG) attribute of a macroinvertebrate
+taxon (relates to TaxaID).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Habit
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+BU, CB, CN, SP, SW (select multiple)
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Categorization of macroinvertebrate habits (i.e., mode of existence:
+Burrowers (BU), Climbers (CB), Clingers (CN), Sprawlers (SP), and
+Swimmers (SW).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Life_Cycle
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+UNI, SEMI, MULTI (select one)
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Number of broods or generations of an organism in a year (also referred
+to as ‘voltinism’): univoltine (UNI), semivoltine (SEMI), or
+multivoltine (MULTI).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TolVal
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+number ranging from 0-10
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Taxa with tolerance values ranging from 0 to 3 are considered
+‘intolerant’ to anthropogenic disturbance and are included in the
+‘intolerant’ metric calculations. Those with values ranging from 7 to 10
+are included in the ‘tolerant’ metrics.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phylum
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Order
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Family
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Genus
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Al2O3Ws
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological aluminum
+oxide (Al2O3) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CFS
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Stream flow estimated by Perry et al. 2002 (cubic feet per second).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ClayWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % clay content of soils
+(STATSGO).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ElevCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean elevation (m).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fe2O3Cat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean % of lithological ferric
+oxide (Fe2O3) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+K2OWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological potassium
+oxide (K2O) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+L3Eco
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+eco3_25, eco3_26, eco3_27, eco3_28, eco3_29, eco3_39, eco3_40, eco3_47
+(select one)
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Level III Ecoregion (Omernik): Western High Plains (eco3_25),
+Southwestern Tablelands (eco3_26), Central Great Plains (eco3_27), Flint
+Hills (eco3_28), Central Oklahoma/Texas Plains (eco3_29), Ozark
+Highlands (eco3_39), Central Irregular Plains (eco3_40), Western Corn
+Belt Plains (eco3_47).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MgOCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): Mean % of lithological magnesium
+oxide (MgO) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological nitrogen
+(N) content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PermWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean permeability (cm/hour) of
+soils (STATSGO).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PrecipCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): PRISM climate data - 30-year
+normal mean precipitation (mm): Annual period: 1981-2010.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PrecipWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): PRISM climate data - 30-year
+normal mean precipitation (mm): Annual period: 1981-2010.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SandWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % sand content of soils
+(STATSGO)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean % of lithological sulfur (S)
+content in surface or near surface geology.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TmeanCat
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Catchment scale): PRISM climate data - 30-year
+normal mean temperature (°C): Annual period: 1981-2010.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WetIndexWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean Composite Topographic Index
+(CTI) [Wetness Index].
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WsAreaSqKm
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable: Watershed area (square kilometers).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WtDepWs
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+StreamCat variable (Watershed scale): Mean seasonal water table depth
+(cm) of soils (STATSGO).
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>

@@ -1,0 +1,164 @@
+
+
+
+<div id="input-metrics-and-scoring-formulae" class="section level2">
+<h2>Input metrics and scoring formulae</h2>
+<p>The Kansas Macroinvertebrate MMI was calibrated for applicability
+statewide; however, all five metrics are adjusted by metric adjustment
+factors. The metric adjustment factors represent natural stream types.
+Table 1 shows the input metrics and scoring formulae for the MMI
+(metrics in need of adjustment have the “_RFadj” suffix). See the
+<strong>“Metric Adjustment Download”</strong> tab for more information
+on factors and how to assign factor values to each site.</p>
+<div id="table-1.-metrics-and-scoring-formulae-for-the-kansas-macroinvertebrate-mmi.-de-discrimination-efficiency-trend-metric-response-to-stress-5th-5th-percentile-of-metric-values-and-95th-95th-percentile-of-metric-values.-all-metrics-were-adjusted-by-randomforest-models-rf-adj." class="section level4">
+<h4>Table 1. Metrics and scoring formulae for the Kansas
+Macroinvertebrate MMI. DE = discrimination efficiency, Trend = metric
+response to stress, 5th = 5th percentile of metric values, and 95th =
+95th percentile of metric values. All metrics were adjusted by
+randomForest models (RF adj).</h4>
+<table class="table" style="font-size: 14px; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Metric Name
+</th>
+<th style="text-align:left;">
+Metric Abbreviation
+</th>
+<th style="text-align:left;">
+Metric DE (Trend)
+</th>
+<th style="text-align:left;">
+Scoring Formula
+</th>
+<th style="text-align:right;">
+5th
+</th>
+<th style="text-align:right;">
+95th
+</th>
+<th style="text-align:left;">
+Metric Category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of EPT taxa (RF adj)
+</td>
+<td style="text-align:left;">
+nt_EPT_RFadj
+</td>
+<td style="text-align:left;">
+70 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric + 7.88) / 13.67
+</td>
+<td style="text-align:right;">
+-7.88
+</td>
+<td style="text-align:right;">
+5.79
+</td>
+<td style="text-align:left;">
+Composition
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Percent sensitive taxa (BCG attribute III+IV better) (RF adj)
+</td>
+<td style="text-align:left;">
+pt_BCG_att1i234b_RFadj
+</td>
+<td style="text-align:left;">
+77 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric + 7.53) / 13.32
+</td>
+<td style="text-align:right;">
+-7.53
+</td>
+<td style="text-align:right;">
+5.79
+</td>
+<td style="text-align:left;">
+Tolerance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hilsenhoff Biotic Index (HBI) (RF adj)
+</td>
+<td style="text-align:left;">
+x_HBI_RFadj
+</td>
+<td style="text-align:left;">
+68 (INC)
+</td>
+<td style="text-align:left;">
+100*(0.53 - metric) / 0.88
+</td>
+<td style="text-align:right;">
+-0.35
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:left;">
+Tolerance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of climber + clinger taxa (RF adj)
+</td>
+<td style="text-align:left;">
+nt_habit_climbcling_RFadj
+</td>
+<td style="text-align:left;">
+70 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric + 10.44) / 18.4
+</td>
+<td style="text-align:right;">
+-10.44
+</td>
+<td style="text-align:right;">
+7.96
+</td>
+<td style="text-align:left;">
+Habit
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of semivoltine taxa (RF adj)
+</td>
+<td style="text-align:left;">
+nt_volt_semi_RFadj
+</td>
+<td style="text-align:left;">
+66 (DEC)
+</td>
+<td style="text-align:left;">
+100*(metric + 3.57) / 7.56
+</td>
+<td style="text-align:right;">
+-3.57
+</td>
+<td style="text-align:right;">
+3.99
+</td>
+<td style="text-align:left;">
+Life cycle
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>

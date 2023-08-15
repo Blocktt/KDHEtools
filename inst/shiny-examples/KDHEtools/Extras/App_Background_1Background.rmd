@@ -1,0 +1,81 @@
+---
+title: "Background Information"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+always_allow_html: true
+output:
+  html_fragment:
+    toc: yes
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
+```
+
+## Background
+
+This R Shiny application (KDHEtools) calculates numeric Multi-Metric
+Index (MMI) scores based on samples collected from wadeable streams in
+Kansas (statewide). Five metrics are adjusted by 12-16 different factors
+that represent natural stream types (see the **"Metric Adjustment
+Download"** tab). A report detailing the development of the Kansas
+Macroinvertebrate MMI can be found
+[here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports).
+
+## Funding
+
+Development of KDHEtools and the underlying MMI was funded by the Kansas
+Department of Health and Environment (KDHE).
+
+## Intended application
+
+The purpose of the index is to describe the macroinvertebrate community
+of Kansas freshwater streams and rivers for the purpose of biological
+condition assessment. A macroinvertebrate IBI enhances the state of
+Kansas's monitoring and assessment strategy by adding a numeric
+indicator of macroinvertebrate community structure that could be used
+to:
+
+-   Evaluate attainment of Kansas's narrative surface water quality
+    criteria protective of aquatic life for wadeable streams and rivers
+-   Assist in identification of chemical and physical stressors to
+    aquatic life of wadeable streams and rivers in Kansas
+-   Identify improvements in aquatic life of wadeable streams and rivers
+    in Kansas following restoration efforts.
+
+The Kansas Macroinvertebrate MMI is intended to be applied to samples
+that meet the following criteria:
+
+-   Geographic area: Kansas
+
+-   Stream type: freshwater, wadeable
+
+-   Subsample size: 200-count samples are recommended for best
+    performance; once you get below 100, interpret with caution
+
+-   Taxonomic resolution: genus or species-level as allowed by available
+    keys, specimen condition, and specimen maturity
+
+-   Collection gear: 500-µm mesh D-frame net and fine point forceps •
+    Collection period: April 15--October 15
+
+-   Collection method: KDHE Stream Probabilistic
+    ([SP](https://www.kdhe.ks.gov/1230/Stream-Probabilistic)) program or
+    Stream Biological
+    ([SB](https://www.kdhe.ks.gov/1233/Stream-Biological-Monitoring-Program))
+    Monitoring Program protocols. Organisms are composited from multiple
+    habitats. Field staff try to maximize the diversity of organisms
+    being captured, targeting macrohabitats (riffles, leafpacks,
+    undercut banks and rootmats, fine substrate, aquatic vegetation, and
+    large woody debris). One or two-person field crews collect organisms
+    with 500-µm mesh D-frame nets, using sweeps or kicks, or by hand
+    picking organisms off large hard substrates. Organisms are picked in
+    the field and identified in the lab, going to genus or species-level
+    as allowed by available keys, specimen condition, and specimen
+    maturity.
+
+For more information on sampling methodologies and application limits,
+see the Kansas Macroinvertebrate MMI development report
+[here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports).

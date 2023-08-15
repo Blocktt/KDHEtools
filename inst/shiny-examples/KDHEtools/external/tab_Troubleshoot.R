@@ -6,7 +6,7 @@ function(){
                , width = 3
              )# sidebarPanel~END
              , mainPanel(
-               includeHTML("www/App_Instructions.html")
+               includeHTML("www/App_Troubleshoot.html")
                , width = 7
              )# mainPanel~END
            )# sidebarLayout~END

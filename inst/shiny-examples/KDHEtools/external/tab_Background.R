@@ -11,7 +11,7 @@ function(){
                           , width = 3
                         )# sidebarPanel~END
                         , mainPanel(
-                          includeHTML("www/App_Background.html")
+                          includeHTML("www/App_Background_1Background.html")
                           , width = 7
                         )# mainPanel~END
                       )# sidebarLayout~END
@@ -26,7 +26,7 @@ function(){
                             , width = 3
                           )# sidebarPanel~END
                           , mainPanel(
-                            includeHTML("www/App_Background.html")
+                            includeHTML("www/App_Background_2InputMetrics.html")
                             , width = 7
                           )# mainPanel~END
                         )# sidebarLayout~END
@@ -40,7 +40,7 @@ function(){
                             , width = 3
                           )# sidebarPanel~END
                           , mainPanel(
-                            includeHTML("www/App_Background.html")
+                            includeHTML("www/App_Background_3PredictorVariables.html")
                             , width = 7
                           )# mainPanel~END
                         )# sidebarLayout~END
@@ -48,21 +48,3 @@ function(){
            ) ## tabsetPanel~END
   )## tabPanel~END
 }##FUNCTION~END
-
-
-
-
-# function(){
-#   tabPanel("Background",
-#            sidebarLayout(
-#              sidebarPanel(
-#                img(src = "KDHE_logo.png", height = 200)
-#                , width = 3
-#              )# sidebarPanel~END
-#              , mainPanel(
-#                includeHTML("www/App_Background.html")
-#                , width = 7
-#              )# mainPanel~END
-#            )# sidebarLayout~END
-#   ) # tabPanel~END
-# }# FUNCTION~END

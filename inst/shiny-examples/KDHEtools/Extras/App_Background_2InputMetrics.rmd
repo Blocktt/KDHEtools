@@ -1,0 +1,46 @@
+---
+title: "Background Input Metrics"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+always_allow_html: true
+output:
+  html_fragment:
+    toc: yes
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
+```
+
+## Input metrics and scoring formulae
+
+The Kansas Macroinvertebrate MMI was calibrated for applicability
+statewide; however, all five metrics are adjusted by metric adjustment
+factors. The metric adjustment factors represent natural stream types.
+Table 1 shows the input metrics and scoring formulae for the MMI
+(metrics in need of adjustment have the "\_RFadj" suffix). See the
+**"Metric Adjustment Download"** tab for more information on factors and
+how to assign factor values to each site.
+
+#### Table 1. Metrics and scoring formulae for the Kansas Macroinvertebrate MMI. DE = discrimination efficiency, Trend = metric response to stress, 5th = 5th percentile of metric values, and 95th = 95th percentile of metric values. All metrics were adjusted by randomForest models (RF adj).
+
+```{r table_1}
+library(readxl)
+library(knitr)
+library(kableExtra)
+# state directories
+table.dir <- "tables"
+table.file <- "Instruction_Tables.xlsx"
+tab1.dir <- "BugMetrics"
+
+table1 <- read_excel(file.path(table.dir, table.file), sheet = tab1.dir
+                     , na = c("NA", ""), trim_ws = TRUE, skip = 0
+                     , col_names = TRUE)  
+
+options(knitr.kable.NA = '')
+table1 %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "left", font_size = 14)
+```

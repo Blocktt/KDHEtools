@@ -1,5 +1,5 @@
 Results Log from KDHEtools Shiny App
-2023-08-15 13:07:44
+2023-08-15 13:46:37
 file = ShinyApp_TestFile_Formatted_AllwCFS_subset1.csv
 EXCLUDE column does not have any TRUE values. 
   Valid values are TRUE or FALSE.  

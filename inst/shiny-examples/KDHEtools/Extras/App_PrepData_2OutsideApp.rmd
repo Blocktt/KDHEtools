@@ -1,0 +1,39 @@
+---
+title: "Instructions and Background Information"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+always_allow_html: true
+output:
+  html_fragment:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
+```
+
+## Preparing the input file
+
+KDHEtools requires input files to be in a tabular format, saved as either comma-separated values (CSV) (most commonly used) or tab-separated (.txt or .tsv) files. Table 1 contains a list of required fields. Column names must match the spelling and symbology exactly as shown (some column headings have underscores). Note, macroinvertebrate traits are not required for each record (i.e., trait fields allow null values).
+
+Click here to view an [EXAMPLE INPUT FILE](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files). If the user is unsure how to download a data file from GitHub, [watch this short video](https://www.youtube.com/watch?v=GIJdfuAoqFI) or contact Ben Block (Ben.Block\@tetratech.com).
+
+#### Table 1. List of required fields. Column names must match the spelling and symbology exactly as shown. Note that some fields are upper case while others are camel case.
+
+```{r table_1}
+library(readxl)
+library(knitr)
+library(kableExtra)
+# state directories
+table.dir <- "tables"
+table.file <- "Instruction_Tables.xlsx"
+tab1.dir <- "Instr_Table_Bugs"
+
+table1 <- read_excel(file.path(table.dir, table.file), sheet = tab1.dir
+                     , na = c("NA", ""), trim_ws = TRUE, skip = 0
+                     , col_names = TRUE)  
+
+# kable(table1)
+table1 %>% 
+  kbl() %>% 
+  kable_styling(full_width = F, position = "left", font_size = 14)
+```

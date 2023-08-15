@@ -6,40 +6,36 @@ function(){
                # 0. Progress
                h3("App Steps")
                , h4("1. Load File")
-               , h5("Select file parameters")
-               , radioButtons('sep', 'Separator'
-                              ,c(Comma=',',
-                                 Semicolon=';',
-                                 Tab='\t'),
-                              ',')
-               , radioButtons('quote', 'Quote',
-                              c(None='',
-                                'Double Quote'='"',
-                                'Single Quote'="'"),
-                              '"')
-               , fileInput('fn_input', 'Choose file to upload',
-                           accept = c(
-                             'text/csv',
-                             'text/comma-separated-values',
-                             'text/tab-separated-values',
-                             'text/plain',
-                             '.csv',
-                             '.tsv'
-                           )
-               )##fileInput~END
-               # , fileInput("fn_input"
-               #             , label = "Choose file to upload"
-               #             , multiple = FALSE
-               #             , accept = c("text/csv"
-               #                          , "text/comma-separated-values"
-               #                          , "text/tab-separated-values"
-               #                          , "text/plain"
-               #                          , ".csv")
+               # , h5("Select file parameters")
+               # , radioButtons('sep', 'Separator'
+               #                ,c(Comma=',',
+               #                   Semicolon=';',
+               #                   Tab='\t'),
+               #                ',')
+               # , radioButtons('quote', 'Quote',
+               #                c(None='',
+               #                  'Double Quote'='"',
+               #                  'Single Quote'="'"),
+               #                '"')
+               # , fileInput('fn_input', 'Choose file to upload',
+               #             accept = c(
+               #               'text/csv',
+               #               'text/comma-separated-values',
+               #               'text/tab-separated-values',
+               #               'text/plain',
+               #               '.csv',
+               #               '.tsv'
+               #             )
                # )##fileInput~END
-
-
-
-
+               , fileInput("fn_input"
+                           , label = "Choose file to upload"
+                           , multiple = FALSE
+                           , accept = c("text/csv"
+                                        , "text/comma-separated-values"
+                                        , "text/tab-separated-values"
+                                        , "text/plain"
+                                        , ".csv")
+               )##fileInput~END
 
                , h4("2. Excluded Taxa")
                , checkboxInput("ExclTaxa", "Generate Exclude Taxa Column", TRUE)
@@ -59,9 +55,12 @@ function(){
              )##sidebarPanel~END
              , mainPanel(
                tabsetPanel(type="tabs"
-                           , tabPanel("Data, Import"
+                           , tabPanel("Data Import Viewer"
                                       , DT::dataTableOutput('df_import_DT'))
+                           , tabPanel("Index Calculator Operation Instructions"
+                                      , includeHTML("www/App_CalculateMMI_Instructions.html")
                )##tabsetPanel~END
+             )##tabsetPanel~END
              )##mainPanel~END
 
            )##sidebarLayout~END

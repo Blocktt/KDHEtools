@@ -9,7 +9,7 @@ function(){
                           , width = 3
                         )# sidebarPanel~END
                         , mainPanel(
-                          includeHTML("www/App_Background.html")
+                          includeHTML("www/App_PrepData_1PrepData.html")
                           , width = 7
                         )# mainPanel~END
                       )# sidebarLayout~END
@@ -23,7 +23,7 @@ function(){
                             , width = 3
                           )# sidebarPanel~END
                           , mainPanel(
-                            includeHTML("www/App_Background.html")
+                            includeHTML("www/App_PrepData_2OutsideApp.html")
                             , width = 7
                           )# mainPanel~END
                         )# sidebarLayout~END

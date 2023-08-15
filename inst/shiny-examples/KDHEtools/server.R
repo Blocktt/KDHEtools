@@ -52,9 +52,12 @@ shinyServer(function(input, output, session) {
         }##IF~is.null~END
 
         # Read user imported file
+        # df_input <- read.csv(inFile$datapath, header = TRUE,
+        #                      sep = input$sep,
+        #                      quote = input$quote, stringsAsFactors = FALSE)
+
         df_input <- read.csv(inFile$datapath, header = TRUE,
-                             sep = input$sep,
-                             quote = input$quote, stringsAsFactors = FALSE)
+                             stringsAsFactors = FALSE)
 
         required_columns <- c("SAMPLEID", "STATIONID", "LAT", "LONG", "TAXAID"
                               , "N_TAXA", "NONTARGET", "AIRBREATHER", "BCG_Attr"

@@ -1,0 +1,31 @@
+---
+title: "Troubleshooting"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+always_allow_html: true
+output:
+  html_fragment:
+    toc: yes
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
+```
+
+## Contact Information
+
+If you encounter problems with the KDHEtools app and/or have suggestions
+on ways to further improve it, please contact Ben Block from Tetra Tech
+via email (Ben.Block\@tetratech.com). For more information on this
+project, please contact Tony Stahl (Anthony.Stahl\@ks.gov).
+
+## Frequently asked questions and troubleshooting
+
+1.  Why am I getting an error saying that I am missing columns even when I am not?
+    -   You may have incorrectly spelled a given column. Also, some columns (e.g., Index_Name) require an underscore to separate the two words.
+2.  Why does my data look strange in the data viewer?
+    -   You likely have the incorrect Separator or Quote selected. Otherwise, there may be commas in text fields when the comma separator is selected.
+3.  The Index calculation is taking forever to calculate, has the app frozen?
+    -   Even though R works remarkably fast, a large dataset will cause the app to slow down. The estimate is approximately 30 seconds for small datasets; however, this could extend to a few minutes for large datasets.
