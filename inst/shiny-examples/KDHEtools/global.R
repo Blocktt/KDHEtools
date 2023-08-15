@@ -1,43 +1,22 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9012"
+pkg_ver <- "0.1.2.9016"
 
 # Packages----
 library(shiny)
-library(DT)
 library(shinyjs)
+library(shinyBS)
+library(shinythemes)
+library(shinyalert)
+library(DT)
 library(BioMonTools)
 library(knitr)
 library(rmarkdown)
-
-## Pkg, New
 library(StreamCatTools)
-
-## Pkg, No Reference
-library(readxl)       # no references
-library(reshape2)     # no references
-library(dplyr)        # no references
-library(tidyr)        # no references
-library(stringr)      # no references
-library(shinythemes)  # no references
-library(randomForest) # no references
-
-## Pkg, Add to DESCRIPTION
-library(shinyBS)
-library(utils)        # no references
-library(markdown)     # no references
-library(magrittr)     # no references
-
-## Pkg, Add from DESCRIPTION
-library(flextable)    # no references
-library(kableExtra)   # no references
-
-## Pkg, Possible delete
-library(ggplot2) # possible delete  # no references
-library(maps)    # possible delete  # no references
-library(leaflet) # possible delete  # no references
-library(mapview) # possible delete  # no references
+library(lubridate)
+library(dplyr)
+library(zip)
 
 # Remove from global.R and DESCRIPTION
 # library(capture) # possible delete
@@ -46,6 +25,9 @@ library(mapview) # possible delete  # no references
 # By default, the file size limit is 5MB.
 # It can be changed by setting this option.
 options(shiny.maxRequestSize = 25 * 1024^2)
+
+# Default Import File Sep
+sep_default <- ","
 
 # Folders----
 path_data <- file.path("data")
@@ -123,8 +105,11 @@ fn_support_taxa_trans <- "KS_TaxaTranslator_20230717.csv"
 path_support_taxa_trans <- file.path("data", "taxa_trans"
                                      , fn_support_taxa_trans)
 col_taxaid_official_match <- "TaxaID_orig"
-col_taxaid_official_project <- "OTU_MMI_genus"
-col_taxaid_official_project_drop <- c("OTU_MMI", "OTU_BCG")
+col_taxaid_official_all <- c("OTU_MMI", "OTU_MMI_genus", "OTU_BCG")
+col_taxaid_official_mmi <- c("OTU_MMI", "OTU_MMI_genus")
+col_taxaid_official_mmi_default <- "OTU_MMI"
+col_taxaid_official_mmi_drop <- col_taxaid_official_all[!col_taxaid_official_all
+                                          %in% col_taxaid_official_mmi_default]
 #
 fn_support_taxa_trans_meta <- "KS_TaxaTranslator_Metadata_20230717.csv"
 path_support_taxa_trans_meta <- file.path("data", "taxa_trans"

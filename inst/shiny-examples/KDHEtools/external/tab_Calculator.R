@@ -29,11 +29,16 @@ function(){
                            )
                )##fileInput~END
                #, tags$hr()
-               , h4("2. Calculate IBI")
+
+               , h4("2. Excluded Taxa")
+               , checkboxInput("ExclTaxa", "Generate Exclude Taxa Column", TRUE)
+               # need to create code to use in b_Calc
+
+               , h4("3. Calculate IBI")
                , actionButton("b_Calc", "Calculate Metric Values and Scores")
                , tags$hr()
-               , h4("3. Download Results")
 
+               , h4("4. Download Results")
                # Button
                , p("Select button to download zip file with input and results.")
                , p("Check 'results_log.txt' for any warnings or messages.")

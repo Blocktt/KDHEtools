@@ -111,6 +111,64 @@ shinyServer(function(input, output, session) {
     observeEvent(input$b_Calc, {
         shiny::withProgress({
             #
+
+            # NEED code for Excl Taxa
+            # (Erik) Not sure where to put in this section
+          # Commented out
+          # Needs to be after import data
+
+          # ## Calc, 2, Exclude Taxa ----
+          # prog_detail <- "Calculate, Exclude Taxa"
+          # message(paste0("\n", prog_detail))
+          # # Increment the progress bar, and update the detail text.
+          # incProgress(1/prog_n, detail = prog_detail)
+          # Sys.sleep(prog_sleep)
+          # # Calc
+          #
+          # message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
+          #
+          # if (input$ExclTaxa) {
+          #   ## Get TaxaLevel names present in user file
+          #   phylo_all <- c("Kingdom"
+          #                  , "Phylum"
+          #                  , "SubPhylum"
+          #                  , "Class"
+          #                  , "SubClass"
+          #                  , "Order"
+          #                  , "SubOrder"
+          #                  , "InfraOrder"
+          #                  , "SuperFamily"
+          #                  , "Family"
+          #                  , "SubFamily"
+          #                  , "Tribe"
+          #                  , "Genus"
+          #                  , "SubGenus"
+          #                  , "Species"
+          #                  , "Variety")
+          #   phylo_all <- toupper(phylo_all) # so matches rest of file
+          #
+          #   # case and matching of taxa levels handled inside of markExluded
+          #
+          #   # overwrite current data frame
+          #   df_input <- BioMonTools::markExcluded(df_samptax = df_input
+          #                                         , SampID = "SAMPLEID"
+          #                                         , TaxaID = "TAXAID"
+          #                                         , TaxaCount = "N_TAXA"
+          #                                         , Exclude = "EXCLUDE"
+          #                                         , TaxaLevels = phylo_all
+          #                                         , Exceptions = NA)
+          #
+          #   # Save Results
+          #   fn_excl <- paste0(fn_input_base, "_bcgcalc_1markexcl.csv")
+          #   dn_excl <- path_results
+          #   pn_excl <- file.path(dn_excl, fn_excl)
+          #   write.csv(df_input, pn_excl, row.names = FALSE)
+          #
+          # }## IF ~ input$ExclTaxa
+
+
+
+
             # Number of increments
             n_inc <- 8
 
@@ -148,8 +206,8 @@ shinyServer(function(input, output, session) {
 
             # QC, Index Period
             QC_CollMonth <- df_data %>%
-              mutate(CollMonth = lubridate::month(CollDate)) %>%
-              pull(CollMonth)
+              dplyr::mutate(CollMonth = lubridate::month(CollDate)) %>%
+              dplyr::pull(CollMonth)
 
             N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth > 10
                                     , na.rm = TRUE)
@@ -434,7 +492,7 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }##IF~is.null~END
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       # Define file
       fn_inFile <- inFile$datapath
@@ -534,6 +592,7 @@ shinyServer(function(input, output, session) {
         sel_user_taxaid  <- input$taxatrans_user_col_taxaid
         sel_user_ntaxa   <- input$taxatrans_user_col_n_taxa
         sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
+        sel_user_otu     <- input$taxatrans_user_otu
 
         # include = yes; unique(sel_user_groupby)
         # include sampid, taxaid, and n_taxa so not dropped
@@ -649,7 +708,7 @@ shinyServer(function(input, output, session) {
                          , df_official_metadata = df_taxa_trans_meta
                          , taxaid_user = sel_user_taxaid
                          , taxaid_official_match = col_taxaid_official_match
-                         , taxaid_official_project = col_taxaid_official_project
+                         , taxaid_official_project = sel_user_otu
                          , taxaid_drop = NULL
                          , col_drop = NULL
                          , sum_n_taxa_boo = TRUE
@@ -658,7 +717,7 @@ shinyServer(function(input, output, session) {
 
 
         # Remove non-project taxaID cols
-        col_drop_project <- col_taxaid_official_project_drop
+        col_drop_project <- col_taxaid_official_mmi_drop
         # Specific to shiny project, not a part of the taxa_translate function
         col_keep <- !names(taxatrans_results$merge) %in% col_drop_project
         taxatrans_results$merge <- taxatrans_results$merge[, col_keep]
@@ -671,7 +730,7 @@ shinyServer(function(input, output, session) {
           col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid
                                                                 , sel_user_taxaid
                                                                 , sel_user_ntaxa
-                                                                , col_taxaid_official_project
+                                                                , sel_user_otu
                                                                 , sel_user_groupby)]
           df_ttrm <- df_ttrm[, col_keep_ttrm]
           # merge with attributes
@@ -731,7 +790,7 @@ shinyServer(function(input, output, session) {
         col_other <- names(taxatrans_results$merge)[!names(taxatrans_results$merge)
                                                     %in% col_start]
         ## remove TaxaTrans TaxaID column (defined in Global.R)
-        col_other <- col_other[!col_other %in% col_taxaid_official_project]
+        col_other <- col_other[!col_other %in% sel_user_otu]
         ## Apply
         taxatrans_results$merge <- taxatrans_results$merge[, c(col_start
                                                                , col_other)]
@@ -762,7 +821,7 @@ shinyServer(function(input, output, session) {
         ## File version names
         df_save <- data.frame(Calculation = "KS"
                               , OperationalTaxonomicUnit = fn_taxoff
-                              , TranslationTable = col_taxaid_official_project
+                              , TranslationTable = sel_user_otu
                               , AttributeTable = fn_taxoff_attr)
         fn_part <- paste0("_taxatrans_", "0fileversions", ".csv")
         write.csv(df_save
@@ -880,7 +939,7 @@ shinyServer(function(input, output, session) {
       selectInput("taxatrans_user_col_sampid"
                   , label = str_col
                   , choices = c("", names(df_import_taxatrans()))
-                  , selected = "SampleID"
+                  , selected = toupper("SampleID")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -889,7 +948,7 @@ shinyServer(function(input, output, session) {
       selectInput("taxatrans_user_col_taxaid"
                   , label = str_col
                   , choices = c("", names(df_import_taxatrans()))
-                  , selected = "TaxaID"
+                  , selected = toupper("TaxaID")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -906,7 +965,7 @@ shinyServer(function(input, output, session) {
       selectInput("taxatrans_user_col_n_taxa"
                   , label = str_col
                   , choices = c("", names(df_import_taxatrans()))
-                  , selected = "N_Taxa"
+                  , selected = toupper("N_Taxa")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -918,7 +977,14 @@ shinyServer(function(input, output, session) {
                   , multiple = TRUE)
     })## UI_colnames
 
-
+    output$UI_taxatrans_otu_pick <- renderUI({
+      str_col <- "Prefered OTU"
+      selectInput("taxatrans_user_otu"
+                  , label = str_col
+                  , choices = col_taxaid_official_mmi
+                  , selected = col_taxaid_official_mmi_default
+                  , multiple = FALSE)
+    })## UI_colnames
 
     # File Builder, Predictors----
 
@@ -944,7 +1010,7 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }##IF~is.null~END
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       # Define file
       fn_inFile <- inFile$datapath
@@ -1273,7 +1339,7 @@ shinyServer(function(input, output, session) {
       selectInput("predictors_user_col_lat"
                   , label = str_col
                   , choices = c("", names(df_import_predictors()))
-                  , selected = "Latitude"
+                  , selected = toupper("Latitude")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1282,7 +1348,7 @@ shinyServer(function(input, output, session) {
       selectInput("predictors_user_col_long"
                   , label = str_col
                   , choices = c("", names(df_import_predictors()))
-                  , selected = "Longitude"
+                  , selected = toupper("Longitude")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1330,7 +1396,7 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }##IF~is.null~END
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       # Define file
       fn_inFile <- inFile$datapath
@@ -1384,7 +1450,7 @@ shinyServer(function(input, output, session) {
       # Define file
       fn_inFile <- inFile$datapath
 
-      sep_user <- input$sep
+      sep_user <- sep_default
 
       #message(getwd())
       #message(paste0("Import, separator: '", input$sep,"'"))
@@ -1447,7 +1513,7 @@ shinyServer(function(input, output, session) {
                   , label = str_col
                   # , choices = c("SiteID", "feature", "in progress")
                   , choices = c("", names(df_import_mf1()))
-                  , selected = "SiteID"
+                  , selected = toupper("SiteID")
                   , multiple = FALSE)
     })## UI_colnames
 
@@ -1457,7 +1523,7 @@ shinyServer(function(input, output, session) {
                   , label = str_col
                   #, choices = c("SiteID", "feature", "in progress")
                   , choices = c("", names(df_import_mf2()))
-                  , selected = "SiteID"
+                  , selected = toupper("SiteID")
                   , multiple = FALSE)
     })## UI_colnames
 
