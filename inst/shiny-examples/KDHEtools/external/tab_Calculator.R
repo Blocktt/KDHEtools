@@ -1,5 +1,5 @@
 function(){
-  tabPanel("Index Calculator",
+  tabPanel("Calculate MMI",
            # SideBar
            sidebarLayout(
              sidebarPanel(

@@ -1,5 +1,5 @@
 function(){
-  tabPanel("Instructions",
+  tabPanel("Troubleshooting",
            sidebarLayout(
              sidebarPanel(
                img(src = "KDHE_logo.png", height = 200)

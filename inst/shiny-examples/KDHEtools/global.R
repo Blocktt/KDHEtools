@@ -18,9 +18,6 @@ library(lubridate)
 library(dplyr)
 library(zip)
 
-# Remove from global.R and DESCRIPTION
-# library(capture) # possible delete
-
 # File Size
 # By default, the file size limit is 5MB.
 # It can be changed by setting this option.
