@@ -56,15 +56,14 @@ shinyServer(function(input, output, session) {
                              sep = input$sep,
                              quote = input$quote, stringsAsFactors = FALSE)
 
-        required_columns <- c("SampleID", "CollDate", "CollMeth"
-                              , "StationID", "Lat", "Long", "TaxaID"
-                              , "N_Taxa", "Exclude", "Nontarget","Airbreather"
-                              , "BCG_Attr", "Habit", "Life_Cycle", "TolVal", "Phylum"
-                              , "Order", "Family", "Genus", "Al2O3Ws", "CFS", "ClayWs"
-                              , "ElevCat", "Fe2O3Cat", "K2OWs", "L3Eco", "MgOCat"
-                              , "NWs", "PermWs", "PrecipCat", "PrecipWs", "SandWs"
-                              , "SWs", "TmeanCat", "WetIndexWs", "WsAreaSqKm"
-                              , "WtDepWs")
+        required_columns <- c("SAMPLEID", "STATIONID", "LAT", "LONG", "TAXAID"
+                              , "N_TAXA", "NONTARGET", "AIRBREATHER", "BCG_Attr"
+                              , "BCG_Attr2", "HABIT", "LIFE_CYCLE", "TolVal"
+                              , "PHYLUM", "ORDER", "FAMILY", "GENUS", "Al2O3Ws"
+                              , "CFS",  "ClayWs", "ElevCat", "Fe2O3Cat", "K2OWs"
+                              , "L3Eco", "MgOCat", "NWs", "PermWs", "PrecipCat"
+                              , "PrecipWs", "SandWs", "SWs", "TmeanCat"
+                              , "WetIndexWs", "WsAreaSqKm", "WtDepWs")
 
         column_names <- colnames(df_input)
 
@@ -110,63 +109,6 @@ shinyServer(function(input, output, session) {
     # add "sleep" so progress bar is readable
     observeEvent(input$b_Calc, {
         shiny::withProgress({
-            #
-
-            # NEED code for Excl Taxa
-            # (Erik) Not sure where to put in this section
-          # Commented out
-          # Needs to be after import data
-
-          # ## Calc, 2, Exclude Taxa ----
-          # prog_detail <- "Calculate, Exclude Taxa"
-          # message(paste0("\n", prog_detail))
-          # # Increment the progress bar, and update the detail text.
-          # incProgress(1/prog_n, detail = prog_detail)
-          # Sys.sleep(prog_sleep)
-          # # Calc
-          #
-          # message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
-          #
-          # if (input$ExclTaxa) {
-          #   ## Get TaxaLevel names present in user file
-          #   phylo_all <- c("Kingdom"
-          #                  , "Phylum"
-          #                  , "SubPhylum"
-          #                  , "Class"
-          #                  , "SubClass"
-          #                  , "Order"
-          #                  , "SubOrder"
-          #                  , "InfraOrder"
-          #                  , "SuperFamily"
-          #                  , "Family"
-          #                  , "SubFamily"
-          #                  , "Tribe"
-          #                  , "Genus"
-          #                  , "SubGenus"
-          #                  , "Species"
-          #                  , "Variety")
-          #   phylo_all <- toupper(phylo_all) # so matches rest of file
-          #
-          #   # case and matching of taxa levels handled inside of markExluded
-          #
-          #   # overwrite current data frame
-          #   df_input <- BioMonTools::markExcluded(df_samptax = df_input
-          #                                         , SampID = "SAMPLEID"
-          #                                         , TaxaID = "TAXAID"
-          #                                         , TaxaCount = "N_TAXA"
-          #                                         , Exclude = "EXCLUDE"
-          #                                         , TaxaLevels = phylo_all
-          #                                         , Exceptions = NA)
-          #
-          #   # Save Results
-          #   fn_excl <- paste0(fn_input_base, "_bcgcalc_1markexcl.csv")
-          #   dn_excl <- path_results
-          #   pn_excl <- file.path(dn_excl, fn_excl)
-          #   write.csv(df_input, pn_excl, row.names = FALSE)
-          #
-          # }## IF ~ input$ExclTaxa
-
-
 
 
             # Number of increments
@@ -205,16 +147,16 @@ shinyServer(function(input, output, session) {
             }
 
             # QC, Index Period
-            QC_CollMonth <- df_data %>%
-              dplyr::mutate(CollMonth = lubridate::month(CollDate)) %>%
-              dplyr::pull(CollMonth)
-
-            N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth > 10
-                                    , na.rm = TRUE)
-
-            if (N_OutIndexPeriod > 0) {
-              message("Some samples in your dataset were collected outside of the index period (April through October).")
-            }
+            # QC_CollMonth <- df_data %>%
+            #   dplyr::mutate(COLLMONTH = lubridate::month(COLLDATE)) %>%
+            #   dplyr::pull(COLLMONTH)
+            #
+            # N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth > 10
+            #                         , na.rm = TRUE)
+            #
+            # if (N_OutIndexPeriod > 0) {
+            #   message("Some samples in your dataset were collected outside of the index period (April through October).")
+            # }
 
             # QC, predictors = NA
             Al2O3Ws_NA <- sum(is.na(df_data$Al2O3Ws))
@@ -224,6 +166,7 @@ shinyServer(function(input, output, session) {
             Fe2O3Cat_NA <- sum(is.na(df_data$Fe2O3Cat))
             K2OWs_NA <- sum(is.na(df_data$K2OWs))
             L3Eco_NA <- sum(is.na(df_data$L3Eco))
+            LONG_NA <- sum(is.na(df_data$LONG))
             MgOCat_NA <- sum(is.na(df_data$MgOCat))
             NWs_NA <- sum(is.na(df_data$NWs))
             PermWs_NA <- sum(is.na(df_data$PermWs))
@@ -257,6 +200,54 @@ shinyServer(function(input, output, session) {
                 message("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
             }##IF.Exclude.T.END
 
+            ## Exclude Taxa ----
+            # Increment the progress bar, and update the detail text.
+            incProgress(1/n_inc, detail = "Calculate, Exclude Taxa")
+            Sys.sleep(0.5)
+
+            # Calc
+
+            message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
+
+            if (input$ExclTaxa) {
+              ## Get TaxaLevel names present in user file
+              phylo_all <- c("Kingdom"
+                             , "Phylum"
+                             , "SubPhylum"
+                             , "Class"
+                             , "SubClass"
+                             , "Order"
+                             , "SubOrder"
+                             , "InfraOrder"
+                             , "SuperFamily"
+                             , "Family"
+                             , "SubFamily"
+                             , "Tribe"
+                             , "Genus"
+                             , "SubGenus"
+                             , "Species"
+                             , "Variety")
+              phylo_all <- toupper(phylo_all) # so matches rest of file
+
+              # case and matching of taxa levels handled inside of markExluded
+
+              # overwrite current data frame
+              df_data <- BioMonTools::markExcluded(df_samptax = df_data
+                                                    , SampID = "SAMPLEID"
+                                                    , TaxaID = "TAXAID"
+                                                    , TaxaCount = "N_TAXA"
+                                                    , Exclude = "EXCLUDE"
+                                                    , TaxaLevels = phylo_all
+                                                    , Exceptions = NA)
+
+              # Save Results
+              fn_input_base <- tools::file_path_sans_ext(inFile$name)
+              fn_excl <- paste0(fn_input_base, "_1markexcl.csv")
+              dn_excl <- path_results
+              pn_excl <- file.path(dn_excl, fn_excl)
+              write.csv(df_data, pn_excl, row.names = FALSE)
+
+            }## IF ~ input$ExclTaxa
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Calculate, Metrics (takes ~ 30-45s)")
@@ -266,9 +257,8 @@ shinyServer(function(input, output, session) {
             names(df_data) <- toupper(names(df_data))
 
             # QC, Required Fields
-            col.req <- c("SAMPLEID", "COLLDATE", "COLLMETH"
-                         , "STATIONID", "LAT", "LONG", "TAXAID"
-                         , "N_TAXA", "EXCLUDE", "NONTARGET", "AIRBREATHER", "BCG_ATTR"
+            col.req <- c("SAMPLEID", "STATIONID", "TAXAID", "N_TAXA", "EXCLUDE"
+                         , "NONTARGET", "AIRBREATHER", "BCG_ATTR", "BCG_ATTR2"
                          , "HABIT", "LIFE_CYCLE", "TOLVAL", "PHYLUM", "ORDER"
                          , "FAMILY", "GENUS", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
                          , "FE2O3CAT", "K2OWS", "L3ECO", "MGOCAT", "NWS", "PERMWS"
@@ -286,9 +276,8 @@ shinyServer(function(input, output, session) {
             # save each file separately
 
            # columns to keep
-            keep_cols <- c("COLLDATE", "COLLMETH", "STATIONID", "LAT", "LONG"
-                           , "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
-                           , "FE2O3CAT", "K2OWS", "L3ECO", "MGOCAT", "NWS"
+            keep_cols <- c("STATIONID", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
+                           , "FE2O3CAT", "K2OWS", "L3ECO", "LONG", "MGOCAT", "NWS"
                            , "PERMWS", "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS"
                            , "TMEANCAT", "WETINDEXWS", "WSAREASQKM", "WTDEPWS")
 
@@ -321,41 +310,52 @@ shinyServer(function(input, output, session) {
                      , WtDepWs = WTDEPWS)
 
             df_metval2$SAMPLEID <- as.character(df_metval2$SAMPLEID)
-            df_metval2$L3Eco <- as.factor(df_metval2$L3Eco)
+            df_metval2$L3Eco <- factor(df_metval2$L3Eco
+                                       , levels = c("eco3_25", "eco3_26"
+                                                    , "eco3_27", "eco3_28"
+                                                    , "eco3_29", "eco3_39"
+                                                    , "eco3_40", "eco3_47"))
 
             # adjust metrics----
 
             std_Parameters <- read.csv("./data/StandardizationParameters0517.csv", row.names = 1)
+            # std_Parameters <- read.csv("./inst/shiny-examples/KDHEtools/data/StandardizationParameters0517.csv", row.names = 1)
+
 
             habit_model <- load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
+            #habit_model <- load("./inst/shiny-examples/KDHEtools/data/nt_habit_climbcling_RFmod_final0517.Rdata")
             nt_habit_climbcling_pred <- predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict nt_habit_climbcling
             nt_habit_climbcling_RFadj <- df_metval2[,"nt_habit_climbcling"] - nt_habit_climbcling_pred		##### calculate residual
             nt_habit_climbcling_RFadj <- unname(unlist(nt_habit_climbcling_RFadj))
             df_metval2$nt_habit_climbcling_RFadj <- nt_habit_climbcling_RFadj
 
             HBI_model <- load("./data/x_HBI_RFmod_final0517.Rdata")
+            #HBI_model <- load("./inst/shiny-examples/KDHEtools/data/x_HBI_RFmod_final0517.Rdata")
             x_HBI_pred <- predict(rf.mod,df_metval2[,c(predictors)])			##### use forest to predict
             x_HBI_RFadj <- df_metval2[,"x_HBI"] - x_HBI_pred				##### calculate residual
             x_HBI_RFadj <- unname(unlist(x_HBI_RFadj))
             df_metval2$x_HBI_RFadj <- x_HBI_RFadj
 
             BCG_model <- load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
+            #BCG_model <- load("./inst/shiny-examples/KDHEtools/data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
             pt_BCG_att1i234b_pred <- predict(rf.mod,df_metval2[, c(predictors)])					##### use forest to predict
             pt_BCG_att1i234b_RFadj <- df_metval2[,"pt_BCG_att1i234b"] - pt_BCG_att1i234b_pred		##### calculate residual
             pt_BCG_att1i234b_RFadj <- unname(unlist(pt_BCG_att1i234b_RFadj))
             df_metval2$pt_BCG_att1i234b_RFadj <- pt_BCG_att1i234b_RFadj
 
             semiv_model <- load("./data/nt_volt_semi_RFmod_final0517.Rdata")
+            #semiv_model <- load("./inst/shiny-examples/KDHEtools/data/nt_volt_semi_RFmod_final0517.Rdata")
             nt_volt_semi_pred <- predict(rf.mod,df_metval2[, c(predictors)])	##### use forest to predict pt_H_WDEQ_34
             nt_volt_semi_RFadj <- df_metval2[,"nt_volt_semi"] - nt_volt_semi_pred				##### calculate residual
             nt_volt_semi_RFadj <- unname(unlist(nt_volt_semi_RFadj))
             df_metval2$nt_volt_semi_RFadj <- nt_volt_semi_RFadj
 
             EPT_model <- load("./data/nt_EPT_RFmod_final0517.Rdata")
+            #EPT_model <- load("./inst/shiny-examples/KDHEtools/data/nt_EPT_RFmod_final0517.Rdata")
             nt_EPT_pred <- predict(rf.mod,df_metval2[,c(predictors)])	##### use forest to predict pt_H_WDEQ_34
             nt_EPT_RFadj <- df_metval2[,"nt_EPT"] - nt_EPT_pred				##### calculate residual
             nt_EPT_RFadj <- unname(unlist(nt_EPT_RFadj))
-            df_metval2$nt_EPT_RFadj < -nt_EPT_RFadj
+            df_metval2$nt_EPT_RFadj <- nt_EPT_RFadj
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Metrics have been calculated!")
@@ -413,10 +413,6 @@ shinyServer(function(input, output, session) {
             # Save
             fn_metsc <- file.path(".", "Results", "results_metsc.csv")
             write.csv(df_metsc, fn_metsc, row.names = FALSE)
-
-            # Increment the progress bar, and update the detail text.
-            # incProgress(1/n_inc, detail = "Create, summary report (~ 20 - 40 sec)")
-            # Sys.sleep(0.75)
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Ben's code is magical!")

@@ -7,17 +7,16 @@ function(){
                h3("App Steps")
                , h4("1. Load File")
                , h5("Select file parameters")
-               , radioButtons('sep', 'Separator',
-                              c(Comma=',',
-                                Semicolon=';',
-                                Tab='\t'),
+               , radioButtons('sep', 'Separator'
+                              ,c(Comma=',',
+                                 Semicolon=';',
+                                 Tab='\t'),
                               ',')
                , radioButtons('quote', 'Quote',
                               c(None='',
                                 'Double Quote'='"',
                                 'Single Quote'="'"),
                               '"')
-               #, tags$hr()
                , fileInput('fn_input', 'Choose file to upload',
                            accept = c(
                              'text/csv',
@@ -28,7 +27,19 @@ function(){
                              '.tsv'
                            )
                )##fileInput~END
-               #, tags$hr()
+               # , fileInput("fn_input"
+               #             , label = "Choose file to upload"
+               #             , multiple = FALSE
+               #             , accept = c("text/csv"
+               #                          , "text/comma-separated-values"
+               #                          , "text/tab-separated-values"
+               #                          , "text/plain"
+               #                          , ".csv")
+               # )##fileInput~END
+
+
+
+
 
                , h4("2. Excluded Taxa")
                , checkboxInput("ExclTaxa", "Generate Exclude Taxa Column", TRUE)
