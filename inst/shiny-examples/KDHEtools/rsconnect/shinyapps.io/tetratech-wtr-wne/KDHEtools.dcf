@@ -1,0 +1,13 @@
+name: KDHEtools
+title: KDHEtools
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9610424
+bundleId: 7570844
+url: https://tetratech-wtr-wne.shinyapps.io/KDHEtools/
+when: 1692125857.63336
+lastSyncTime: 1692125857.63337
+asMultiple: FALSE
+asStatic: FALSE

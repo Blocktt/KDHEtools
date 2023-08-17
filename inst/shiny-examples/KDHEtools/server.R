@@ -565,13 +565,15 @@ shinyServer(function(input, output, session) {
         shinyjs::disable("b_download_taxatrans")
 
         # Import data
+        sep_user <- sep_default
+
         # data
         inFile <- input$fn_input_taxatrans
         fn_input_base <- tools::file_path_sans_ext(inFile$name)
         message(paste0("Import, file name, base: ", fn_input_base))
         df_input <- read.delim(inFile$datapath
                                , header = TRUE
-                               , sep = input$sep
+                               , sep = sep_user
                                , stringsAsFactors = FALSE)
         # QC, FAIL if TRUE
         if (is.null(df_input)) {
@@ -1082,13 +1084,14 @@ shinyServer(function(input, output, session) {
         shinyjs::disable("b_download_predictors")
 
         # Import data
+        sep_user <- sep_default
         # data
         inFile <- input$fn_input_predictors
         fn_input_base <- tools::file_path_sans_ext(inFile$name)
         message(paste0("Import, file name, base: ", fn_input_base))
         df_sites <- read.delim(inFile$datapath
                                , header = TRUE
-                               , sep = input$sep
+                               , sep = sep_user
                                , stringsAsFactors = FALSE)
         # QC, FAIL if TRUE
         if (is.null(df_sites)) {
