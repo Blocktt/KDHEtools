@@ -26,7 +26,7 @@ shinyServer(function(input, output, session) {
     ,easyClose = T)
 
   # Show the model on start up
-  showModal(myModal)
+  # showModal(myModal)
 
     # Misc Names----
     output$fn_input_display <- renderText({input$fn_input}) ## renderText~END
@@ -366,8 +366,8 @@ shinyServer(function(input, output, session) {
 
             #
             # Save
-            fn_metval <- file.path(".", "Results", "results_metval.csv")
-            write.csv(df_metval2, fn_metval, row.names = FALSE)
+            # fn_metval <- file.path(".", "Results", "results_metval.csv")
+            # write.csv(df_metval2, fn_metval, row.names = FALSE)
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Adjust, Metrics")
@@ -412,10 +412,17 @@ shinyServer(function(input, output, session) {
             df_metsc <- left_join(df_metval2, metrics_std
                                   , by = "SAMPLEID")
 
+            ## Reorder data
+            df_metsc_final <- df_metsc %>%
+              select(SAMPLEID, STATIONID, Index_Score, nt_habit_climbcling_RFadj_std
+                     , nt_volt_semi_RFadj_std, nt_EPT_RFadj_std
+                     , pt_BCG_att1i234b_RFadj_std, x_HBI_RFadj_std
+                     , everything())
+
 
             # Save
-            fn_metsc <- file.path(".", "Results", "results_metsc.csv")
-            write.csv(df_metsc, fn_metsc, row.names = FALSE)
+            fn_metsc <- file.path(".", "Results", "results_MMI.csv")
+            write.csv(df_metsc_final, fn_metsc, row.names = FALSE)
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Ben's code is magical!")
@@ -979,7 +986,7 @@ shinyServer(function(input, output, session) {
     })## UI_colnames
 
     output$UI_taxatrans_otu_pick <- renderUI({
-      str_col <- "Prefered OTU"
+      str_col <- "Select OTU"
       selectInput("taxatrans_user_otu"
                   , label = str_col
                   , choices = col_taxaid_official_mmi

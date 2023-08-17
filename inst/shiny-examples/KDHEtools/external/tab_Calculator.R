@@ -55,11 +55,12 @@ function(){
              )##sidebarPanel~END
              , mainPanel(
                tabsetPanel(type="tabs"
+                           , tabPanel("Instructions"
+                                      , includeHTML("www/App_CalculateMMI_Instructions.html"))
                            , tabPanel("Data Import Viewer"
                                       , DT::dataTableOutput('df_import_DT'))
-                           , tabPanel("Index Calculator Operation Instructions"
-                                      , includeHTML("www/App_CalculateMMI_Instructions.html")
-               )##tabsetPanel~END
+                           , tabPanel("Outputs"
+                                      , includeHTML("www/App_CalculateMMI_Instructions.html"))
              )##tabsetPanel~END
              )##mainPanel~END
 

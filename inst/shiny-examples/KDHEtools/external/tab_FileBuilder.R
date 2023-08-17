@@ -15,31 +15,17 @@ function(){
                       )# sidebarLayout~END
 
              )## tabPanel ~ END
-             # tabPanel, 2, Outside App Preparation ----
-             , tabPanel("Outside App Preparation",
-                        sidebarLayout(
-                          sidebarPanel(
-                            img(src = "KDHE_logo.png", height = 200)
-                            , width = 3
-                          )# sidebarPanel~END
-                          , mainPanel(
-                            includeHTML("www/App_PrepData_2OutsideApp.html")
-                            , width = 7
-                          )# mainPanel~END
-                        )# sidebarLayout~END
-
-             )## tabPanel ~ END
-             # tabPanel, 3, Merge Files ----
+             # tabPanel, 2, Within app prep ----
              , tabPanel("Within App Preparation"
                         , tabsetPanel(
-                          # tabPanel, 1, Taxa Trans ----
-                          tabPanel("1. Taxa Translate and Attribute Assignment",
+                          # tabPanel, 2a, Taxa Trans ----
+                          tabPanel("1. OTU and Attribute Assignments",
                                    # SideBar
                                    sidebarLayout(
-                                     sidebarPanel(h2("Taxa Translate and Attribute Assignment")
+                                     sidebarPanel(h2("OTU and Attribute Assignments")
                                                   , useShinyjs()
 
-                                                  , p("The process below will combine user data with an official taxa list.")
+                                                  , p("The process below will combine user data with the attributes that should be used in the MMI calculation.")
                                                   , h4("A. Upload a File")
                                                   , fileInput("fn_input_taxatrans"
                                                               , label = "Import Data File for Adding Taxa Translation and Attributes"
@@ -81,13 +67,13 @@ function(){
                 , mainPanel(
                   tabsetPanel(type = "tabs"
                               , id = "FB_TaxaTrans"
-                              , tabPanel(title = "About (Taxa Translator)"
+                              , tabPanel(title = "About (Taxa Attributes)"
                                          , includeHTML("www/App_FB_TaxaTrans_1About.html")
                               )## tabPanel ~ END
-                              , tabPanel(title = "Output Explanation (Taxa Translator)"
+                              , tabPanel(title = "Output Explanation (Taxa Attributes)"
                                          , includeHTML("www/App_FB_TaxaTrans_2Output.html")
                               )## tabPanel ~ END
-                              , tabPanel(title = "Data Import (Taxa Translator-Attributes)"
+                              , tabPanel(title = "Data Import (Taxa Attributes)"
                                          , p("A table is shown below after data is loaded.")
                                          , DT::dataTableOutput("df_import_taxatrans_DT")
                                          , value = "tab_FB_TaxaTrans_DT"
@@ -97,7 +83,7 @@ function(){
 
                                    )##sidebarLayout~END
                           )## tabPanel ~ END
-                # tabPanel, 2, Predictors ----
+                # tabPanel, 2b, Predictors ----
                 , tabPanel("2. Generate Predictor Parameters",
                            # SideBar
                            sidebarLayout(
@@ -153,7 +139,7 @@ function(){
                              )## mainPanel ~ END
                            )##sidebarLayout~END
                 )## tabPanel ~ END
-                # tabPanel, 3, Merge Files ----
+                # tabPanel, 2c, Merge Files ----
                 , tabPanel("3. Merge Files"
                            , sidebarLayout(
                              sidebarPanel(
@@ -222,6 +208,20 @@ function(){
                            )##sidebarLayout~END
                 )## tabPanel ~ END
                         )## tabsetPanel~END
+             )## tabPanel ~ END
+             # tabPanel, 3, Outside App Preparation ----
+             , tabPanel("Outside App Preparation",
+                        sidebarLayout(
+                          sidebarPanel(
+                            img(src = "KDHE_logo.png", height = 200)
+                            , width = 3
+                          )# sidebarPanel~END
+                          , mainPanel(
+                            includeHTML("www/App_PrepData_2OutsideApp.html")
+                            , width = 7
+                          )# mainPanel~END
+                        )# sidebarLayout~END
+
              )## tabPanel ~ END
            ) ## tabsetPanel~END
   )## tabPanel~END
