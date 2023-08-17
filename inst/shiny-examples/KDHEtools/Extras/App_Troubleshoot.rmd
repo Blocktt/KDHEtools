@@ -21,7 +21,7 @@ on ways to further improve it, please contact Ben Block from Tetra Tech
 via email (Ben.Block\@tetratech.com). For more information on this
 project, please contact Tony Stahl (Anthony.Stahl\@ks.gov).
 
-## Frequently asked questions and troubleshooting
+## Frequently asked questions
 
 1.  Why am I getting an error saying that I am missing columns even when I am not?
     -   You may have incorrectly spelled a given column. Also, some columns (e.g., Index_Name) require an underscore to separate the two words.

@@ -15,51 +15,23 @@ knitr::opts_chunk$set(echo = FALSE
 ```
 
 # Purpose
-Merge two files based on a single unique identifier column shared between the 
-two files.
 
-* File 1 (Primary)
+Finish creating your input file by merging the outputs from the Taxa
+Translator/Add Attributes and Generate Predictors tabs.
 
-* File 2 (Secondary)
+Upload the files (the order shouldn\'t matter) and select a single
+common identifier from each file to perform the merge (e.g., SampleID).
+The common identifier doesn\'t need to be named the same thing in both
+files. Just click on the drop-down menus and the list of fields in your
+input files will appear. Select the correct identifiers from each file.
 
-All rows and columns in File 1 (Primary) will be carried through into the output
-file. For File 2, only data for rows that match with File 1 via the common 
-identifier will be carried through into the output file.
+In the output file, column names that overlap across the two files will
+have the suffix \'.x\' or \'.y\' for files 1 and 2 , respectively.
 
-The user will select a single common identifier from each file to perform the 
-merge (e.g., SampleID). The common identifier doesn’t need to be named the same 
-thing in both files. Just click on the drop-down menus and the list of fields in
-your input files will appear. Select the correct identifiers from each file.
+You will have the option of viewing both input files before merging.
 
-In the output file, column names that overlap across the two files will have the 
-suffix ‘.x’ or ‘.y’ for files 1 and 2 , respectively.
+You can only merge two files at a time. If you want to join more, do one
+pair first, then join that file with the next file, and so on.
 
-The user will have the option of viewing both input files before merging.
-
-You can only merge two files at a time. If you want to join more, do one pair 
-first, then join that file with the next file, and so on.
-
-![Merge file conceptual layout.](images\FileBuilder_MergeFiles_About_Fig1.jpg)
-
-# Potential Applications
-If you’re running the BCG calculator and are building your input file with the 
-Taxa Translator/Attribute and Add Index Name/Class functions, you can use the 
-Merge Files function to join those two files.  Your output file will be ready to
-run through the BCG calculator.
-		
-You can also use the Merge Files function to join outputs from the various 
-calculations (for example, the BCG model output and the thermal preference 
-metrics output). Then you can examine whether changes in BCG levels are 
-associated with changes in thermal indicator taxa (which could indicate thermal
-alteration).
-
-# Test File
-<!-- Click [here](links/Test1_FileBuilder_MergeFiles.zip) to download a pair of  -->
-<!-- test files. -->
-
-<!-- Click [here](links/examples_all.zip) to download example R scripts and data (all -->
-<!-- functions). -->
-
----
-
-*Last updated 2023-02-03*
+![Merge file conceptual
+layout.](images%5CFileBuilder_MergeFiles_About_Fig1.jpg)

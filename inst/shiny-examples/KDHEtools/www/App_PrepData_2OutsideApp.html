@@ -3,17 +3,32 @@
 
 <div id="preparing-the-input-file" class="section level2">
 <h2>Preparing the input file</h2>
-<p>KDHEtools requires input files to be in a tabular format, saved as
-either comma-separated values (CSV) (most commonly used) or
-tab-separated (.txt or .tsv) files. Table 1 contains a list of required
-fields. Column names must match the spelling and symbology exactly as
-shown (some column headings have underscores). Note, macroinvertebrate
-traits are not required for each record (i.e., trait fields allow null
-values).</p>
-<p>Click here to view an <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files">EXAMPLE
-INPUT FILE</a>. If the user is unsure how to download a data file from
-GitHub, <a href="https://www.youtube.com/watch?v=GIJdfuAoqFI">watch this
-short video</a> or contact Ben Block (Ben.Block@tetratech.com).</p>
+<p>If you choose to create the input file outside of the app (versus
+using the &#39;File Builder&#39;), the comma-separated file (CSV) needs to have
+all the required fields listed below in Table 1. Column names must match
+the spelling, symbology and capitalization scheme exactly as shown.</p>
+<p>There is one more required field (EXCLUDE) that is not shown in Table
+1. That column will be added automatically when you run the Index
+Calculator. The EXCLUDE field marks redundant (non-distinct) taxa, using
+the same
+<a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx/" target="_blank">criteria</a>
+that were used for MMI development. Redundant taxa are excluded from
+richness metric calculations but are included in the composition
+(percent individuals) metrics.</p>
+<p>IMPORTANT:</p>
+<p>Make sure you are using the proper Operational Taxonomic Unit (OTU)
+and taxa traits/attributes for your metric calculations. The Taxa
+Translator and Attribute tables (and associated metadata) that were used
+for MMI development can be downloaded
+<a href="https://github.com/Blocktt/KDHEtools/tree/main/inst/shiny-examples/KDHEtools/data/taxa_trans/" target="_blank">here</a>.</p>
+<p>For Level 3 ecoregion (L3Eco), you must add the prefix &#39;eco_&#39; in
+front of the number codes (e.g., eco3_25).</p>
+<p>Macroinvertebrate traits are not required for each record (i.e.,
+trait fields allow null values).</p>
+<p>For more information on how the CFS field was derived for MMI
+development, contact Liz Smith (Elizabeth.Smith@ks.gov).</p>
+<p>An example input file can be found
+<a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Example_Files/Test1_Formatted.csv/" target="_blank">here</a>.</p>
 <div id="table-1.-list-of-required-fields.-column-names-must-match-the-spelling-and-symbology-exactly-as-shown.-note-that-some-fields-are-upper-case-while-others-are-camel-case." class="section level4">
 <h4>Table 1. List of required fields. Column names must match the
 spelling and symbology exactly as shown. Note that some fields are upper
@@ -140,7 +155,7 @@ non-negative real number
 No
 </td>
 <td style="text-align:left;">
-Number of individual valves (not number of taxa).
+Number of individuals (not number of taxa).
 </td>
 </tr>
 <tr>
@@ -185,14 +200,16 @@ BCG_ATTR
 text
 </td>
 <td style="text-align:left;">
-NA
+2, 3, 4, 5, 6m
 </td>
 <td style="text-align:left;">
 Yes
 </td>
 <td style="text-align:left;">
 Biological Condition Gradient (BCG) attribute of a macroinvertebrate
-taxon (relates to TaxaID).
+taxon (relates to TaxaID). Entries: highly sensitive (2), sensitive (3),
+intermediate tolerant (4), tolerant (5), non-native/intermediate
+tolerant (6m).
 </td>
 </tr>
 <tr>
@@ -203,14 +220,14 @@ BCG_ATTR2
 text
 </td>
 <td style="text-align:left;">
-NA
+4_better, 4_middle, 4_worse
 </td>
 <td style="text-align:left;">
 Yes
 </td>
 <td style="text-align:left;">
-Biological Condition Gradient (BCG) attribute of a macroinvertebrate
-taxon (relates to TaxaID).
+Biological Condition Gradient (BCG) Attribute IV (intermediate tolerant)
+subgroups.
 </td>
 </tr>
 <tr>
@@ -221,15 +238,15 @@ HABIT
 text
 </td>
 <td style="text-align:left;">
-BU, CB, CN, SP, SW (select multiple)
+BU, CB, CN, SP, SW
 </td>
 <td style="text-align:left;">
 Yes
 </td>
 <td style="text-align:left;">
-Categorization of macroinvertebrate habits (i.e., mode of existence:
-Burrowers (BU), Climbers (CB), Clingers (CN), Sprawlers (SP), and
-Swimmers (SW).
+Entries: Burrowers (BU), Climbers (CB), Clingers (CN), Sprawlers (SP),
+and Swimmers (SW). Multiple entries are allowed and should be separated
+with a SEMICOLON rather than a comma or space (e.g., CB;CN).
 </td>
 </tr>
 <tr>
@@ -240,7 +257,7 @@ LIFE_CYCLE
 text
 </td>
 <td style="text-align:left;">
-UNI, SEMI, MULTI (select one)
+UNI, SEMI, MULTI
 </td>
 <td style="text-align:left;">
 Yes
@@ -248,7 +265,8 @@ Yes
 <td style="text-align:left;">
 Number of broods or generations of an organism in a year (also referred
 to as ‘voltinism’): univoltine (UNI), semivoltine (SEMI), or
-multivoltine (MULTI).
+multivoltine (MULTI). Multiple entries are allowed and should be
+separated with a SEMICOLON rather than a comma or space.
 </td>
 </tr>
 <tr>
@@ -371,7 +389,7 @@ NA
 No
 </td>
 <td style="text-align:left;">
-Stream flow estimated by Perry et al. 2002 (cubic feet per second).
+Stream flow estimated by Perry et al. 2004 (cubic feet per second).
 </td>
 </tr>
 <tr>
@@ -454,7 +472,6 @@ text
 </td>
 <td style="text-align:left;">
 eco3_25, eco3_26, eco3_27, eco3_28, eco3_29, eco3_39, eco3_40, eco3_47
-(select one)
 </td>
 <td style="text-align:left;">
 No

@@ -3,19 +3,30 @@
 
 <div id="input-metrics-and-scoring-formulae" class="section level2">
 <h2>Input metrics and scoring formulae</h2>
-<p>The Kansas Macroinvertebrate MMI was calibrated for applicability
-statewide; however, all five metrics are adjusted by metric adjustment
-factors. The metric adjustment factors represent natural stream types.
-Table 1 shows the input metrics and scoring formulae for the MMI
-(metrics in need of adjustment have the “_RFadj” suffix). See the
-<strong>“Metric Adjustment Download”</strong> tab for more information
-on factors and how to assign factor values to each site.</p>
-<div id="table-1.-metrics-and-scoring-formulae-for-the-kansas-macroinvertebrate-mmi.-de-discrimination-efficiency-trend-metric-response-to-stress-5th-5th-percentile-of-metric-values-and-95th-95th-percentile-of-metric-values.-all-metrics-were-adjusted-by-randomforest-models-rf-adj." class="section level4">
+<p>There are five input metrics in the KS MMI (Table 1). Each has its
+own random forest model and set of predictor variables. Predictor
+variables are used in the random forest analysis to account for natural
+gradient effects on the metrics. For each site, the random forest model
+looks at site characteristics through decision &#39;trees&#39; and arrives at a
+predicted metric values for that site based on the site characteristics,
+as captured by the predictor values.</p>
+<p>The random forest adjusted metric value = <strong>observed value –
+predicted value</strong></p>
+<p>The residual (adjusted) value can be thought of as the variation
+remaining after accounting for natural factors.</p>
+<p>The adjusted metric residuals were standardized to a 100-point scale
+such that higher values represented better conditions. The metric
+standardization was an interpolation of metric values between the 5th
+and 95th percentiles of each metric distribution, using the scoring
+formulas in Table 1. If metric values met the reference expectation
+(predicted = observed), they received scores in the 50-60 range. MMI
+values were calculated as the average of the individual metric
+scores.</p>
+<div id="table-1.-metrics-and-scoring-formulae-for-the-kansas-macroinvertebrate-mmi.-all-metrics-were-adjusted-by-randomforest-models-rf-adj-and-then-scored-based-on-the-adjusted-values.-5th95th-are-the-percentiles-of-metric-values-that-were-used-for-metric-scoring." class="section level4">
 <h4>Table 1. Metrics and scoring formulae for the Kansas
-Macroinvertebrate MMI. DE = discrimination efficiency, Trend = metric
-response to stress, 5th = 5th percentile of metric values, and 95th =
-95th percentile of metric values. All metrics were adjusted by
-randomForest models (RF adj).</h4>
+Macroinvertebrate MMI. All metrics were adjusted by randomForest models
+(RF adj) and then scored based on the adjusted values. 5th/95th are the
+percentiles of metric values that were used for metric scoring.</h4>
 <table class="table" style="font-size: 14px; width: auto !important; ">
 <thead>
 <tr>
@@ -26,10 +37,10 @@ Metric Name
 Metric Abbreviation
 </th>
 <th style="text-align:left;">
-Metric DE (Trend)
+Response to stress
 </th>
 <th style="text-align:left;">
-Scoring Formula
+Scoring Formula (RF adjusted metric value)
 </th>
 <th style="text-align:right;">
 5th
@@ -51,7 +62,7 @@ Number of EPT taxa (RF adj)
 nt_EPT_RFadj
 </td>
 <td style="text-align:left;">
-70 (DEC)
+Decrease
 </td>
 <td style="text-align:left;">
 100*(metric + 7.88) / 13.67
@@ -74,7 +85,7 @@ Percent sensitive taxa (BCG attribute III+IV better) (RF adj)
 pt_BCG_att1i234b_RFadj
 </td>
 <td style="text-align:left;">
-77 (DEC)
+Decrease
 </td>
 <td style="text-align:left;">
 100*(metric + 7.53) / 13.32
@@ -97,7 +108,7 @@ Hilsenhoff Biotic Index (HBI) (RF adj)
 x_HBI_RFadj
 </td>
 <td style="text-align:left;">
-68 (INC)
+Increase
 </td>
 <td style="text-align:left;">
 100*(0.53 - metric) / 0.88
@@ -120,7 +131,7 @@ Number of climber + clinger taxa (RF adj)
 nt_habit_climbcling_RFadj
 </td>
 <td style="text-align:left;">
-70 (DEC)
+Decrease
 </td>
 <td style="text-align:left;">
 100*(metric + 10.44) / 18.4
@@ -143,7 +154,7 @@ Number of semivoltine taxa (RF adj)
 nt_volt_semi_RFadj
 </td>
 <td style="text-align:left;">
-66 (DEC)
+Decrease
 </td>
 <td style="text-align:left;">
 100*(metric + 3.57) / 7.56

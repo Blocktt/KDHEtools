@@ -56,11 +56,11 @@ function(){
              , mainPanel(
                tabsetPanel(type="tabs"
                            , tabPanel("Instructions"
-                                      , includeHTML("www/App_CalculateMMI_Instructions.html"))
+                                      , includeHTML("www/App_CalculateMMI_1Instructions.html"))
                            , tabPanel("Data Import Viewer"
                                       , DT::dataTableOutput('df_import_DT'))
                            , tabPanel("Outputs"
-                                      , includeHTML("www/App_CalculateMMI_Instructions.html"))
+                                      , includeHTML("www/App_CalculateMMI_2Output.html"))
              )##tabsetPanel~END
              )##mainPanel~END
 

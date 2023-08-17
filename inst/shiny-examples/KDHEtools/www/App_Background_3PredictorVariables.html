@@ -1,27 +1,26 @@
 
 
 
-<div id="metric-adjustment-factors" class="section level3">
-<h3>Metric Adjustment Factors</h3>
-<p>The Kansas Macroinvertebrate MMI contains five metrics that are
-adjusted based on site-specific natural factors including flow estimates
-from Perry et al. 2002, StreamCat estimates <a href="https://www.epa.gov/national-aquatic-resource-surveys/streamcat-dataset">(StreamCat)</a>,
-and Level III Ecoregion. To retrieve data for a site, the user must
-first obtain the appropriate COMID by conducting a spatial join between
-the site location (i.e., latitude/longitude) and the NHDPlus V2 flowline
-layer (outside of the app). Once each input site has been assigned a
-COMID, the user can use the <strong>Prepare Data</strong> tab to obtain
-COMID-specific data. Metric adjustment factor data are required for the
-<strong>Calculate MMI</strong> input file. See Table 2 for additional
-information on the natural variables. See Table 3 (in <strong>Calculate
-MMI</strong> tab) for necessary input fields. For more information on
-the derivation of these metric adjustment factors, please read the
-Kansas Macroinvertebrate MMI <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports">report</a>.
-Note, only COMIDs from the state of Kansas can be used. If the user
+<div id="predictor-variables" class="section level3">
+<h3>Predictor variables</h3>
+<p>Predictor variables are used in the random forest analysis to account
+for natural gradient effects on the five macroinvertebrate metrics.
+There are 12-16 predictor variables per metric (Table 1). For each site,
+the random forest model looks at site characteristics through decision
+&#39;trees&#39; and arrives at a predicted metric value for that site based on
+the site characteristics, as captured by the predictor values.
+Accounting for natural gradients with the random forest models increases
+metric precision and decreases variation.</p>
+<p>A table with predictor variables (except for Longitude and CFS) for
+all NHDPlusV2 local catchments in Kansas can be downloaded
+<a href="https://github.com/Blocktt/KDHEtools/blob/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_BenB_20230721.xlsx/" target="_blank">here</a>.</p>
+<p>For more information, please read the Kansas Macroinvertebrate MMI
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports/" target="_blank">report</a>.</p>
+<p>Note, only COMIDs from the state of Kansas can be used. If the user
 would like COMIDs from other, nearby states, please contact Ben Block
 (Ben.Block@tetratech.com) and he can update the available list.</p>
-<div id="table-2.-background-information-on-natural-variables-and-which-macroinvertebrate-metrics-each-adjusted." class="section level4">
-<h4>Table 2. Background information on natural variables and which
+<div id="table-1.-background-information-on-natural-variables-and-which-macroinvertebrate-metrics-each-adjusted." class="section level4">
+<h4>Table 1. Background information on natural variables and which
 macroinvertebrate metrics each adjusted.</h4>
 <table class="table" style="font-size: 14px; width: auto !important; ">
 <thead>

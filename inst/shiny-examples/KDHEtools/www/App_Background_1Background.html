@@ -3,41 +3,38 @@
 
 <div id="background" class="section level2">
 <h2>Background</h2>
-<p>This R Shiny application (KDHEtools) calculates numeric Multi-Metric
-Index (MMI) scores based on samples collected from wadeable streams in
-Kansas (statewide). Five metrics are adjusted by 12-16 different factors
-that represent natural stream types (see the <strong>“Metric Adjustment
-Download”</strong> tab). A report detailing the development of the
-Kansas Macroinvertebrate MMI can be found <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports">here</a>.</p>
+<p>This website calculates Multi-Metric Index (MMI) scores for benthic
+macroinvertebrate samples collected from wadeable streams in Kansas. A
+report detailing the development of the Kansas Macroinvertebrate MMI can
+be found
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports/" target="_blank">here</a>.</p>
+<p>This is a Shiny app website. There is underlying R code that does the
+MMI calculation. The user clicks buttons to upload .csv input files and
+download results. Those who prefer to work directly with R can download
+the R code from Ben Block’s GitHub repository
+<a href="https://github.com/Blocktt/KDHEtools/" target="_blank">here</a>.</p>
+<p>Want to try running the calculator but don&#39;t have input files? Click
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files/" target="_blank">here</a>
+to download test files.</p>
 </div>
 <div id="funding" class="section level2">
 <h2>Funding</h2>
 <p>Development of KDHEtools and the underlying MMI was funded by the
-Kansas Department of Health and Environment (KDHE).</p>
+Kansas Department of Health and Environment (KDHE). For more
+information, please contact Tony Stahl (Anthony.Stahl@ks.gov).</p>
 </div>
 <div id="intended-application" class="section level2">
 <h2>Intended application</h2>
-<p>The purpose of the index is to describe the macroinvertebrate
-community of Kansas freshwater streams and rivers for the purpose of
-biological condition assessment. A macroinvertebrate IBI enhances the
-state of Kansas’s monitoring and assessment strategy by adding a numeric
-indicator of macroinvertebrate community structure that could be used
-to:</p>
-<ul>
-<li>Evaluate attainment of Kansas’s narrative surface water quality
-criteria protective of aquatic life for wadeable streams and rivers</li>
-<li>Assist in identification of chemical and physical stressors to
-aquatic life of wadeable streams and rivers in Kansas</li>
-<li>Identify improvements in aquatic life of wadeable streams and rivers
-in Kansas following restoration efforts.</li>
-</ul>
-<p>The Kansas Macroinvertebrate MMI is intended to be applied to samples
-that meet the following criteria:</p>
+<p>The KS MMI improves the diagnostic ability of KDHE and other
+practitioners to identify degradation in biological integrity and water
+quality. It is intended to be applied to samples that meet the following
+criteria:</p>
 <ul>
 <li><p>Geographic area: Kansas</p></li>
 <li><p>Stream type: freshwater, wadeable</p></li>
-<li><p>Subsample size: 200-count samples are recommended for best
-performance; once you get below 100, interpret with caution</p></li>
+<li><p>Subsample size: &gt;= 200-count samples are recommended for best
+performance; results for samples with &lt;100 individuals should be
+interpreted with caution</p></li>
 <li><p>Taxonomic resolution: genus or species-level as allowed by
 available keys, specimen condition, and specimen maturity</p></li>
 <li><p>Collection gear: 500-µm mesh D-frame net and fine point forceps •
@@ -51,9 +48,13 @@ and rootmats, fine substrate, aquatic vegetation, and large woody
 debris). One or two-person field crews collect organisms with 500-µm
 mesh D-frame nets, using sweeps or kicks, or by hand picking organisms
 off large hard substrates. Organisms are picked in the field and
-identified in the lab, going to genus or species-level as allowed by
-available keys, specimen condition, and specimen maturity.</p></li>
+identified in the lab.</p></li>
+<li><p>Predictor variables: results for sites with predictor values
+outside the range of values represented in the MMI reference calibration
+dataset should be interpreted with caution. For more information, see
+Table 13 in the MMI report.</p></li>
 </ul>
 <p>For more information on sampling methodologies and application
-limits, see the Kansas Macroinvertebrate MMI development report <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports">here</a>.</p>
+limits, see the Kansas Macroinvertebrate MMI development report
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports/" target="_blank">here</a>.</p>
 </div>

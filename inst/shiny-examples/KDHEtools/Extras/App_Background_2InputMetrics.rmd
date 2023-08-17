@@ -16,15 +16,29 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 ## Input metrics and scoring formulae
 
-The Kansas Macroinvertebrate MMI was calibrated for applicability
-statewide; however, all five metrics are adjusted by metric adjustment
-factors. The metric adjustment factors represent natural stream types.
-Table 1 shows the input metrics and scoring formulae for the MMI
-(metrics in need of adjustment have the "\_RFadj" suffix). See the
-**"Metric Adjustment Download"** tab for more information on factors and
-how to assign factor values to each site.
+There are five input metrics in the KS MMI (Table 1). Each has its own
+random forest model and set of predictor variables. Predictor variables
+are used in the random forest analysis to account for natural gradient
+effects on the metrics. For each site, the random forest model looks at
+site characteristics through decision \'trees\' and arrives at a
+predicted metric values for that site based on the site characteristics,
+as captured by the predictor values.
 
-#### Table 1. Metrics and scoring formulae for the Kansas Macroinvertebrate MMI. DE = discrimination efficiency, Trend = metric response to stress, 5th = 5th percentile of metric values, and 95th = 95th percentile of metric values. All metrics were adjusted by randomForest models (RF adj).
+The random forest adjusted metric value = **observed value -- predicted
+value**
+
+The residual (adjusted) value can be thought of as the variation
+remaining after accounting for natural factors.
+
+The adjusted metric residuals were standardized to a 100-point scale
+such that higher values represented better conditions. The metric
+standardization was an interpolation of metric values between the 5th
+and 95th percentiles of each metric distribution, using the scoring
+formulas in Table 1. If metric values met the reference expectation
+(predicted = observed), they received scores in the 50-60 range. MMI
+values were calculated as the average of the individual metric scores.
+
+#### Table 1. Metrics and scoring formulae for the Kansas Macroinvertebrate MMI. All metrics were adjusted by randomForest models (RF adj) and then scored based on the adjusted values. 5th/95th are the percentiles of metric values that were used for metric scoring.
 
 ```{r table_1}
 library(readxl)

@@ -13,16 +13,18 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 # Preparing input files
 
-There are two pathways for preparing input files:
+Input files must be comma-separated values (CSV). There are two pathways for preparing input files:
 
-**Option 1**: Generate a file outside of the Shiny app that is ready to go (i.e., has all the required fields, with exact column heading names). See the **Outside App Preparation** subtab for details.
+**Option 1**: Use the File Builder (see the **Within App Preparation** subtab for details).
 
-**Option 2**: Use the File Builder (see the **Within App Preparation** subtab for details).
+-   Step 1: Operational Taxonomic Unit (OTU) Attribute Assignment
 
--   Step 1: Taxa Translate and Attribute Assignment
+-   Step 2: Generate Predictor Variables
 
--   Step 2: Generate Predictor Parameters
-
--   Step 3: Merge Files
+-   Step 3: Merge Files (i.e., merge the macroinvertebrate and predictor files)
 
 Using the File Builder option ensures that you are using proper taxa attributes and predictors for the MMI calculation.
+
+**Option 2**: Generate a file outside of the Shiny app that is ready to go (i.e., has all the required fields, with exact column heading names). See the **Outside App Preparation** subtab for details.
+
+After you prepare the input file, go to the **Calculate MMI** tab, upload your input file, and calculate the MMI scores.
