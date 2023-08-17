@@ -3,7 +3,13 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-15 14:37:46
+    #> Last Update: 2023-08-17 16:49:06
+
+# KDHEtools v0.1.2.9040 (2023-08-17)
+
+- fix: Fixed issue with separator when importing files.
+
+- Reorganized app according to Jen Stamp’s suggestions
 
 # KDHEtools v0.1.2.9031 (2023-08-15)
 
