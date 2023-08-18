@@ -15,57 +15,71 @@ knitr::opts_chunk$set(echo = FALSE
 ```
 
 # Purpose
-Create an input file with the proper attributes for the KS MMI calculation.
+
+Create an input file with the macroinvertebrate data that has the proper
+Operational Taxonomic Units (OTUs) and attributes for the KS MMI
+calculation. After you merge this file with the Predictor output, your
+input file will be ready to run through the MMI calculator.
 
 This function performs two steps to the input file:
 
-1. “Translates” the original TaxonID to the MMI Operational Taxonomic Unit (OTU).
+1.  \"Translates\" the original TaxonID to the MMI OTU.
 
-2. Appends the KS MMI taxa attributes, which include tolerance, habit, voltinism, BCG taxa attributes, functional feeding group, and more.
+2.  Appends the KS MMI taxa attributes, which include tolerance, habit,
+    voltinism, BCG taxa attributes, functional feeding group, and more.
 
-The MMI was calibrated using an OTU based on the lowest practicable level of taxonomic resolution (genus or species-level as allowed by available keys, specimen condition, and specimen maturity). We also offer an alternate option in which species-level IDs are collapsed to genus (OTU_MMI_genus) to allow users to explore how much the level of taxonomy influences the outcome.
+The MMI was calibrated using an OTU based on the lowest practicable
+level of taxonomic resolution (genus or species-level as allowed by
+available keys, specimen condition, and specimen maturity). We also
+offer an alternate option in which species-level IDs are collapsed to
+genus (OTU_MMI_genus) to allow users to explore how much the level of
+taxonomy influences the outcome.
 
-The ‘taxa translator’ and attribute tables are based on stream biomonitoring data from the KDHE Stream Probabilistic (SP) and Stream Biological (SB) Monitoring Programs and will be updated on an as-needed basis. If you have questions or comments about these tables, or want to request the addition of new taxa, please email Ben Block (Ben.Block@tetratech.com).
+The \'taxa translator\' and attribute tables are based on stream
+biomonitoring data from the KDHE Stream Probabilistic (SP) and Stream
+Biological (SB) Monitoring Programs and will be updated on an as-needed
+basis. The Taxa Translator and Attribute tables (and associated
+metadata) can be downloaded
+<a href="https://github.com/Blocktt/KDHEtools/tree/main/inst/shiny-examples/KDHEtools/data/taxa_trans/" target="_blank">here</a>.
 
+IMPORTANT! When you open the Results folder, at a minimum, check the
+\'taxatrans_3nonmatch\' file to make sure there aren\'t any non-matching
+taxa. If there are, and it\'s due to a misspelling, extra space or other
+small issue, go back to your input fix, fix the error(s), re-upload and
+run again. If it\'s a legitimate taxon that isn\'t in the Taxa
+Translator table, please email
+[Jen.Stamp\@tetratech.com](mailto:Jen.Stamp@tetratech.com). We\'ll add
+the new taxa to the table during the next round of updates.
 
-Click [here](https://github.com/Blocktt/KDHEtools/tree/main/inst/shiny-examples/KDHEtools/data) to download the tables and associated metadata files.
+Want to try it? You can download a test file
+<a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Example_Files/Test1_FileBuilder_TaxaAttr.csv/" target="_blank">here</a>.
 
-![Filebuilder Taxa Translate steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width=80%}
+![Filebuilder Taxa Translate
+steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width="80%"}
 
 # Input File
+
 There are three required fields:
 
-* SampleID
+-   SampleID
 
-    + Unique sample identifier.  Includes any replicate/duplicate information.
+-   TaxaID
 
-* TaxaID
+-   Count of individuals (e.g., N_Taxa)
 
-    + Unique taxa name
+If you named the required fields differently in your input file, it's
+ok. Click on the drop-down menus. The list of fields in your input file
+will appear. Select the correct column headings.
 
-* Count of individuals (e.g., N_Taxa)
+Optional - if there are additional fields in the input file that you
+want to carry through into the output file (e.g., stationID, collection
+date, latitude, longitude), click on the 'Columns to keep in output'
+box. The list of fields in your input file will appear. Click on the
+fields that you want to include. If you change your mind and want to
+remove a field, click on it and hit 'delete.'
 
-    + Count of taxa individuals
-    
-If you named the required fields differently in your input file, it’s ok. Click 
-on the drop-down menus. The list of fields in your input file will appear. 
-Select the correct column headings.
-
-Optional - if there are additional fields in the input file that you want to 
-carry through into the output file (e.g., stationID, collection date, latitude,
-longitude), click on the ‘Columns to keep in output’ box. The list of fields in 
-your input file will appear. Click on the fields that you want to include.  If 
-you change your mind and want to remove a field, click on it and hit ‘delete.’ 
-
-IMPORTANT: Do not repeat the required columns. Do not include Life Stage or 
-other fields that are unique to the taxa and not the sample (such as notes from 
-the taxonomist). If a taxon occurs in more than one row for a given sample, it 
-will lead to double-counting of that taxon in the richness metrics.
-
-# Test File
-
-Click [here](https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Example_Files) to download an example file.
-
----
-
-*Last updated 2023-07-28*
+IMPORTANT: Do not repeat the required columns. Do not include Life Stage
+or other fields that are unique to the taxa and not the sample (such as
+notes from the taxonomist). If a taxon occurs in more than one row for a
+given sample, it will lead to double-counting of that taxon in the
+richness metrics.

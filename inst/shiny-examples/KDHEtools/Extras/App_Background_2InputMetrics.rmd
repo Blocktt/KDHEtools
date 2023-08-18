@@ -1,0 +1,60 @@
+---
+title: "Background Input Metrics"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+always_allow_html: true
+output:
+  html_fragment:
+    toc: yes
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
+```
+
+## Input metrics and scoring formulae
+
+There are five input metrics in the KS MMI (Table 1). Each has its own
+random forest model and set of predictor variables. Predictor variables
+are used in the random forest analysis to account for natural gradient
+effects on the metrics. For each site, the random forest model looks at
+site characteristics through decision \'trees\' and arrives at a
+predicted metric values for that site based on the site characteristics,
+as captured by the predictor values.
+
+The random forest adjusted metric value = **observed value -- predicted
+value**
+
+The residual (adjusted) value can be thought of as the variation
+remaining after accounting for natural factors.
+
+The adjusted metric residuals were standardized to a 100-point scale
+such that higher values represented better conditions. The metric
+standardization was an interpolation of metric values between the 5th
+and 95th percentiles of each metric distribution, using the scoring
+formulas in Table 1. If metric values met the reference expectation
+(predicted = observed), they received scores in the 50-60 range. MMI
+values were calculated as the average of the individual metric scores.
+
+#### Table 1. Metrics and scoring formulae for the Kansas Macroinvertebrate MMI. All metrics were adjusted by randomForest models (RF adj) and then scored based on the adjusted values. 5th/95th are the percentiles of metric values that were used for metric scoring.
+
+```{r table_1}
+library(readxl)
+library(knitr)
+library(kableExtra)
+# state directories
+table.dir <- "tables"
+table.file <- "Instruction_Tables.xlsx"
+tab1.dir <- "BugMetrics"
+
+table1 <- read_excel(file.path(table.dir, table.file), sheet = tab1.dir
+                     , na = c("NA", ""), trim_ws = TRUE, skip = 0
+                     , col_names = TRUE)  
+
+options(knitr.kable.NA = '')
+table1 %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "left", font_size = 14)
+```

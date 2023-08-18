@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "0.1.2.9016"
+pkg_ver <- "0.1.2.9040"
 
 # Packages----
 library(shiny)
@@ -15,11 +15,9 @@ library(knitr)
 library(rmarkdown)
 library(StreamCatTools)
 library(lubridate)
+library(randomForest)
 library(dplyr)
 library(zip)
-
-# Remove from global.R and DESCRIPTION
-# library(capture) # possible delete
 
 # File Size
 # By default, the file size limit is 5MB.
@@ -74,22 +72,6 @@ decreasers <- c("nt_habit_climbcling_RFadj","nt_volt_semi_RFadj", "nt_EPT_RFadj"
 
 increasers <- c("x_HBI_RFadj")
 
-# standardizeIncreasers <- function(x) {
-#   standardizedIncreasers<-100*(std_Parameters["ninetififth",i] - x)/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
-# }
-#
-# standardizeDecreasers <- function(x) {
-#   standardizedDecreasers<-100*(x - std_Parameters["fifth",i])/(std_Parameters["ninetififth",i] - std_Parameters["fifth",i])
-# }
-
-# rf models for adjusted metrics
-# habit_model <- load("./data/nt_habit_climbcling_RFmod_final0517.Rdata")
-# HBI_model <- load("./data/x_HBI_RFmod_final0517.Rdata")
-# BCG_model < -load("./data/pt_BCG_att1i234b_RFmod_final0517.Rdata")
-# semiv_model <- load("./data/nt_volt_semi_RFmod_final0517.Rdata")
-# EPT_model <- load("./data/nt_EPT_RFmod_final0517.Rdata")
-
-
 # EPSG ----
 epsg_wgs84    <- 4326
 epsg_nad83_na <- 4269
@@ -122,5 +104,3 @@ col_taxaid_attr <- "TaxaID"
 fn_support_taxa_attr_meta <- "KS_Attributes_Metadata_20230717.csv"
 path_support_taxa_attr_meta <- file.path("data", "taxa_trans"
                                          , fn_support_taxa_attr_meta)
-
-

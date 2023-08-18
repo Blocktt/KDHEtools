@@ -1,0 +1,175 @@
+
+
+
+<div id="input-metrics-and-scoring-formulae" class="section level2">
+<h2>Input metrics and scoring formulae</h2>
+<p>There are five input metrics in the KS MMI (Table 1). Each has its
+own random forest model and set of predictor variables. Predictor
+variables are used in the random forest analysis to account for natural
+gradient effects on the metrics. For each site, the random forest model
+looks at site characteristics through decision &#39;trees&#39; and arrives at a
+predicted metric values for that site based on the site characteristics,
+as captured by the predictor values.</p>
+<p>The random forest adjusted metric value = <strong>observed value –
+predicted value</strong></p>
+<p>The residual (adjusted) value can be thought of as the variation
+remaining after accounting for natural factors.</p>
+<p>The adjusted metric residuals were standardized to a 100-point scale
+such that higher values represented better conditions. The metric
+standardization was an interpolation of metric values between the 5th
+and 95th percentiles of each metric distribution, using the scoring
+formulas in Table 1. If metric values met the reference expectation
+(predicted = observed), they received scores in the 50-60 range. MMI
+values were calculated as the average of the individual metric
+scores.</p>
+<div id="table-1.-metrics-and-scoring-formulae-for-the-kansas-macroinvertebrate-mmi.-all-metrics-were-adjusted-by-randomforest-models-rf-adj-and-then-scored-based-on-the-adjusted-values.-5th95th-are-the-percentiles-of-metric-values-that-were-used-for-metric-scoring." class="section level4">
+<h4>Table 1. Metrics and scoring formulae for the Kansas
+Macroinvertebrate MMI. All metrics were adjusted by randomForest models
+(RF adj) and then scored based on the adjusted values. 5th/95th are the
+percentiles of metric values that were used for metric scoring.</h4>
+<table class="table" style="font-size: 14px; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Metric Name
+</th>
+<th style="text-align:left;">
+Metric Abbreviation
+</th>
+<th style="text-align:left;">
+Response to stress
+</th>
+<th style="text-align:left;">
+Scoring Formula (RF adjusted metric value)
+</th>
+<th style="text-align:right;">
+5th
+</th>
+<th style="text-align:right;">
+95th
+</th>
+<th style="text-align:left;">
+Metric Category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of EPT taxa (RF adj)
+</td>
+<td style="text-align:left;">
+nt_EPT_RFadj
+</td>
+<td style="text-align:left;">
+Decrease
+</td>
+<td style="text-align:left;">
+100*(metric + 7.88) / 13.67
+</td>
+<td style="text-align:right;">
+-7.88
+</td>
+<td style="text-align:right;">
+5.79
+</td>
+<td style="text-align:left;">
+Composition
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Percent sensitive taxa (BCG attribute III+IV better) (RF adj)
+</td>
+<td style="text-align:left;">
+pt_BCG_att1i234b_RFadj
+</td>
+<td style="text-align:left;">
+Decrease
+</td>
+<td style="text-align:left;">
+100*(metric + 7.53) / 13.32
+</td>
+<td style="text-align:right;">
+-7.53
+</td>
+<td style="text-align:right;">
+5.79
+</td>
+<td style="text-align:left;">
+Tolerance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hilsenhoff Biotic Index (HBI) (RF adj)
+</td>
+<td style="text-align:left;">
+x_HBI_RFadj
+</td>
+<td style="text-align:left;">
+Increase
+</td>
+<td style="text-align:left;">
+100*(0.53 - metric) / 0.88
+</td>
+<td style="text-align:right;">
+-0.35
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:left;">
+Tolerance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of climber + clinger taxa (RF adj)
+</td>
+<td style="text-align:left;">
+nt_habit_climbcling_RFadj
+</td>
+<td style="text-align:left;">
+Decrease
+</td>
+<td style="text-align:left;">
+100*(metric + 10.44) / 18.4
+</td>
+<td style="text-align:right;">
+-10.44
+</td>
+<td style="text-align:right;">
+7.96
+</td>
+<td style="text-align:left;">
+Habit
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of semivoltine taxa (RF adj)
+</td>
+<td style="text-align:left;">
+nt_volt_semi_RFadj
+</td>
+<td style="text-align:left;">
+Decrease
+</td>
+<td style="text-align:left;">
+100*(metric + 3.57) / 7.56
+</td>
+<td style="text-align:right;">
+-3.57
+</td>
+<td style="text-align:right;">
+3.99
+</td>
+<td style="text-align:left;">
+Life cycle
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>

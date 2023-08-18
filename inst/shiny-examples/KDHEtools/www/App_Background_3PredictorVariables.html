@@ -1,0 +1,581 @@
+
+
+
+<div id="predictor-variables" class="section level3">
+<h3>Predictor variables</h3>
+<p>Predictor variables are used in the random forest analysis to account
+for natural gradient effects on the five macroinvertebrate metrics.
+There are 12-16 predictor variables per metric (Table 1). For each site,
+the random forest model looks at site characteristics through decision
+&#39;trees&#39; and arrives at a predicted metric value for that site based on
+the site characteristics, as captured by the predictor values.
+Accounting for natural gradients with the random forest models increases
+metric precision and decreases variation.</p>
+<p>A table with predictor variables (except for Longitude and CFS) for
+all NHDPlusV2 local catchments in Kansas can be downloaded
+<a href="https://github.com/Blocktt/KDHEtools/blob/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_BenB_20230721.xlsx/" target="_blank">here</a>.</p>
+<p>For more information, please read the Kansas Macroinvertebrate MMI
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/KDHEtools/Reports/" target="_blank">report</a>.</p>
+<p>Note, only COMIDs from the state of Kansas can be used. If the user
+would like COMIDs from other, nearby states, please contact Ben Block
+(Ben.Block@tetratech.com) and he can update the available list.</p>
+<div id="table-1.-background-information-on-natural-variables-and-which-macroinvertebrate-metrics-each-adjusted." class="section level4">
+<h4>Table 1. Background information on natural variables and which
+macroinvertebrate metrics each adjusted.</h4>
+<table class="table" style="font-size: 14px; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable Abbreviation
+</th>
+<th style="text-align:left;">
+Number of EPT taxa
+</th>
+<th style="text-align:left;">
+Percent sensitive taxa (BCG attribute III+IV better)
+</th>
+<th style="text-align:left;">
+HBI
+</th>
+<th style="text-align:left;">
+Number of climber + clinger taxa
+</th>
+<th style="text-align:left;">
+Number of semivoltine taxa
+</th>
+<th style="text-align:right;">
+# MMI metrics
+</th>
+<th style="text-align:left;">
+Variable Name
+</th>
+<th style="text-align:left;">
+Data Source
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Al2O3Ws
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Lithological aluminum oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CFS
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Stream flow
+</td>
+<td style="text-align:left;">
+Perry et al. 2002 summarized by KDHE CUSEGA. Crosswalked to COMID.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ClayWs
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Soil clay content
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set1_(RegionID).csv, STATSGO_Set1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ElevCat
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Elevation
+</td>
+<td style="text-align:left;">
+StreamCat: Elevation_(RegionID).csv, Elevation_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fe2O3Cat
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Lithological ferric oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+K2OWs
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Lithological potassium oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+L3Eco
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Level III Ecoregion
+</td>
+<td style="text-align:left;">
+Level III Ecoregion designation assigned at centroid of NHDCatchment. <a href="https://www.epa.gov/eco-research/level-iii-and-iv-ecoregions-continental-united-states" class="uri">https://www.epa.gov/eco-research/level-iii-and-iv-ecoregions-continental-united-states</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Long
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Longitude
+</td>
+<td style="text-align:left;">
+Provided by user in input file.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MgOCat
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Lithological magnesium oxide
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NWs
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Lithological nitrogen
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys2_(RegionID).csv, GeoChemPhys2_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PermWs
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Soil permeability
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set2_(RegionID).csv, STATSGO_Set2_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PrecipCat
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Mean precipitation
+</td>
+<td style="text-align:left;">
+StreamCat: PRISM_1981_2010_(RegionID).csv, PRISM_1981_2010_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PrecipWs
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Mean precipitation
+</td>
+<td style="text-align:left;">
+StreamCat: PRISM_1981_2010_(RegionID).csv, PRISM_1981_2010_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SandWs
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Soil sand content
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set1_(RegionID).csv, STATSGO_Set1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SWs
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Lithological sulfur
+</td>
+<td style="text-align:left;">
+StreamCat: GeoChemPhys1_(RegionID).csv, GeoChemPhys1_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TmeanCat
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Mean temperature
+</td>
+<td style="text-align:left;">
+StreamCat: PRISM_1981_2010_(RegionID).csv, PRISM_1981_2010_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WetIndexWs
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Wetness index
+</td>
+<td style="text-align:left;">
+StreamCat: WetIndx_(RegionID).csv, WetIndx_(StateID).csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WsAreaSqKm
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Watershed area
+</td>
+<td style="text-align:left;">
+StreamCat: Available from any of the StreamCat tables.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WtDepWs
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Water table depth
+</td>
+<td style="text-align:left;">
+StreamCat: STATSGO_Set2_(RegionID).csv, STATSGO_Set2_(StateID).csv
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>

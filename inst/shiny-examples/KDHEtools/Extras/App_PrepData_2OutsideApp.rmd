@@ -1,0 +1,51 @@
+---
+title: "Instructions and Background Information"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+always_allow_html: true
+output:
+  html_fragment:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE)
+```
+
+## Preparing the input file
+
+If you choose to create the input file outside of the app (versus using the \'File Builder\'), the comma-separated file (CSV) needs to have all the required fields listed below in Table 1. Column names must match the spelling, symbology and capitalization scheme exactly as shown.
+
+There is one more required field (EXCLUDE) that is not shown in Table 1. That column will be added automatically when you run the Index Calculator. The EXCLUDE field marks redundant (non-distinct) taxa, using the same <a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx/" target="_blank">criteria</a> that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in the composition (percent individuals) metrics.
+
+IMPORTANT:
+
+Make sure you are using the proper Operational Taxonomic Unit (OTU) and taxa traits/attributes for your metric calculations. The Taxa Translator and Attribute tables (and associated metadata) that were used for MMI development can be downloaded <a href="https://github.com/Blocktt/KDHEtools/tree/main/inst/shiny-examples/KDHEtools/data/taxa_trans/" target="_blank">here</a>.
+
+For Level 3 ecoregion (L3Eco), you must add the prefix \'eco\_\' in front of the number codes (e.g., eco3_25).
+
+Macroinvertebrate traits are not required for each record (i.e., trait fields allow null values).
+
+For more information on how the CFS field was derived for MMI development, contact Liz Smith (Elizabeth.Smith\@ks.gov).
+
+An example input file can be found <a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Example_Files/Test1_Formatted.csv/" target="_blank">here</a>.
+
+#### Table 1. List of required fields. Column names must match the spelling and symbology exactly as shown. Note that some fields are upper case while others are camel case.
+
+```{r table_1}
+library(readxl)
+library(knitr)
+library(kableExtra)
+# state directories
+table.dir <- "tables"
+table.file <- "Instruction_Tables.xlsx"
+tab1.dir <- "Instr_Table_Bugs"
+
+table1 <- read_excel(file.path(table.dir, table.file), sheet = tab1.dir
+                     , na = c("NA", ""), trim_ws = TRUE, skip = 0
+                     , col_names = TRUE)  
+
+# kable(table1)
+table1 %>% 
+  kbl() %>% 
+  kable_styling(full_width = F, position = "left", font_size = 14)
+```
