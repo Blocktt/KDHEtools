@@ -17,6 +17,15 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+KDHEtools v0.1.2.9042 (2023-08-18)
+================
+
+* fix: MMI calc import change some columns to upper case
+    + "SAMPLEID", "LAT", "LONG", "TAXAID", "N_TAXA", "NONTARGET", "AIRBREATHER"
+    + Change Latitude and Longitude to LAT and LONG
+* refactor: Add instructions to MMI calc to side bar
+* refactor: Remove instructions tab from MMI calc
+
 KDHEtools v0.1.2.9041 (2023-08-18)
 ================
 

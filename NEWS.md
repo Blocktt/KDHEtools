@@ -3,7 +3,16 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-18 12:53:06.88875
+    #> Last Update: 2023-08-18 16:27:16.988011
+
+# KDHEtools v0.1.2.9042 (2023-08-18)
+
+- fix: MMI calc import change some columns to upper case
+  - “SAMPLEID”, “LAT”, “LONG”, “TAXAID”, “N_TAXA”, “NONTARGET”,
+    “AIRBREATHER”
+  - Change Latitude and Longitude to LAT and LONG
+- refactor: Add instructions to MMI calc to side bar
+- refactor: Remove instructions tab from MMI calc
 
 # KDHEtools v0.1.2.9041 (2023-08-18)
 

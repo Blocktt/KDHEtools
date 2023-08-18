@@ -85,6 +85,17 @@ shinyServer(function(input, output, session) {
                               , "PrecipWs", "SandWs", "SWs", "TmeanCat"
                               , "WetIndexWs", "WsAreaSqKm", "WtDepWs")
 
+        ### Column Case Fix ----
+        # EWL, 2023-08-18
+        # Certain columns to upper case
+        col2upper <- c("SAMPLEID", "LAT", "LONG", "TAXAID", "N_TAXA"
+                       , "NONTARGET", "AIRBREATHER")
+        names(df_input)[toupper(names(df_input)) %in% col2upper] <-
+          toupper(names(df_input)[toupper(names(df_input)) %in% col2upper])
+        # Latitude and Longitude to LAT and LONG
+        names(df_input)[toupper(names(df_input)) %in% "LATITUDE"] <- "LAT"
+        names(df_input)[toupper(names(df_input)) %in% "LONGITUDE"] <- "LONG"
+
         column_names <- colnames(df_input)
 
         # QC Check for column names
