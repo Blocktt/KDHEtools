@@ -13,6 +13,8 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 # Calculate MMI Instructions
 
+<a href="links/3_CalculateMMI_Instructions_20230818.pdf">Calculate MMI Instructions</a>
+
 1.  Load file
     -   Must be a comma-separated file (.csv)
     -   Choose file to upload. Hit the browse button and search for the input file.

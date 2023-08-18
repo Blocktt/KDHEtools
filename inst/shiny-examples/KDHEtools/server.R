@@ -31,8 +31,25 @@ shinyServer(function(input, output, session) {
     # Misc Names----
     output$fn_input_display <- renderText({input$fn_input}) ## renderText~END
 
+    # MMI calc ----
 
-    # df_import----
+    ## MMIcalc, FileWatch ----
+    file_watch_mmicalc <- reactive({
+      # trigger for df_import()
+      input$fn_input
+    })## file_watch
+
+    ## change view
+    # df_import for MMIcalc not set up the same as others
+    # had to set its own watch for changing view
+    df_import_mmicalc <- eventReactive(file_watch_mmicalc(), {
+      # activate tab Panel with table of imported data
+      updateTabsetPanel(session = getDefaultReactiveDomain()
+                        , "tabs_MMIcalc_main"
+                        , selected = "tab_MMIcalc_viewer")
+    })## df_import_mmicalc
+
+    ## df_import----
     output$df_import_DT <- DT::renderDT({
         # input$df_import will be NULL initially. After the user selects
         # and uploads a file, it will be a data frame with 'name',
@@ -59,7 +76,7 @@ shinyServer(function(input, output, session) {
         df_input <- read.csv(inFile$datapath, header = TRUE,
                              stringsAsFactors = FALSE)
 
-        required_columns <- c("SAMPLEID", "STATIONID", "LAT", "LONG", "TAXAID"
+        required_columns <- c("SAMPLEID", "LAT", "LONG", "TAXAID"
                               , "N_TAXA", "NONTARGET", "AIRBREATHER", "BCG_Attr"
                               , "BCG_Attr2", "HABIT", "LIFE_CYCLE", "TolVal"
                               , "PHYLUM", "ORDER", "FAMILY", "GENUS", "Al2O3Ws"
@@ -107,7 +124,7 @@ shinyServer(function(input, output, session) {
 
     )##output$df_import_DT~END
 
-    # b_Calc----
+    ## b_Calc, MMI----
     # Calculate IBI (metrics and scores) from df_import
     # add "sleep" so progress bar is readable
     observeEvent(input$b_Calc, {
@@ -203,7 +220,7 @@ shinyServer(function(input, output, session) {
                 message("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
             }##IF.Exclude.T.END
 
-            ## Exclude Taxa ----
+            ### Exclude Taxa ----
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Calculate, Exclude Taxa")
             Sys.sleep(0.5)
@@ -319,7 +336,7 @@ shinyServer(function(input, output, session) {
                                                     , "eco3_29", "eco3_39"
                                                     , "eco3_40", "eco3_47"))
 
-            # adjust metrics----
+            ## adjust metrics----
 
             std_Parameters <- read.csv("./data/StandardizationParameters0517.csv", row.names = 1)
             # std_Parameters <- read.csv("./inst/shiny-examples/KDHEtools/data/StandardizationParameters0517.csv", row.names = 1)
@@ -376,7 +393,7 @@ shinyServer(function(input, output, session) {
             incProgress(1/n_inc, detail = "Calculate, Scores")
             Sys.sleep(0.50)
 
-            # metric scoring----
+            ## metric scoring----
             # Increasers
             metricsIncreasers <- df_metval2[,c("SAMPLEID", increasers)]
 

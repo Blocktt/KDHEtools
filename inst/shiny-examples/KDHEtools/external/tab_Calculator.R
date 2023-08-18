@@ -32,7 +32,7 @@ function(){
                            , multiple = FALSE
                            , accept = c("text/csv"
                                         , "text/comma-separated-values"
-                                        , "text/tab-separated-values"
+                                        #, "text/tab-separated-values"
                                         , "text/plain"
                                         , ".csv")
                )##fileInput~END
@@ -55,10 +55,12 @@ function(){
              )##sidebarPanel~END
              , mainPanel(
                tabsetPanel(type="tabs"
+                           , id = "tabs_MMIcalc_main"
                            , tabPanel("Instructions"
                                       , includeHTML("www/App_CalculateMMI_1Instructions.html"))
                            , tabPanel("Data Import Viewer"
-                                      , DT::dataTableOutput('df_import_DT'))
+                                      , DT::dataTableOutput('df_import_DT')
+                                      , value = "tab_MMIcalc_viewer")
                            , tabPanel("Outputs"
                                       , includeHTML("www/App_CalculateMMI_2Output.html"))
              )##tabsetPanel~END

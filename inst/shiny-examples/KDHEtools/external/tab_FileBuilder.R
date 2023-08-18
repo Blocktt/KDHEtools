@@ -32,7 +32,7 @@ function(){
                                                               , multiple = FALSE
                                                               , accept = c("text/csv"
                                                                            , "text/comma-separated-values"
-                                                                           , "text/tab-separated-values"
+                                                                           #, "text/tab-separated-values"
                                                                            , "text/plain"
                                                                            , ".csv")
                                                   )
@@ -95,7 +95,7 @@ function(){
                                                       , multiple = FALSE
                                                       , accept = c("text/csv"
                                                                    , "text/comma-separated-values"
-                                                                   , "text/tab-separated-values"
+                                                                   #, "text/tab-separated-values"
                                                                    , "text/plain"
                                                                    , ".csv")
                                           )
@@ -156,7 +156,7 @@ function(){
                                            , multiple = FALSE
                                            , accept = c("text/csv"
                                                         , "text/comma-separated-values"
-                                                        , "text/tab-separated-values"
+                                                        #, "text/tab-separated-values"
                                                         , "text/plain"
                                                         , ".csv")
                                )
@@ -165,7 +165,7 @@ function(){
                                            , multiple = FALSE
                                            , accept = c("text/csv"
                                                         , "text/comma-separated-values"
-                                                        , "text/tab-separated-values"
+                                                        #, "text/tab-separated-values"
                                                         , "text/plain"
                                                         , ".csv")
                                )

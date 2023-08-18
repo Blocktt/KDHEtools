@@ -3,7 +3,21 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-17 16:49:06
+    #> Last Update: 2023-08-18 12:53:06.88875
+
+# KDHEtools v0.1.2.9041 (2023-08-18)
+
+- refactor: MMI calc Shiny, change focus to import viewer after import
+
+- refactor: Remove tab separated as accepted import file option, all
+  imports
+
+- docs: Add Calc MMI Instructions and link
+
+- fix: Remove StationID as a required field for MMI calculator
+
+- refactor: Changed links for KS MMI doc on background screen to load
+  from Shiny app instead of opening GitHub folder
 
 # KDHEtools v0.1.2.9040 (2023-08-17)
 
