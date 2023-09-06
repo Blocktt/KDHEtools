@@ -3,7 +3,12 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-18 16:27:16.988011
+    #> Last Update: 2023-09-06 10:38:17.76804
+
+# KDHEtools v0.1.2.9043 (2023-09-06)
+
+- fix: Change logo size from absolute to percentage,
+  Blocktt/KDHEtools#11
 
 # KDHEtools v0.1.2.9042 (2023-08-18)
 

@@ -17,6 +17,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+KDHEtools v0.1.2.9043 (2023-09-06)
+================
+
+* fix: Change logo size from absolute to percentage, Blocktt/KDHEtools#11
+
 KDHEtools v0.1.2.9042 (2023-08-18)
 ================
 
