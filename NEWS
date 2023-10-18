@@ -3,7 +3,12 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-09-06 10:38:17.76804
+    #> Last Update: 2023-10-18 14:54:34.285388
+
+# KDHEtools v0.1.2.9044 (2023-10-18)
+
+- fix: In taxa translation routine in \*\_2taxamatch file flip “Changed”
+  column
 
 # KDHEtools v0.1.2.9043 (2023-09-06)
 

@@ -17,6 +17,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+KDHEtools v0.1.2.9044 (2023-10-18)
+================
+
+* fix: In taxa translation routine in *_2taxamatch file flip "Changed" column 
+
 KDHEtools v0.1.2.9043 (2023-09-06)
 ================
 
