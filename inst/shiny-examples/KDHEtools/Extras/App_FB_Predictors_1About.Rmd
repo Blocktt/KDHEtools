@@ -37,14 +37,14 @@ populated with the value 4269 (NAD83, North America)
 
 The underlying code in the Shiny app will use the lat/longs to match the
 sites with NHDPlusV2 catchments and COMIDs (unique identifiers); the
-<a href="https://github.com/Blocktt/KDHEtools/blob/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_BenB_20230721.xlsx/" target="_blank">predictor
+<a href="https:://raw.githubusercontent.com/Blocktt/KDHEtools/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_BenB_20230721.xlsx" target="_blank">predictor
 variables</a> are then joined to the input file via the COMID.
 
 For more information about how the CFS field was derived for MMI
-development, contact Liz Smith (Elizabeth.Smith\@ks.gov).
+development, contact Liz Smith (Elizabeth.Smith@ks.gov).
 
 Want to try it? You can download a test file
-<a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Example_Files/Test1_FileBuilder_Predictor.csv/" target="_blank">here</a>.
+<a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Example_Files/Test1_FileBuilder_Predictor.csv" target="_blank">here</a>.
 
 # Disclaimers
 

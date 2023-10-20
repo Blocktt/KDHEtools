@@ -24,7 +24,7 @@ function(){
                # need to create code to use in b_Calc
                , h5("Marks redundant (non-distinct) taxa using the same "
                     ,a("criteria"
-                       , href = "https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx/")
+                       , href = "https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx")
                     , " that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in composition (percent individuals) metrics.")
 
                # , h5("Marks redundant (non-distinct) taxa using the same "

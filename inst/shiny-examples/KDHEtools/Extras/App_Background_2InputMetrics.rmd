@@ -20,9 +20,9 @@ There are five input metrics in the KS MMI (Table 1). Each has its own
 random forest model and set of predictor variables. Predictor variables
 are used in the random forest analysis to account for natural gradient
 effects on the metrics. For each site, the random forest model looks at
-site characteristics through decision \'trees\' and arrives at a
-predicted metric values for that site based on the site characteristics,
-as captured by the predictor values.
+site characteristics through decision 'trees' and arrives at a predicted
+metric values for that site based on the site characteristics, as
+captured by the predictor values.
 
 The random forest adjusted metric value = **observed value -- predicted
 value**

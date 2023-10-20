@@ -19,14 +19,14 @@ knitr::opts_chunk$set(echo = FALSE
 Finish creating your input file by merging the outputs from the Taxa
 Translator/Add Attributes and Generate Predictors tabs.
 
-Upload the files (the order shouldn\'t matter) and select a single
-common identifier from each file to perform the merge (e.g., SampleID).
-The common identifier doesn\'t need to be named the same thing in both
-files. Just click on the drop-down menus and the list of fields in your
-input files will appear. Select the correct identifiers from each file.
+Upload the files (the order shouldn't matter) and select a single common
+identifier from each file to perform the merge (e.g., SampleID). The
+common identifier doesn't need to be named the same thing in both files.
+Just click on the drop-down menus and the list of fields in your input
+files will appear. Select the correct identifiers from each file.
 
 In the output file, column names that overlap across the two files will
-have the suffix \'.x\' or \'.y\' for files 1 and 2 , respectively.
+have the suffix '.x' or '.y' for files 1 and 2 , respectively.
 
 You will have the option of viewing both input files before merging.
 

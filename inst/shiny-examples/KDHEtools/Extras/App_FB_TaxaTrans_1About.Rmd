@@ -23,7 +23,7 @@ input file will be ready to run through the MMI calculator.
 
 This function performs two steps to the input file:
 
-1.  \"Translates\" the original TaxonID to the MMI OTU.
+1.  "Translates" the original TaxonID to the MMI OTU.
 
 2.  Appends the KS MMI taxa attributes, which include tolerance, habit,
     voltinism, BCG taxa attributes, functional feeding group, and more.
@@ -35,7 +35,7 @@ offer an alternate option in which species-level IDs are collapsed to
 genus (OTU_MMI_genus) to allow users to explore how much the level of
 taxonomy influences the outcome.
 
-The \'taxa translator\' and attribute tables are based on stream
+The 'taxa translator' and attribute tables are based on stream
 biomonitoring data from the KDHE Stream Probabilistic (SP) and Stream
 Biological (SB) Monitoring Programs and will be updated on an as-needed
 basis. The Taxa Translator and Attribute tables (and associated
@@ -43,16 +43,16 @@ metadata) can be downloaded
 <a href="https://github.com/Blocktt/KDHEtools/tree/main/inst/shiny-examples/KDHEtools/data/taxa_trans/" target="_blank">here</a>.
 
 IMPORTANT! When you open the Results folder, at a minimum, check the
-\'taxatrans_3nonmatch\' file to make sure there aren\'t any non-matching
-taxa. If there are, and it\'s due to a misspelling, extra space or other
+'taxatrans_3nonmatch' file to make sure there aren't any non-matching
+taxa. If there are, and it's due to a misspelling, extra space or other
 small issue, go back to your input fix, fix the error(s), re-upload and
-run again. If it\'s a legitimate taxon that isn\'t in the Taxa
-Translator table, please email
-[Jen.Stamp\@tetratech.com](mailto:Jen.Stamp@tetratech.com). We\'ll add
+run again. If it's a legitimate taxon that isn't in the Taxa Translator
+table, please email
+[Jen.Stamp\@tetratech.com](mailto:Jen.Stamp@tetratech.com). We'll add
 the new taxa to the table during the next round of updates.
 
 Want to try it? You can download a test file
-<a href="https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Example_Files/Test1_FileBuilder_TaxaAttr.csv/" target="_blank">here</a>.
+<a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Example_Files/Test1_FileBuilder_TaxaAttr.csv" target="_blank">here</a>.
 
 ![Filebuilder Taxa Translate
 steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width="80%"}
