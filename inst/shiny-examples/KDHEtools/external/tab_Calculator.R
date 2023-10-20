@@ -9,27 +9,6 @@ function(){
                , a("Calculate MMI Instructions"
                    , href = "links/3_CalculateMMI_Instructions_20230818.pdf")
                , h4("1. Load File")
-               # , h5("Select file parameters")
-               # , radioButtons('sep', 'Separator'
-               #                ,c(Comma=',',
-               #                   Semicolon=';',
-               #                   Tab='\t'),
-               #                ',')
-               # , radioButtons('quote', 'Quote',
-               #                c(None='',
-               #                  'Double Quote'='"',
-               #                  'Single Quote'="'"),
-               #                '"')
-               # , fileInput('fn_input', 'Choose file to upload',
-               #             accept = c(
-               #               'text/csv',
-               #               'text/comma-separated-values',
-               #               'text/tab-separated-values',
-               #               'text/plain',
-               #               '.csv',
-               #               '.tsv'
-               #             )
-               # )##fileInput~END
                , fileInput("fn_input"
                            , label = "Choose file to upload"
                            , multiple = FALSE
@@ -43,6 +22,15 @@ function(){
                , h4("2. Excluded Taxa")
                , checkboxInput("ExclTaxa", "Generate Exclude Taxa Column", TRUE)
                # need to create code to use in b_Calc
+               , h5("Marks redundant (non-distinct) taxa using the same "
+                    ,a("criteria"
+                       , href = "https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx/")
+                    , " that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in composition (percent individuals) metrics.")
+
+               # , h5("Marks redundant (non-distinct) taxa using the same "
+               #      ,a("criteria"
+               #         , href = "https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx/")
+               #      , " that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in composition (percent individuals) metrics.")
 
                , h4("3. Calculate IBI")
                , actionButton("b_Calc", "Calculate Metric Values and Scores")

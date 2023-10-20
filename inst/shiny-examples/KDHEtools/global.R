@@ -104,3 +104,5 @@ col_taxaid_attr <- "TaxaID"
 fn_support_taxa_attr_meta <- "KS_Attributes_Metadata_20230717.csv"
 path_support_taxa_attr_meta <- file.path("data", "taxa_trans"
                                          , fn_support_taxa_attr_meta)
+## Calc output metadata
+df_calc_metadata <-read.csv("data/output_metadata_20231020.csv")

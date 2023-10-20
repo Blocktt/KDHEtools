@@ -146,7 +146,7 @@ shinyServer(function(input, output, session) {
             n_inc <- 8
 
             # sink output
-            file_sink <- file(file.path(".", "Results", "results_log.txt")
+            file_sink <- file(file.path(".", "Results", "results_Log.txt")
                               , open = "wt")
             sink(file_sink, type = "output", append = TRUE)
             sink(file_sink, type = "message", append = TRUE)
@@ -277,6 +277,10 @@ shinyServer(function(input, output, session) {
               dn_excl <- path_results
               pn_excl <- file.path(dn_excl, fn_excl)
               write.csv(df_data, pn_excl, row.names = FALSE)
+
+              # Save
+              fn_data_excl <- file.path(".", "Results", "results_Input_file_mark_excluded.csv")
+              write.csv(df_data, fn_data_excl, row.names = FALSE)
 
             }## IF ~ input$ExclTaxa
 
@@ -461,11 +465,15 @@ shinyServer(function(input, output, session) {
             incProgress(1/n_inc, detail = "Create, Zip")
             Sys.sleep(0.50)
 
+            # Save metadata
+            fn_calc_meta <- file.path(".", "Results", "results_Output_metadata.csv")
+            write.csv(df_calc_metadata, fn_calc_meta, row.names = FALSE)
+
             # Create zip file
             fn_4zip <- list.files(path = file.path(".", "Results")
                                   , pattern = "^results_"
                                   , full.names = TRUE)
-            zip(file.path(".", "Results", "results.zip"), fn_4zip)
+            zip::zip(file.path(".", "Results", "results.zip"), fn_4zip)
 
             # enable download button
             shinyjs::enable("b_downloadData")

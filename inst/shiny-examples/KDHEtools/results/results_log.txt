@@ -1,278 +1,40 @@
 Results Log from KDHEtools Shiny App
-2023-10-18 13:53:16.300284
-file = ShinyApp_TestFile_Formatted_AllwCFS_subset1.csv
-Warning in file(file, "rt") :
-  cannot open file './Results/data_import.tsv': No such file or directory
-Warning: Error in file: cannot open the connection
-  1: runApp
+2023-10-20 15:05:14
+file = Test1_Formatted (1).csv
+EXCLUDE column does not have any TRUE values. 
+  Valid values are TRUE or FALSE.  
+  Other values are not recognized.
+User response to generate ExclTaxa = TRUE
+*WARNING*, 11 taxa levels missing from input data frame; 
+ KINGDOM, SUBPHYLUM, SUBCLASS, SUBORDER, INFRAORDER, SUPERFAMILY, SUBFAMILY, TRIBE, SUBGENUS, SPECIES, VARIETY
 
-
-Directory already exists; data
-
-Listening on http://127.0.0.1:4721
-Import, file name: TestFile1_BugSamples_subset1.csv
-Files in 'results' folder (before removal) = 2
-Warning in file.remove(fn_results) :
-  cannot remove file 'results/results_log.txt', reason 'Permission denied'
-Files in 'results' folder (after removal [should be 0]) = 1
-Called from: eval(expr, env)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#585: prog_detail <- "Calculation, Taxa Translate..."
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#586: message(paste0("\n", prog_detail))
-
-Calculation, Taxa Translate...
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#589: prog_n <- 8
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#590: prog_sleep <- 0.25
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#593: prog_detail <- "Import Data, User"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#594: message(paste0("\n", prog_detail))
-
-Import Data, User
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#596: incProgress(1/prog_n, detail = prog_detail)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#597: Sys.sleep(prog_sleep)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#600: shinyjs::disable("b_download_taxatrans")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#603: sep_user <- sep_default
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#606: inFile <- input$fn_input_taxatrans
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#607: fn_input_base <- tools::file_path_sans_ext(inFile$name)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#608: message(paste0("Import, file name, base: ", fn_input_base))
-Import, file name, base: TestFile1_BugSamples_subset1
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#609: df_input <- read.delim(inFile$datapath, header = TRUE, sep = sep_user, 
-    stringsAsFactors = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#614: if (is.null(df_input)) {
-    return(NULL)
-}
-       STATIONID           SAMPLEID   COLLDATE                                 TAXAID N_TAXA
-1 KS_MMI_Site609 KS_Clint_0009_Rep1 1980-09-16                            ABLABESMYIA      1
-2 KS_MMI_Site609 KS_Clint_0009_Rep1 1980-09-16                                  ARGIA      7
-3 KS_MMI_Site609 KS_Clint_0009_Rep1 1980-09-16 BAETIS/FALLCEON/HETEROCLOEON/PLAUDITUS      7
-4 KS_MMI_Site609 KS_Clint_0009_Rep1 1980-09-16                              BELOSTOMA      3
-5 KS_MMI_Site609 KS_Clint_0009_Rep1 1980-09-16                             CAMBARIDAE      1
-6 KS_MMI_Site609 KS_Clint_0009_Rep1 1980-09-16                         CHEUMATOPSYCHE      6
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#620: prog_detail <- "QC Inputs"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#621: message(paste0("\n", prog_detail))
-
-QC Inputs
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#623: incProgress(1/prog_n, detail = prog_detail)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#624: Sys.sleep(prog_sleep)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#627: sel_user_sampid <- input$taxatrans_user_col_sampid
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#628: sel_user_taxaid <- input$taxatrans_user_col_taxaid
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#629: sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#630: sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#631: sel_user_otu <- input$taxatrans_user_otu
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#635: user_col_keep <- names(df_input)[names(df_input) %in% c(sel_user_groupby, 
-    sel_user_sampid, sel_user_taxaid, sel_user_ntaxa)]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#640: user_col_drop <- names(df_input)[!names(df_input) %in% user_col_keep]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#647: if (sel_user_sampid == "") {
-    msg <- "'SampleID' column name is missing!"
-    shinyalert::shinyalert(title = "Taxa Translator", text = msg, 
-        type = "error", closeOnEsc = TRUE, closeOnClickOutside = TRUE)
-    validate(msg)
-}
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#658: if (sel_user_taxaid == "") {
-    msg <- "'Taxa_Name' column name is missing!"
-    shinyalert::shinyalert(title = "Taxa Translator", text = msg, 
-        type = "error", closeOnEsc = TRUE, closeOnClickOutside = TRUE)
-    validate(msg)
-}
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#669: if (sel_user_ntaxa == "") {
-    msg <- "'N_Taxa' column name is missing!"
-    shinyalert::shinyalert(title = "Taxa Translator", text = msg, 
-        type = "error", closeOnEsc = TRUE, closeOnClickOutside = TRUE)
-    validate(msg)
-}
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#683: df_input[, sel_user_taxaid] <- toupper(df_input[, sel_user_taxaid])
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#693: prog_detail <- "Import Data, Translations and Attributes"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#694: message(paste0("\n", prog_detail))
-
-Import Data, Translations and Attributes
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#696: incProgress(1/prog_n, detail = prog_detail)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#697: Sys.sleep(prog_sleep)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#700: path_taxa_trans <- path_support_taxa_trans
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#701: df_taxa_trans <- read.delim(path_taxa_trans, header = TRUE, sep = ",", 
-    stringsAsFactors = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#707: path_taxa_trans <- path_support_taxa_trans_meta
-          TaxaID_orig KS_TAXACODE Rank_orig NonTarget             OTU_MMI OTU_MMI_genus
-1           HIRUDINEA         487     Class     FALSE           HIRUDINEA     HIRUDINEA
-2       ERPOBDELLIDAE         276    Family     FALSE       ERPOBDELLIDAE ERPOBDELLIDAE
-3          ERPOBDELLA         427     Genus     FALSE          ERPOBDELLA ERPOBDELLIDAE
-4 ERPOBDELLA PUNCTATA         402   Species     FALSE ERPOBDELLA PUNCTATA ERPOBDELLIDAE
-5        MOOREOBDELLA          92     Genus     FALSE        MOOREOBDELLA ERPOBDELLIDAE
-6            HAEMOPIS         912     Genus     FALSE            HAEMOPIS    HAEMOPIDAE
-              OTU_BCG   PHYLUM     CLASS           ORDER        FAMILY        GENUS NumSamp_All
-1           HIRUDINEA ANNELIDA HIRUDINEA                                                     25
-2       ERPOBDELLIDAE ANNELIDA HIRUDINEA ARHYNCHOBDELLID ERPOBDELLIDAE                      796
-3          ERPOBDELLA ANNELIDA HIRUDINEA ARHYNCHOBDELLID ERPOBDELLIDAE   ERPOBDELLA         164
-4 ERPOBDELLA PUNCTATA ANNELIDA HIRUDINEA ARHYNCHOBDELLID ERPOBDELLIDAE   ERPOBDELLA          15
-5        MOOREOBDELLA ANNELIDA HIRUDINEA ARHYNCHOBDELLID ERPOBDELLIDAE MOOREOBDELLA           2
-6            HAEMOPIS ANNELIDA HIRUDINEA ARHYNCHOBDELLID    HAEMOPIDAE     HAEMOPIS           3
-  NumSites_All Yr_Min Yr_Max NumSamp_SB NumSamp_SP
-1           23   1980   2018         19          6
-2          325   1980   2019        554        242
-3           83   2008   2019        132         32
-4            4   2011   2018         15         NA
-5            2   1983   1983          2         NA
-6            3   1992   2016          3         NA
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#708: df_taxa_trans_meta <- read.delim(path_taxa_trans, header = TRUE, 
-    sep = ",", stringsAsFactors = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#715: path_taxa_attr <- path_support_taxa_attr
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#716: df_taxa_attr <- read.delim(path_taxa_attr, header = TRUE, sep = ",", 
-    stringsAsFactors = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#722: path_taxa_attr <- path_support_taxa_attr_meta
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#723: df_taxa_attr_meta <- read.delim(path_taxa_attr, header = TRUE, 
-    sep = ",", stringsAsFactors = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#730: fn_taxoff <- fn_support_taxa_trans
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#731: fn_taxoff_attr <- fn_support_taxa_attr
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#735: prog_detail <- "Import Data, Translate"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#736: message(paste0("\n", prog_detail))
-
-Import Data, Translate
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#738: incProgress(1/prog_n, detail = prog_detail)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#739: Sys.sleep(prog_sleep)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#742: taxatrans_results <- BioMonTools::taxa_translate(df_user = df_input, 
-    df_official = df_taxa_trans, df_official_metadata = df_taxa_trans_meta, 
-    taxaid_user = sel_user_taxaid, taxaid_official_match = col_taxaid_official_match, 
-    taxaid_official_project = sel_user_otu, taxaid_drop = NULL, 
-    col_drop = NULL, sum_n_taxa_boo = TRUE, sum_n_taxa_col = sel_user_ntaxa, 
-    sum_n_taxa_group_by = user_col_keep)
-Warning in merge.data.frame(df_summ, df_official, by.x = taxaid_user, by.y = taxaid_official_match,  :
-  column name ‘N_TAXA’ is duplicated in the result
-User taxa match, 166 / 166
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#756: col_drop_project <- col_taxaid_official_mmi_drop
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#758: col_keep <- !names(taxatrans_results$merge) %in% col_drop_project
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#759: taxatrans_results$merge <- taxatrans_results$merge[, col_keep]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#763: if (!is.na(fn_taxoff_attr)) {
-    df_ttrm <- taxatrans_results$merge
-    col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid, 
-        sel_user_taxaid, sel_user_ntaxa, sel_user_otu, sel_user_groupby)]
-    df_ttrm <- df_ttrm[, col_keep_ttrm]
-    df_merge_attr <- merge(df_ttrm, df_taxa_attr, by.x = sel_user_taxaid, 
-        by.y = col_taxaid_attr, all.x = TRUE, sort = FALSE, suffixes = c("_xDROP", 
-            "_yKEEP"))
-    col_keep <- names(df_merge_attr)[!grepl("_xDROP$", names(df_merge_attr))]
-    df_merge_attr <- df_merge_attr[, col_keep]
-    names(df_merge_attr) <- gsub("_yKEEP$", "", names(df_merge_attr))
-    taxatrans_results$merge <- df_merge_attr
-}
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#764: df_ttrm <- taxatrans_results$merge
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#766: col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid, 
-    sel_user_taxaid, sel_user_ntaxa, sel_user_otu, sel_user_groupby)]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#771: df_ttrm <- df_ttrm[, col_keep_ttrm]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#773: df_merge_attr <- merge(df_ttrm, df_taxa_attr, by.x = sel_user_taxaid, 
-    by.y = col_taxaid_attr, all.x = TRUE, sort = FALSE, suffixes = c("_xDROP", 
-        "_yKEEP"))
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#781: col_keep <- names(df_merge_attr)[!grepl("_xDROP$", names(df_merge_attr))]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#783: df_merge_attr <- df_merge_attr[, col_keep]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#785: names(df_merge_attr) <- gsub("_yKEEP$", "", names(df_merge_attr))
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#787: taxatrans_results$merge <- df_merge_attr
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#798: prog_detail <- "Munge Data,"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#799: message(paste0("\n", prog_detail))
-
-Munge Data,
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#801: incProgress(1/prog_n, detail = prog_detail)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#802: Sys.sleep(prog_sleep)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#807: taxatrans_results$merge <- taxatrans_results$merge[order(taxatrans_results$merge[, 
-    sel_user_sampid], taxatrans_results$merge[, sel_user_taxaid]), 
-    ]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#812: if (!nrow(taxatrans_results$merge) == 0) {
-    taxatrans_results$merge[, "file_taxatrans"] <- fn_taxoff
-    taxatrans_results$merge[, "file_attributes"] <- fn_taxoff_attr
-}
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#814: taxatrans_results$merge[, "file_taxatrans"] <- fn_taxoff
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#815: taxatrans_results$merge[, "file_attributes"] <- fn_taxoff_attr
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#820: col_start <- c(sel_user_sampid, sel_user_taxaid, sel_user_ntaxa, 
-    "file_taxatrans", "file_attributes")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#826: col_other <- names(taxatrans_results$merge)[!names(taxatrans_results$merge) %in% 
-    col_start]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#829: col_other <- col_other[!col_other %in% sel_user_otu]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#831: taxatrans_results$merge <- taxatrans_results$merge[, c(col_start, 
-    col_other)]
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#837: boo_req_names <- TRUE
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#838: if (boo_req_names == TRUE) {
-    names(taxatrans_results$merge)[names(taxatrans_results$merge) %in% 
-        sel_user_sampid] <- "SampleID"
-    names(taxatrans_results$merge)[names(taxatrans_results$merge) %in% 
-        sel_user_taxaid] <- "TaxaID"
-    names(taxatrans_results$merge)[names(taxatrans_results$merge) %in% 
-        sel_user_ntaxa] <- "N_Taxa"
-}
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#839: names(taxatrans_results$merge)[names(taxatrans_results$merge) %in% 
-    sel_user_sampid] <- "SampleID"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#841: names(taxatrans_results$merge)[names(taxatrans_results$merge) %in% 
-    sel_user_taxaid] <- "TaxaID"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#843: names(taxatrans_results$merge)[names(taxatrans_results$merge) %in% 
-    sel_user_ntaxa] <- "N_Taxa"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#849: prog_detail <- "Save Results"
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#850: message(paste0("\n", prog_detail))
-
-Save Results
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#852: incProgress(1/prog_n, detail = prog_detail)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#853: Sys.sleep(prog_sleep)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#858: df_save <- data.frame(Calculation = "KS", OperationalTaxonomicUnit = fn_taxoff, 
-    TranslationTable = sel_user_otu, AttributeTable = fn_taxoff_attr)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#862: fn_part <- paste0("_taxatrans_", "0fileversions", ".csv")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#863: write.csv(df_save, file.path(path_results, paste0(fn_input_base, 
-    fn_part)), row.names = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#866: rm(df_save, fn_part)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#872: df_save <- df_taxa_trans
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#873: fn_part <- paste0("_taxatrans_", "1official", ".csv")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#874: write.csv(df_save, file.path(path_results, paste0(fn_input_base, 
-    fn_part)), row.names = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#877: rm(df_save, fn_part)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#880: df_save <- df_taxa_attr
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#881: fn_part <- paste0("_taxatrans_", "1attributes", ".csv")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#882: write.csv(df_save, file.path(path_results, paste0(fn_input_base, 
-    fn_part)), row.names = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#885: rm(df_save, fn_part)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#888: df_save <- taxatrans_results$official_metadata
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#889: fn_part <- paste0("_taxatrans_", "1metadata", ".csv")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#890: write.csv(df_save, file.path(path_results, paste0(fn_input_base, 
-    fn_part)), row.names = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#893: rm(df_save, fn_part)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#896: df_save <- taxatrans_results$taxatrans_unique
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#897: fn_part <- paste0("_taxatrans_", "2taxamatch", ".csv")
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#898: write.csv(df_save, file.path(path_results, paste0(fn_input_base, 
-    fn_part)), row.names = FALSE)
-debug at C:\Users\Erik.Leppo\OneDrive - Tetra Tech, Inc\MyDocs_OneDrive\GitHub\KDHEtools\inst\shiny-examples\KDHEtools/server.R#901: rm(df_save, fn_part)
-'data.frame':	166 obs. of  5 variables:
- $ TAXAID        : chr  "ABLABESMYIA" "ACERPENNA PYGMAEA" "ACILIUS" "AMERCAENIS RIDENS" ...
- $ OTU_MMI       : chr  "ABLABESMYIA" "ACERPENNA PYGMAEA" "ACILIUS" "AMERCAENIS RIDENS" ...
- $ Match_Official: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
- $ Changed       : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 ...
- $ N_Taxa_Sum    : int  23 2 1 14 31 1 30 1 9 36 ...
-
-Create Zip File For Download
-
-Calculate, Clean Up
-
-
-Directory already exists; data
-
-Listening on http://127.0.0.1:4721
-Import, file name: TestFile1_BugSamples_subset1.csv
-Files in 'results' folder (before removal) = 10
-Warning in file.remove(fn_results) :
-  cannot remove file 'results/results_log.txt', reason 'Permission denied'
-Files in 'results' folder (after removal [should be 0]) = 1
-
-Calculation, Taxa Translate...
-
-Import Data, User
-Import, file name, base: TestFile1_BugSamples_subset1
-
-QC Inputs
-
-Import Data, Translations and Attributes
-
-Import Data, Translate
-Warning in merge.data.frame(df_summ, df_official, by.x = taxaid_user, by.y = taxaid_official_match,  :
-  column name ‘N_TAXA’ is duplicated in the result
-User taxa match, 166 / 166
-
-Munge Data,
-
-Save Results
-
-Create Zip File For Download
-
-Calculate, Clean Up
-
+[1] "Working on item (1/5); PHYLUM"
+[1] "Working on item (2/5); CLASS"
+[1] "Working on item (3/5); ORDER"
+[1] "Working on item (4/5); FAMILY"
+[1] "Working on item (5/5); GENUS"
+Warning in eval(expr, env) :
+  Metrics related to the following fields are invalid:
+   
+ 
+There are 2 missing fields in the data:
+INDEX_NAME, INDEX_CLASS
+ 
+If you continue the metrics associated with these fields will be invalid.
+For example, if the HABIT field is missing all habit related metrics will not be correct.
+Do you wish to continue (YES or NO)?
+boo.Shiny == TRUE so prompt skipped and value set to '1'.
+ 
+There are 16 missing fields in the data:
+SUBPHYLUM, SUBCLASS, INFRAORDER, SUBFAMILY, TRIBE, THERMAL_INDICATOR, FFG2, HABITAT, ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR, HABSTRUCT, LONGLIVED, NOTEWORTHY, TOLVAL2, UFC
+ 
+If you continue the metrics associated with these fields will be invalid.
+For example, if the HABIT field is missing all habit related metrics will not be correct.
+Do you wish to continue (YES or NO)?
+boo.Shiny == TRUE and interactive == FALSE
+               so prompt skipped and value set to '1'.
+Warning in warn_for_dotdot(data$key) :
+  Some paths start with `./`, creating non-portable zip file
+Warning in sink() : no sink to remove
 
 
