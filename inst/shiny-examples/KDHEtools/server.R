@@ -470,10 +470,10 @@ shinyServer(function(input, output, session) {
             write.csv(df_calc_metadata, fn_calc_meta, row.names = FALSE)
 
             # Create zip file
-            fn_4zip <- list.files(path = file.path(".", "Results")
+            fn_4zip <- list.files(path = file.path("Results")
                                   , pattern = "^results_"
                                   , full.names = TRUE)
-            zip::zip(file.path(".", "Results", "results.zip"), fn_4zip)
+            zip::zip(file.path("Results", "results.zip"), fn_4zip)
 
             # enable download button
             shinyjs::enable("b_downloadData")

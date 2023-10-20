@@ -3,7 +3,7 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-10-18 14:54:34.285388
+    #> Last Update: 2023-10-20 16:09:44
 
 # KDHEtools v0.1.2.9044 (2023-10-18)
 
