@@ -7,7 +7,8 @@ function(){
                h3("App Steps")
                , p("User may need to refresh screen (F5) to avoid crashing.  See instructions below.")
                , a("Calculate MMI Instructions"
-                   , href = "links/3_CalculateMMI_Instructions_20230818.pdf")
+                   , href = "https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf"
+                   , target="_blank")
                , h4("1. Load File")
                , fileInput("fn_input"
                            , label = "Choose file to upload"
@@ -24,7 +25,8 @@ function(){
                # need to create code to use in b_Calc
                , h5("Marks redundant (non-distinct) taxa using the same "
                     ,a("criteria"
-                       , href = "https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx")
+                       , href = "https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx"
+                       , target="_blank")
                     , " that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in composition (percent individuals) metrics.")
 
                # , h5("Marks redundant (non-distinct) taxa using the same "
