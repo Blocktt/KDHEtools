@@ -893,12 +893,7 @@ shinyServer(function(input, output, session) {
         rm(df_save, fn_part)
 
         ## translate - crosswalk
-        #
-        # QC, 20231018
-        # Flip "Changed"
-        taxatrans_results$taxatrans_unique$Changed <- !taxatrans_results$taxatrans_unique$Changed
-        #
-                df_save <- taxatrans_results$taxatrans_unique # df_taxoff_meta
+        df_save <- taxatrans_results$taxatrans_unique # df_taxoff_meta
         fn_part <- paste0("_taxatrans_", "2taxamatch", ".csv")
         write.csv(df_save
                   , file.path(path_results, paste0(fn_input_base, fn_part))
