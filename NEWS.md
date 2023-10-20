@@ -3,7 +3,40 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-17 16:49:06
+    #> Last Update: 2023-10-18 14:54:34.285388
+
+# KDHEtools v0.1.2.9044 (2023-10-18)
+
+- fix: In taxa translation routine in \*\_2taxamatch file flip “Changed”
+  column
+
+# KDHEtools v0.1.2.9043 (2023-09-06)
+
+- fix: Change logo size from absolute to percentage,
+  Blocktt/KDHEtools#11
+
+# KDHEtools v0.1.2.9042 (2023-08-18)
+
+- fix: MMI calc import change some columns to upper case
+  - “SAMPLEID”, “LAT”, “LONG”, “TAXAID”, “N_TAXA”, “NONTARGET”,
+    “AIRBREATHER”
+  - Change Latitude and Longitude to LAT and LONG
+- refactor: Add instructions to MMI calc to side bar
+- refactor: Remove instructions tab from MMI calc
+
+# KDHEtools v0.1.2.9041 (2023-08-18)
+
+- refactor: MMI calc Shiny, change focus to import viewer after import
+
+- refactor: Remove tab separated as accepted import file option, all
+  imports
+
+- docs: Add Calc MMI Instructions and link
+
+- fix: Remove StationID as a required field for MMI calculator
+
+- refactor: Changed links for KS MMI doc on background screen to load
+  from Shiny app instead of opening GitHub folder
 
 # KDHEtools v0.1.2.9040 (2023-08-17)
 

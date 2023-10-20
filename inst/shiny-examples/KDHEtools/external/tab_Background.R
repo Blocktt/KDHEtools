@@ -7,7 +7,7 @@ function(){
                       # SideBar
                       sidebarLayout(
                         sidebarPanel(
-                          img(src = "KDHE_logo.png", height = 200)
+                          img(src = "KDHE_logo.png", width = "100%")
                           , width = 3
                         )# sidebarPanel~END
                         , mainPanel(
@@ -22,7 +22,7 @@ function(){
                         # SideBar
                         sidebarLayout(
                           sidebarPanel(
-                            img(src = "KDHE_logo.png", height = 200)
+                            img(src = "KDHE_logo.png", width = "100%")
                             , width = 3
                           )# sidebarPanel~END
                           , mainPanel(
@@ -36,7 +36,7 @@ function(){
              , tabPanel("Predictor variables"
                         , sidebarLayout(
                           sidebarPanel(
-                            img(src = "KDHE_logo.png", height = 200)
+                            img(src = "KDHE_logo.png", width = "100%")
                             , width = 3
                           )# sidebarPanel~END
                           , mainPanel(
