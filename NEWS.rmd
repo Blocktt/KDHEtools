@@ -17,6 +17,14 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+KDHEtools v0.1.2.9062 (2023-10-23)
+================
+
+* fix: In taxa translation routine in *_2taxamatch file flip "Changed" column was removed
+* fix: Zip folder from IBI Calculator able to be opened using Extract All
+* Update hyperlinks throughout documentation
+* refactor: added new files to IBI Calculator output
+
 KDHEtools v0.1.2.9044 (2023-10-18)
 ================
 

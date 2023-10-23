@@ -13,14 +13,14 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 # Calculate MMI Instructions
 
-<a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/3_CalculateMMI_Instructions_20230818.pdf" target="_blank">Calculate MMI Instructions</a>
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/3_CalculateMMI_Instructions_20230818.pdf" target="_blank">Calculate MMI Instructions</a>
 
 1.  Load file
     -   Must be a comma-separated file (.csv)
     -   Choose file to upload. Hit the browse button and search for the input file.
     -   Once uploaded, make sure data look correct in the viewer.
 2.  Exclude Taxa
-    -   This required field will be added in automatically (unless you uncheck the box). Redundant (non-distinct) taxa are marked "TRUE", using the same <a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx" target="_blank">criteria</a> that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in the composition (percent individuals) metrics.
+    -   This required field will be added in automatically (unless you uncheck the box). Redundant (non-distinct) taxa are marked "TRUE", using the same <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx" target="_blank">criteria</a> that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in the composition (percent individuals) metrics.
 3.  Calculate Index
     -   Click the 'Calculate Metric Values and Scores' button.
     -   A progress bar will appear in the bottom, right corner of the screen. Results cannot be downloaded until the progress bar is completed and disappears.

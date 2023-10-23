@@ -3,7 +3,16 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-10-20 16:21:00
+    #> Last Update: 2023-10-23 16:01:51
+
+# KDHEtools v0.1.2.9062 (2023-10-23)
+
+- fix: In taxa translation routine in \*\_2taxamatch file flip “Changed”
+  column was removed
+- fix: Zip folder from IBI Calculator able to be opened using Extract
+  All
+- Update hyperlinks throughout documentation
+- refactor: added new files to IBI Calculator output
 
 # KDHEtools v0.1.2.9044 (2023-10-18)
 

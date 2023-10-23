@@ -17,9 +17,8 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 ## Contact Information
 
 If you encounter problems with the KDHEtools app and/or have suggestions
-on ways to further improve it, please contact Ben Block from Tetra Tech
-via email (Ben.Block\@tetratech.com). For more information on this
-project, please contact Tony Stahl (Anthony.Stahl\@ks.gov).
+on ways to further improve it, please contact Ben Block (Ben.Block@tetratech.com) or Erik Leppo (Erik.Leppo@tetratech.com) from Tetra Tech. For more information on this
+project, please contact Tony Stahl (Anthony.Stahl@ks.gov).
 
 ## Frequently asked questions
 

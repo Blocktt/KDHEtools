@@ -52,7 +52,7 @@ table, please email
 the new taxa to the table during the next round of updates.
 
 Want to try it? You can download a test file
-<a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Example_Files/Test1_FileBuilder_TaxaAttr.csv" target="_blank">here</a>.
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Example_Files/Test1_FileBuilder_TaxaAttr.csv" target="_blank">here</a>.
 
 ![Filebuilder Taxa Translate
 steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width="80%"}

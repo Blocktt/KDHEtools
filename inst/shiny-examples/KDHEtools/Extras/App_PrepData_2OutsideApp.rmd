@@ -15,7 +15,7 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 If you choose to create the input file outside of the app (versus using the 'File Builder'), the comma-separated file (CSV) needs to have all the required fields listed below in Table 1. Column names must match the spelling, symbology and capitalization scheme exactly as shown.
 
-There is one more required field (EXCLUDE) that is not shown in Table 1. That column will be added automatically when you run the Index Calculator. The EXCLUDE field marks redundant (non-distinct) taxa, using the same <a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx" target="_blank">criteria</a> that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in the composition (percent individuals) metrics.
+There is one more required field (EXCLUDE) that is not shown in Table 1. That column will be added automatically when you run the Index Calculator. The EXCLUDE field marks redundant (non-distinct) taxa, using the same <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx" target="_blank">criteria</a> that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in the composition (percent individuals) metrics.
 
 IMPORTANT:
 
@@ -27,7 +27,7 @@ Macroinvertebrate traits are not required for each record (i.e., trait fields al
 
 For more information on how the CFS field was derived for MMI development, contact Liz Smith (Elizabeth.Smith@ks.gov).
 
-An example input file can be found <a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Example_Files/Test1_Formatted.csv" target="_blank">here</a>.
+An example input file can be found <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Example_Files/Test1_Formatted.csv" target="_blank">here</a>.
 
 #### Table 1. List of required fields. Column names must match the spelling and symbology exactly as shown. Note that some fields are upper case while others are camel case.
 

@@ -20,7 +20,7 @@ This website calculates Multi-Metric Index (MMI) scores for benthic
 macroinvertebrate samples collected from wadeable streams in Kansas. A
 report detailing the development of the Kansas Macroinvertebrate MMI can
 be found
-<a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf" target="_blank">here</a>.
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf" target="_blank">here</a>.
 
 This is a Shiny app website. There is underlying R code that does the
 MMI calculation. The user clicks buttons to upload .csv input files and
@@ -79,4 +79,4 @@ criteria:
 
 For more information on sampling methodologies and application limits,
 see the Kansas Macroinvertebrate MMI development report
-<a href="https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf" target="_blank">here</a>.
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf" target="_blank">here</a>.
