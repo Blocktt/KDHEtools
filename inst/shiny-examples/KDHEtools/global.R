@@ -79,7 +79,7 @@ epsg_default  <- epsg_nad83_na
 
 # Supporting Files ----
 ## Predictors
-fn_support_pred <- "KS_StreamCat_PredictorTable_BenB_20230721.xlsx"
+fn_support_pred <- "KS_StreamCat_PredictorTable_20231023.xlsx"
 sheet_support_pred <- "Predictors_StreamCat"
 path_support_pred <- file.path("data", fn_support_pred)
 ## Taxa Translator

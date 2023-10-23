@@ -28,12 +28,6 @@ function(){
                        , href = "https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx"
                        , target="_blank")
                     , " that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in composition (percent individuals) metrics.")
-
-               # , h5("Marks redundant (non-distinct) taxa using the same "
-               #      ,a("criteria"
-               #         , href = "https://github.com/Blocktt/ShinyAppDocuments/blob/main/KDHEtools/Reports/EXCLUDE_RedundantTaxa_DecisionCriteria.docx/")
-               #      , " that were used for MMI development. Redundant taxa are excluded from richness metric calculations but are included in composition (percent individuals) metrics.")
-
                , h4("3. Calculate IBI")
                , actionButton("b_Calc", "Calculate Metric Values and Scores")
                , tags$hr()
