@@ -2,7 +2,7 @@ function(){
   tabPanel("Troubleshooting",
            sidebarLayout(
              sidebarPanel(
-               img(src = "KDHE_logo.png", height = 200)
+               img(src = "KDHE_logo.png", width = "100%")
                , width = 3
              )# sidebarPanel~END
              , mainPanel(

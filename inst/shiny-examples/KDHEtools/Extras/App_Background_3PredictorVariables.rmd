@@ -17,7 +17,7 @@ Predictor variables are used in the random forest analysis to account for natura
 
 A table with predictor variables (except for Longitude and CFS) for all NHDPlusV2 local catchments in Kansas can be downloaded <a href="https://raw.githubusercontent.com/Blocktt/KDHEtools/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_BenB_20230721.xlsx" target="_blank">here</a>.
 
-For more information, please read the Kansas Macroinvertebrate MMI <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf" target="_blank">report</a>.
+For more information, please read the Kansas Macroinvertebrate MMI <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/KS_MMI_FinalReport.zip" target="_blank">report</a>.
 
 Note, only COMIDs from the state of Kansas can be used. If the user would like COMIDs from other, nearby states, please contact Ben Block (Ben.Block@tetratech.com) and he can update the available list.
 

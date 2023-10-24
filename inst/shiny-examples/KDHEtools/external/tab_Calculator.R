@@ -20,7 +20,7 @@ function(){
                                         , ".csv")
                )##fileInput~END
 
-               , h4("2. Excluded Taxa")
+               , h4("2. Marks redundant (non-distinct) taxa")
                , checkboxInput("ExclTaxa", "Generate Exclude Taxa Column", TRUE)
                # need to create code to use in b_Calc
                , h5("Marks redundant (non-distinct) taxa using the same "

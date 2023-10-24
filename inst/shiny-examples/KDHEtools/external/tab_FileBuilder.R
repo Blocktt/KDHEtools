@@ -5,7 +5,7 @@ function(){
              tabPanel("Prepare Data",
                       sidebarLayout(
                         sidebarPanel(
-                          img(src = "KDHE_logo.png", height = 200)
+                          img(src = "KDHE_logo.png", width = "100%")
                           , width = 3
                         )# sidebarPanel~END
                         , mainPanel(
@@ -213,7 +213,7 @@ function(){
              , tabPanel("Outside App Preparation",
                         sidebarLayout(
                           sidebarPanel(
-                            img(src = "KDHE_logo.png", height = 200)
+                            img(src = "KDHE_logo.png", width = "100%")
                             , width = 3
                           )# sidebarPanel~END
                           , mainPanel(

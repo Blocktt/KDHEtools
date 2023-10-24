@@ -69,14 +69,10 @@ shinyServer(function(input, output, session) {
         }##IF~is.null~END
 
         # Read user imported file
-        # df_input <- read.csv(inFile$datapath, header = TRUE,
-        #                      sep = input$sep,
-        #                      quote = input$quote, stringsAsFactors = FALSE)
-
         df_input <- read.csv(inFile$datapath, header = TRUE,
                              stringsAsFactors = FALSE)
 
-        required_columns <- c("SAMPLEID", "LAT", "LONG", "TAXAID"
+        required_columns <- c("SAMPLEID", "LONG", "TAXAID"
                               , "N_TAXA", "NONTARGET", "AIRBREATHER", "BCG_Attr"
                               , "BCG_Attr2", "HABIT", "LIFE_CYCLE", "TolVal"
                               , "PHYLUM", "ORDER", "FAMILY", "GENUS", "Al2O3Ws"
@@ -88,12 +84,12 @@ shinyServer(function(input, output, session) {
         ### Column Case Fix ----
         # EWL, 2023-08-18
         # Certain columns to upper case
-        col2upper <- c("SAMPLEID", "LAT", "LONG", "TAXAID", "N_TAXA"
+        col2upper <- c("SAMPLEID", "LONG", "TAXAID", "N_TAXA"
                        , "NONTARGET", "AIRBREATHER")
         names(df_input)[toupper(names(df_input)) %in% col2upper] <-
           toupper(names(df_input)[toupper(names(df_input)) %in% col2upper])
         # Latitude and Longitude to LAT and LONG
-        names(df_input)[toupper(names(df_input)) %in% "LATITUDE"] <- "LAT"
+        # names(df_input)[toupper(names(df_input)) %in% "LATITUDE"] <- "LAT"
         names(df_input)[toupper(names(df_input)) %in% "LONGITUDE"] <- "LONG"
 
         column_names <- colnames(df_input)
@@ -176,18 +172,6 @@ shinyServer(function(input, output, session) {
             if (N_Taxa_zeros > 0) {
                 message("Some taxa in your dataset have a count (N_TAXA) of zero. Values for TAXAID with N_TAXA = 0 will be removed before calculations.")
             }
-
-            # QC, Index Period
-            # QC_CollMonth <- df_data %>%
-            #   dplyr::mutate(COLLMONTH = lubridate::month(COLLDATE)) %>%
-            #   dplyr::pull(COLLMONTH)
-            #
-            # N_OutIndexPeriod <- sum(QC_CollMonth < 4 | QC_CollMonth > 10
-            #                         , na.rm = TRUE)
-            #
-            # if (N_OutIndexPeriod > 0) {
-            #   message("Some samples in your dataset were collected outside of the index period (April through October).")
-            # }
 
             # QC, predictors = NA
             Al2O3Ws_NA <- sum(is.na(df_data$Al2O3Ws))

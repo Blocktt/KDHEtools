@@ -33,4 +33,4 @@ Imports:
   zip
 VignetteBuilder: knitr
 URL: https://github.com/Blocktt/KDHEtools
-BugReports: https://github.com/leppott/MBSStools/issues
+BugReports: https://github.com/Blocktt/KDHEtools/issues
