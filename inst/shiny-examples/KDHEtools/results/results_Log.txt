@@ -35,3 +35,5 @@ Do you wish to continue (YES or NO)?
 boo.Shiny == TRUE and interactive == FALSE
                so prompt skipped and value set to '1'.
 Warning in sink() : no sink to remove
+
+

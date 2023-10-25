@@ -307,7 +307,8 @@ shinyServer(function(input, output, session) {
                             , fun.Community = "bugs"
                             , fun.MetricNames = BugMetrics
                             , fun.cols2keep = keep_cols
-                            , boo.Shiny = TRUE))
+                            , boo.Shiny = TRUE
+                            , taxaid_dni = "DNI"))
 
             df_metval2 <- df_metval %>%
               rename(Al2O3Ws = AL2O3WS
