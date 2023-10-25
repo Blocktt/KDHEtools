@@ -17,6 +17,11 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+KDHEtools v0.1.2.9066 (2023-10-25)
+================
+
+* fix: Minor updates throughout to text and linked files
+
 KDHEtools v0.1.2.9062 (2023-10-23)
 ================
 
