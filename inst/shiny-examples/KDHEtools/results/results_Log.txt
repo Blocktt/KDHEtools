@@ -1,7 +1,6 @@
 Results Log from KDHEtools Shiny App
-2023-10-24 09:50:58
-file = _Test3_Distinct_noLat.csv
-Some sites in your dataset have missing predictor values. Index scores will be incorrect without COMPLETE predictor values.
+2023-10-25 08:43:14
+file = Test1_Formatted.csv
 EXCLUDE column does not have any TRUE values. 
   Valid values are TRUE or FALSE.  
   Other values are not recognized.
@@ -16,7 +15,7 @@ User response to generate ExclTaxa = TRUE
 [1] "Working on item (5/5); GENUS"
 Warning in eval(expr, env) :
   Metrics related to the following fields are invalid:
-   STATIONID
+   
  
 There are 2 missing fields in the data:
 INDEX_NAME, INDEX_CLASS
@@ -26,14 +25,15 @@ For example, if the HABIT field is missing all habit related metrics will not be
 Do you wish to continue (YES or NO)?
 boo.Shiny == TRUE so prompt skipped and value set to '1'.
  
-There are 15 missing fields in the data:
-SUBPHYLUM, SUBCLASS, INFRAORDER, SUBFAMILY, TRIBE, FFG2, HABITAT, ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR, HABSTRUCT, LONGLIVED, NOTEWORTHY, TOLVAL2, UFC
+There are 16 missing fields in the data:
+SUBPHYLUM, SUBCLASS, INFRAORDER, SUBFAMILY, TRIBE, THERMAL_INDICATOR, FFG2, HABITAT, ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR, HABSTRUCT, LONGLIVED, NOTEWORTHY, TOLVAL2, UFC
  
 If you continue the metrics associated with these fields will be invalid.
 For example, if the HABIT field is missing all habit related metrics will not be correct.
 Do you wish to continue (YES or NO)?
 boo.Shiny == TRUE and interactive == FALSE
                so prompt skipped and value set to '1'.
+Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`
 Warning in sink() : no sink to remove
 
 

@@ -72,7 +72,7 @@ shinyServer(function(input, output, session) {
         df_input <- read.csv(inFile$datapath, header = TRUE,
                              stringsAsFactors = FALSE)
 
-        required_columns <- c("SAMPLEID", "LONG", "TAXAID"
+        required_columns <- c("SAMPLEID", "LAT", "LONG", "TAXAID"
                               , "N_TAXA", "NONTARGET", "AIRBREATHER", "BCG_Attr"
                               , "BCG_Attr2", "HABIT", "LIFE_CYCLE", "TolVal"
                               , "PHYLUM", "ORDER", "FAMILY", "GENUS", "Al2O3Ws"
@@ -84,12 +84,12 @@ shinyServer(function(input, output, session) {
         ### Column Case Fix ----
         # EWL, 2023-08-18
         # Certain columns to upper case
-        col2upper <- c("SAMPLEID", "LONG", "TAXAID", "N_TAXA"
+        col2upper <- c("SAMPLEID", "LAT", "LONG", "TAXAID", "N_TAXA"
                        , "NONTARGET", "AIRBREATHER")
         names(df_input)[toupper(names(df_input)) %in% col2upper] <-
           toupper(names(df_input)[toupper(names(df_input)) %in% col2upper])
         # Latitude and Longitude to LAT and LONG
-        # names(df_input)[toupper(names(df_input)) %in% "LATITUDE"] <- "LAT"
+        names(df_input)[toupper(names(df_input)) %in% "LATITUDE"] <- "LAT"
         names(df_input)[toupper(names(df_input)) %in% "LONGITUDE"] <- "LONG"
 
         column_names <- colnames(df_input)
@@ -276,7 +276,7 @@ shinyServer(function(input, output, session) {
             names(df_data) <- toupper(names(df_data))
 
             # QC, Required Fields
-            col.req <- c("SAMPLEID", "STATIONID", "TAXAID", "N_TAXA", "EXCLUDE"
+            col.req <- c("SAMPLEID", "STATIONID", "LAT", "TAXAID", "N_TAXA", "EXCLUDE"
                          , "NONTARGET", "AIRBREATHER", "BCG_ATTR", "BCG_ATTR2"
                          , "HABIT", "LIFE_CYCLE", "TOLVAL", "PHYLUM", "ORDER"
                          , "FAMILY", "GENUS", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
@@ -295,7 +295,7 @@ shinyServer(function(input, output, session) {
             # save each file separately
 
            # columns to keep
-            keep_cols <- c("STATIONID", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
+            keep_cols <- c("STATIONID", "LAT", "AL2O3WS", "CFS", "CLAYWS", "ELEVCAT"
                            , "FE2O3CAT", "K2OWS", "L3ECO", "LONG", "MGOCAT", "NWS"
                            , "PERMWS", "PRECIPCAT", "PRECIPWS", "SANDWS", "SWS"
                            , "TMEANCAT", "WETINDEXWS", "WSAREASQKM", "WTDEPWS")

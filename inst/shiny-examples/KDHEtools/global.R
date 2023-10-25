@@ -83,7 +83,7 @@ fn_support_pred <- "KS_StreamCat_PredictorTable_20231023.xlsx"
 sheet_support_pred <- "Predictors_StreamCat"
 path_support_pred <- file.path("data", fn_support_pred)
 ## Taxa Translator
-fn_support_taxa_trans <- "KS_TaxaTranslator_20230717.csv"
+fn_support_taxa_trans <- "KS_TaxaTranslator_20231024.csv"
 path_support_taxa_trans <- file.path("data", "taxa_trans"
                                      , fn_support_taxa_trans)
 col_taxaid_official_match <- "TaxaID_orig"
