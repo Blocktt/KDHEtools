@@ -30,7 +30,8 @@ Imports:
   StreamCatTools,
   lubridate,
   dplyr,
-  zip
+  zip,
+  readxl
 VignetteBuilder: knitr
 URL: https://github.com/Blocktt/KDHEtools
 BugReports: https://github.com/Blocktt/KDHEtools/issues
