@@ -15,7 +15,7 @@ knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE, message = FALSE
 
 Predictor variables are used in the random forest analysis to account for natural gradient effects on the five macroinvertebrate metrics. There are 12-16 predictor variables per metric (Table 1). For each site, the random forest model looks at site characteristics through decision 'trees' and arrives at a predicted metric value for that site based on the site characteristics, as captured by the predictor values. Accounting for natural gradients with the random forest models increases metric precision and decreases variation.
 
-A table with predictor variables (except for Longitude and CFS) for all NHDPlusV2 local catchments in Kansas can be downloaded <a href="https://raw.githubusercontent.com/Blocktt/KDHEtools/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_BenB_20230721.xlsx" target="_blank">here</a>.
+A table with predictor variables (except for Longitude and CFS) for all NHDPlusV2 local catchments in Kansas can be downloaded <a href="https://raw.githubusercontent.com/Blocktt/KDHEtools/main/inst/shiny-examples/KDHEtools/data/KS_StreamCat_PredictorTable_20231023.xlsx" target="_blank">here</a>.
 
 For more information, please read the Kansas Macroinvertebrate MMI <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/KS_MMI_FinalReport.zip" target="_blank">report</a>.
 

@@ -5,10 +5,11 @@ function(){
              sidebarPanel(
                # 0. Progress
                h3("App Steps")
-               , h5("User may need to refresh screen (F5) to avoid crashing.  See instructions below.")
-               , a("Calculate MMI Instructions"
-                   , href = "https:://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/KDHEtools/Reports/_KS_MMI_Report_20230810_v2.pdf"
-                   , target="_blank")
+               , h5(paste("If you create the input file using the"
+                          ,"‘Prepare Data – Within App’ functions, you will need"
+                          ,"to refresh the website before running the ‘Calculate MMI’"
+                          ,"function, otherwise the app will crash. To refresh,"
+                          ,"press the F5 button on your keyboard."))
                , h4("1. Load File")
                , fileInput("fn_input"
                            , label = "Choose file to upload"
