@@ -2,6 +2,7 @@
 % Please edit documentation in R/KDHEtools.R
 \docType{package}
 \name{KDHEtools}
+\alias{KDHEtools-package}
 \alias{KDHEtools}
 \title{KDHEtools: Multimetric Index Calculator for KDHE}
 \description{
@@ -15,4 +16,23 @@ expressed or implied, is made as to the accuracy and functioning of the
 program and related program material nor shall the fact of distribution
 constitute any such warranty, and no responsibility is assumed in connection
 therewith. This software is provided 'AS IS.#'
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Blocktt/KDHEtools}
+  \item Report bugs at \url{https://github.com/Blocktt/KDHEtools/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Ben Block \email{Ben.Block@tetratech.com}
+
+Authors:
+\itemize{
+  \item Diane Allen
+  \item Erik W. Leppo \email{Erik.Leppo@tetratech.com}
+  \item Ben Jessup
+}
+
 }
