@@ -3,7 +3,11 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-18 13:34:31.147869
+    #> Last Update: 2025-01-17 11:35:01.578293
+
+# KDHEtools v0.1.3.9001 (2025-01-17)
+
+- update: Updated taxa translator and attribute files.
 
 # KDHEtools v0.1.3.0000 (2024-03-18)
 
