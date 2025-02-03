@@ -3,7 +3,11 @@ NEWS-KDHEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-01-17 11:35:01.578293
+    #> Last Update: 2025-02-03 15:55:03.813912
+
+# KDHEtools v0.1.3.9002 (2025-02-03)
+
+- update: Updated maximum input file size to 75mb.
 
 # KDHEtools v0.1.3.9001 (2025-01-17)
 

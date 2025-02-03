@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_ver <- "v0.1.3.9001"
+pkg_ver <- "v0.1.3.9002"
 
 # Packages----
 library(shiny)
@@ -22,7 +22,7 @@ library(zip)
 # File Size
 # By default, the file size limit is 5MB.
 # It can be changed by setting this option.
-mb_limit <- 50
+mb_limit <- 75
 options(shiny.maxRequestSize = mb_limit * 1024^2)
 
 # Default Import File Sep
